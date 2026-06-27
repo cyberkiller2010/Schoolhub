@@ -113,7 +113,7 @@
         }
 
         /* ============================================================
-                   TOP NAV
+                   TOP NAV — Old Layout Style
                    ============================================================ */
         .top-nav {
             padding: 0.8rem 2rem;
@@ -154,24 +154,6 @@
             align-items: center;
             flex-wrap: wrap;
         }
-        .menu-btn {
-            background: var(--bg-input);
-            padding: 0.35rem 1rem;
-            border-radius: 2rem;
-            border: 1px solid var(--border-color);
-            color: var(--text-secondary);
-            cursor: pointer;
-            font-size: 1.2rem;
-            transition: 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .menu-btn:hover {
-            background: var(--purple);
-            color: #FFFFFF;
-            border-color: var(--purple);
-        }
         .theme-toggle {
             background: var(--bg-input);
             padding: 0.35rem 1rem;
@@ -186,6 +168,24 @@
             gap: 6px;
         }
         .theme-toggle:hover {
+            background: var(--purple);
+            color: #FFFFFF;
+            border-color: var(--purple);
+        }
+        .menu-btn {
+            background: var(--bg-input);
+            padding: 0.35rem 1rem;
+            border-radius: 2rem;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .menu-btn:hover {
             background: var(--purple);
             color: #FFFFFF;
             border-color: var(--purple);
@@ -288,7 +288,7 @@
         }
 
         /* ============================================================
-                   PAGES
+                   PAGES — Old Layout Style
                    ============================================================ */
         .page {
             display: none;
@@ -327,309 +327,33 @@
         }
 
         /* ============================================================
-                   TEACHER TABLE TOOLBAR
+                   FIND YOUR SCHOOL — Old Layout Style
                    ============================================================ */
-        .table-toolbar {
-            background: var(--bg-toolbar);
-            border-radius: 1rem;
-            padding: 1rem 1.2rem;
-            border: 1px solid var(--border-color);
-            margin-bottom: 16px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            align-items: center;
-            transition: background 0.3s, border 0.3s;
-        }
-        .table-toolbar .toolbar-group {
-            display: flex;
-            gap: 6px;
-            flex-wrap: wrap;
-            align-items: center;
-            padding-right: 12px;
-            border-right: 1px solid var(--border-color);
-        }
-        .table-toolbar .toolbar-group:last-child {
-            border-right: none;
-        }
-        .table-toolbar .toolbar-group .group-label {
-            font-size: 10px;
-            font-weight: 600;
-            color: var(--text-dim);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-right: 4px;
-        }
-        .table-toolbar .tb-btn {
-            padding: 6px 14px;
-            border-radius: 2rem;
-            border: 1px solid var(--border-color);
-            background: var(--bg-input);
-            color: var(--text-secondary);
-            cursor: pointer;
-            font-size: 12px;
-            font-weight: 500;
-            transition: 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-family: 'Inter', sans-serif;
-        }
-        .table-toolbar .tb-btn:hover {
-            background: var(--purple);
-            color: #FFFFFF;
-            border-color: var(--purple);
-        }
-        .table-toolbar .tb-btn.purple {
-            background: var(--purple);
-            color: #FFFFFF;
-            border-color: var(--purple);
-        }
-        .table-toolbar .tb-btn.purple:hover {
-            background: var(--purple-dark);
-        }
-        .table-toolbar .tb-btn.danger {
-            color: var(--red);
-            border-color: rgba(239, 68, 68, 0.2);
-        }
-        .table-toolbar .tb-btn.danger:hover {
-            background: var(--red);
-            color: #FFFFFF;
-            border-color: var(--red);
-        }
-        .table-toolbar .tb-btn.success {
-            color: var(--green);
-            border-color: rgba(74, 222, 128, 0.2);
-        }
-        .table-toolbar .tb-btn.success:hover {
-            background: var(--green);
-            color: #FFFFFF;
-            border-color: var(--green);
-        }
-
-        .table-name-input {
-            background: var(--bg-input);
-            border: 1px solid var(--border-color);
-            border-radius: 2rem;
-            padding: 6px 16px;
-            color: var(--text-primary);
-            font-size: 14px;
-            font-weight: 600;
-            outline: none;
-            min-width: 200px;
-            font-family: 'Inter', sans-serif;
-        }
-        .table-name-input:focus {
-            border-color: var(--purple);
-        }
-
-        /* ============================================================
-                   TEACHER TABLE - FULL FEATURES
-                   ============================================================ */
-        .table-wrapper {
-            overflow-x: auto;
-            border-radius: 1rem;
-            border: 1px solid var(--border-color);
-            background: var(--bg-card);
-            padding: 4px;
-            transition: background 0.3s, border 0.3s;
-        }
-        .teacher-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 13px;
-            min-width: 600px;
-        }
-        .teacher-table thead th {
-            padding: 10px 12px;
-            text-align: left;
-            font-weight: 600;
-            color: var(--text-primary);
-            border-bottom: 2px solid var(--border-color);
-            position: relative;
+        .pupil-join-card {
             background: var(--bg-section);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            margin-bottom: 20px;
+            transition: background 0.3s, border 0.3s;
         }
-        .teacher-table thead th .col-actions {
-            display: inline-flex;
-            gap: 4px;
-            margin-left: 6px;
-            opacity: 0;
-            transition: 0.2s;
-        }
-        .teacher-table thead th:hover .col-actions {
-            opacity: 1;
-        }
-        .teacher-table thead th .col-actions button {
-            background: none;
-            border: none;
-            color: var(--text-dim);
-            cursor: pointer;
-            font-size: 10px;
-            padding: 2px 4px;
-            border-radius: 4px;
-            transition: 0.2s;
-        }
-        .teacher-table thead th .col-actions button:hover {
-            color: var(--purple);
-            background: var(--bg-input);
-        }
-        .teacher-table tbody td {
-            padding: 8px 12px;
-            border-bottom: 1px solid var(--border-color);
-            color: var(--text-secondary);
-            vertical-align: middle;
-        }
-        .teacher-table tbody tr:hover {
-            background: var(--bg-input);
-        }
-        .teacher-table tbody tr .row-actions {
-            display: inline-flex;
-            gap: 4px;
-            opacity: 0;
-            transition: 0.2s;
-        }
-        .teacher-table tbody tr:hover .row-actions {
-            opacity: 1;
-        }
-        .teacher-table tbody tr .row-actions button {
-            background: none;
-            border: none;
-            color: var(--text-dim);
-            cursor: pointer;
-            font-size: 11px;
-            padding: 2px 6px;
-            border-radius: 4px;
-            transition: 0.2s;
-        }
-        .teacher-table tbody tr .row-actions button:hover {
-            color: var(--purple);
-            background: var(--bg-input);
-        }
-        .teacher-table tbody tr .row-actions button.danger:hover {
-            color: var(--red);
-        }
-
-        .teacher-table .editable-cell {
-            cursor: pointer;
-            padding: 4px 8px;
-            border-radius: 4px;
-            transition: 0.2s;
-            min-width: 40px;
-            display: inline-block;
-        }
-        .teacher-table .editable-cell:hover {
-            background: var(--bg-input);
-        }
-        .teacher-table .editable-cell input {
-            background: var(--bg-input);
-            border: 1px solid var(--purple);
-            border-radius: 4px;
-            padding: 2px 6px;
-            color: var(--text-secondary);
-            font-size: 13px;
-            width: 50px;
-            outline: none;
-            font-family: 'Inter', sans-serif;
-        }
-        .teacher-table .editable-cell input:focus {
-            border-color: var(--purple);
-        }
-
-        /* Grade colors */
-        .grade-A {
-            color: var(--green);
-            font-weight: 700;
-        }
-        .grade-B {
-            color: var(--blue);
-            font-weight: 700;
-        }
-        .grade-C {
-            color: var(--yellow);
-            font-weight: 700;
-        }
-        .grade-D {
-            color: var(--orange);
-            font-weight: 700;
-        }
-        .grade-F {
-            color: var(--red);
-            font-weight: 700;
-        }
-
-        .status-pass {
-            color: var(--green);
-            font-weight: 600;
-        }
-        .status-fail {
-            color: var(--red);
-            font-weight: 600;
-        }
-
-        /* ============================================================
-                   MODALS
-                   ============================================================ */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(12px);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-        }
-        .modal-overlay.active {
-            display: flex;
-        }
-        .modal-content {
-            background: var(--bg-modal);
-            border-radius: 2rem;
-            padding: 2rem;
-            width: 90%;
-            max-width: 500px;
-            border: 1px solid rgba(108, 92, 231, 0.2);
-            max-height: 90vh;
-            overflow-y: auto;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-            transition: background 0.3s;
-        }
-        .modal-content h2 {
-            text-align: center;
-            margin-bottom: 4px;
+        .pupil-join-card h3 {
             color: var(--text-primary);
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 10px;
+            gap: 8px;
+            margin-bottom: 8px;
         }
-        .modal-content h2 i {
+        .pupil-join-card h3 i {
             color: var(--purple);
         }
-        .modal-content .sub {
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 14px;
-            margin-bottom: 1.2rem;
+        .pupil-join-card .join-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
         }
-        .close-modal-btn {
-            display: block;
-            margin: 1.2rem auto 0;
-            background: var(--bg-input);
-            border: 1px solid var(--border-color);
-            color: var(--text-secondary);
-            padding: 10px 30px;
-            border-radius: 2rem;
-            font-weight: 600;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: 0.3s;
-        }
-        .close-modal-btn:hover {
-            background: var(--bg-card-hover);
+        .pupil-join-card .join-grid .full-width {
+            grid-column: span 2;
         }
 
         .form-group {
@@ -643,7 +367,8 @@
             font-weight: 500;
         }
         .form-group input,
-        .form-group select {
+        .form-group select,
+        .form-group textarea {
             width: 100%;
             padding: 12px 16px;
             border-radius: 1rem;
@@ -656,10 +381,12 @@
             font-family: 'Inter', sans-serif;
         }
         .form-group input:focus,
-        .form-group select:focus {
+        .form-group select:focus,
+        .form-group textarea:focus {
             border-color: var(--purple);
         }
-        .form-group input::placeholder {
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
             color: var(--text-dim);
         }
         .form-group select option {
@@ -667,9 +394,6 @@
             color: var(--text-secondary);
         }
 
-        /* ============================================================
-                   REST OF STYLES
-                   ============================================================ */
         .btn-primary {
             width: 100%;
             padding: 14px;
@@ -743,6 +467,1317 @@
         }
 
         /* ============================================================
+                   SUBJECT CARDS — Old Layout Style
+                   ============================================================ */
+        .subject-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 1.2rem;
+        }
+        .subject-card {
+            background: var(--bg-card);
+            border-radius: 1.2rem;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: 0.3s;
+            color: var(--text-secondary);
+        }
+        .subject-card:hover {
+            transform: translateY(-4px);
+            background: var(--bg-card-hover);
+            border-color: var(--purple);
+        }
+        .subject-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 8px;
+            color: var(--purple);
+        }
+        .subject-card h4 {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        .subject-card p {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* ============================================================
+                   LIVE CLASSES — Old Layout Style
+                   ============================================================ */
+        .live-card {
+            background: var(--bg-live);
+            border-radius: 1.2rem;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            box-shadow: var(--shadow);
+        }
+        .live-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--purple);
+        }
+        .live-badge {
+            background: var(--purple);
+            color: #FFFFFF;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 30px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            animation: livePulse 1.5s infinite;
+            flex-shrink: 0;
+        }
+        .live-badge i {
+            font-size: 8px;
+            color: #EF4444;
+        }
+        @keyframes livePulse {
+            0%,
+            100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+        .live-card .info {
+            flex: 1;
+        }
+        .live-card .info h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        .live-card .info p {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        /* ============================================================
+                   AI CARDS — Old Layout Style
+                   ============================================================ */
+        .ai-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1.2rem;
+            margin-top: 1.5rem;
+        }
+        .ai-card {
+            background: var(--bg-card);
+            border-radius: 1.2rem;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .ai-card:hover {
+            transform: translateY(-4px);
+            background: var(--bg-card-hover);
+            border-color: var(--purple);
+        }
+        .ai-card .ai-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin: 0 auto 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: rgba(108, 92, 231, 0.15);
+            color: var(--purple);
+            border: 2px solid rgba(108, 92, 231, 0.2);
+        }
+        .ai-card h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        .ai-card p {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* ============================================================
+                   SUBJECT RESOURCES — Old Layout Style
+                   ============================================================ */
+        .back-btn {
+            background: var(--bg-input);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 8px 18px;
+            border-radius: 2rem;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Inter', sans-serif;
+        }
+        .back-btn:hover {
+            background: var(--purple);
+            color: #FFFFFF;
+            border-color: var(--purple);
+        }
+
+        .resource-search-bar {
+            display: flex;
+            gap: 12px;
+            margin: 16px 0;
+            position: relative;
+            flex-wrap: wrap;
+        }
+        .resource-search-bar .search-wrapper {
+            flex: 1;
+            position: relative;
+            min-width: 200px;
+        }
+        .resource-search-bar .search-wrapper input {
+            width: 100%;
+            padding: 12px 16px;
+            padding-right: 44px;
+            border-radius: 2rem;
+            background: var(--bg-input);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 14px;
+            outline: none;
+            transition: 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+        .resource-search-bar .search-wrapper input:focus {
+            border-color: var(--purple);
+        }
+        .resource-search-bar .search-wrapper input::placeholder {
+            color: var(--text-dim);
+        }
+        .resource-search-bar .search-wrapper .search-icon {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-dim);
+            font-size: 1rem;
+        }
+
+        .suggestions-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--bg-suggestion);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            margin-top: 4px;
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+        .suggestions-dropdown.active {
+            display: block;
+        }
+        .suggestion-item {
+            padding: 10px 16px;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .suggestion-item:hover {
+            background: var(--bg-input);
+        }
+        .suggestion-item .sug-icon {
+            font-size: 1.2rem;
+            color: var(--purple);
+            width: 30px;
+            text-align: center;
+        }
+        .suggestion-item .sug-info .sug-title {
+            font-size: 14px;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+        .suggestion-item .sug-info .sug-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+        .suggestion-item .sug-tag {
+            font-size: 10px;
+            padding: 2px 10px;
+            border-radius: 30px;
+            background: rgba(108, 92, 231, 0.15);
+            color: var(--purple-light);
+            flex-shrink: 0;
+        }
+
+        .resource-filters {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin: 12px 0 20px;
+        }
+        .resource-filters button {
+            padding: 8px 20px;
+            border-radius: 2rem;
+            border: 1px solid var(--border-color);
+            background: var(--bg-input);
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-family: 'Inter', sans-serif;
+        }
+        .resource-filters button:hover {
+            border-color: var(--purple);
+            color: var(--text-primary);
+        }
+        .resource-filters button.active-filter {
+            background: var(--purple);
+            color: #FFFFFF;
+            border-color: var(--purple);
+        }
+        .resource-filters button .filter-count {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 1px 8px;
+            border-radius: 30px;
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1.2rem;
+            margin-top: 16px;
+        }
+        .resource-card {
+            background: var(--bg-card);
+            border-radius: 1rem;
+            padding: 1.2rem;
+            border: 1px solid var(--border-color);
+            transition: 0.3s;
+            box-shadow: var(--shadow);
+        }
+        .resource-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--purple);
+            background: var(--bg-card-hover);
+        }
+        .resource-card .res-icon {
+            font-size: 2rem;
+            margin-bottom: 8px;
+            color: var(--purple);
+        }
+        .resource-card .res-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        .resource-card .res-topic {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin: 4px 0;
+        }
+        .resource-card .res-meta {
+            font-size: 12px;
+            color: var(--text-dim);
+            margin-top: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+        .resource-card .res-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+        .resource-card .res-actions .btn-sm {
+            padding: 4px 14px;
+            border-radius: 2rem;
+            border: none;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-family: 'Inter', sans-serif;
+        }
+        .btn-download {
+            background: var(--purple);
+            color: #FFFFFF;
+        }
+        .btn-download:hover {
+            background: var(--purple-dark);
+        }
+        .btn-watch {
+            background: var(--bg-input);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+        }
+        .btn-watch:hover {
+            background: var(--purple);
+            color: #FFFFFF;
+            border-color: var(--purple);
+        }
+
+        /* ============================================================
+                   GROUPS — Old Layout Style
+                   ============================================================ */
+        .groups-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 4px;
+            flex-wrap: wrap;
+        }
+        .groups-tabs button {
+            background: none;
+            border: none;
+            color: var(--text-dim);
+            padding: 10px 20px;
+            border-radius: 2rem;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Inter', sans-serif;
+        }
+        .groups-tabs button:hover {
+            color: var(--text-primary);
+            background: var(--bg-input);
+        }
+        .groups-tabs button.active-tab {
+            background: var(--purple);
+            color: #FFFFFF;
+        }
+        .groups-tabs button .tab-badge {
+            background: var(--purple);
+            color: #FFFFFF;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 1px 8px;
+            border-radius: 30px;
+        }
+        .group-content {
+            display: none;
+        }
+        .group-content.active-content {
+            display: block;
+        }
+        .group-card {
+            background: var(--bg-card);
+            border-radius: 1rem;
+            padding: 1.2rem 1.5rem;
+            border: 1px solid var(--border-color);
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            box-shadow: var(--shadow);
+        }
+        .group-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--purple);
+        }
+        .group-card .left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex: 1;
+        }
+        .group-card .left .icon {
+            font-size: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(108, 92, 231, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: var(--purple);
+        }
+        .group-card .left .info h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        .group-card .left .info p {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+        .group-card .right {
+            text-align: right;
+            flex-shrink: 0;
+        }
+        .group-card .right .meta {
+            font-size: 12px;
+            color: var(--text-dim);
+        }
+        .group-card .right .badge {
+            background: var(--purple);
+            color: #FFFFFF;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 2px 12px;
+            border-radius: 30px;
+            display: inline-block;
+            margin-top: 4px;
+        }
+
+        /* ============================================================
+                   TEACHER TABLE — Old Layout Style
+                   ============================================================ */
+        .table-wrapper {
+            overflow-x: auto;
+            border-radius: 1rem;
+            border: 1px solid var(--border-color);
+            background: var(--bg-card);
+            padding: 4px;
+            transition: background 0.3s, border 0.3s;
+        }
+        .teacher-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            min-width: 600px;
+        }
+        .teacher-table thead th {
+            padding: 10px 12px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-primary);
+            border-bottom: 2px solid var(--border-color);
+            background: var(--bg-section);
+        }
+        .teacher-table tbody td {
+            padding: 8px 12px;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            vertical-align: middle;
+        }
+        .teacher-table tbody tr:hover {
+            background: var(--bg-input);
+        }
+        .teacher-table tbody tr .row-actions {
+            display: inline-flex;
+            gap: 4px;
+            opacity: 0;
+            transition: 0.2s;
+        }
+        .teacher-table tbody tr:hover .row-actions {
+            opacity: 1;
+        }
+        .teacher-table tbody tr .row-actions button {
+            background: none;
+            border: none;
+            color: var(--text-dim);
+            cursor: pointer;
+            font-size: 11px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            transition: 0.2s;
+        }
+        .teacher-table tbody tr .row-actions button:hover {
+            color: var(--purple);
+            background: var(--bg-input);
+        }
+        .teacher-table tbody tr .row-actions button.danger:hover {
+            color: var(--red);
+        }
+
+        .table-toolbar {
+            background: var(--bg-toolbar);
+            border-radius: 1rem;
+            padding: 1rem 1.2rem;
+            border: 1px solid var(--border-color);
+            margin-bottom: 16px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+            transition: background 0.3s, border 0.3s;
+        }
+        .table-toolbar .tb-btn {
+            padding: 6px 14px;
+            border-radius: 2rem;
+            border: 1px solid var(--border-color);
+            background: var(--bg-input);
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 500;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: 'Inter', sans-serif;
+        }
+        .table-toolbar .tb-btn:hover {
+            background: var(--purple);
+            color: #FFFFFF;
+            border-color: var(--purple);
+        }
+        .table-name-input {
+            background: var(--bg-input);
+            border: 1px solid var(--border-color);
+            border-radius: 2rem;
+            padding: 6px 16px;
+            color: var(--text-primary);
+            font-size: 14px;
+            font-weight: 600;
+            outline: none;
+            min-width: 200px;
+            font-family: 'Inter', sans-serif;
+        }
+        .table-name-input:focus {
+            border-color: var(--purple);
+        }
+
+        /* ============================================================
+                   NOTIFICATIONS — Old Layout Style
+                   ============================================================ */
+        .notif-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .notif-item {
+            background: var(--bg-notif);
+            border-radius: 1rem;
+            padding: 1rem 1.2rem;
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            transition: 0.2s;
+            cursor: pointer;
+            user-select: none;
+            -webkit-user-select: none;
+            box-shadow: var(--shadow);
+        }
+        .notif-item:hover {
+            background: var(--bg-card-hover);
+        }
+        .notif-item .icon {
+            font-size: 1.4rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(108, 92, 231, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: var(--purple);
+        }
+        .notif-item .info {
+            flex: 1;
+        }
+        .notif-item .info p {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        .notif-item .info .time {
+            font-size: 11px;
+            color: var(--text-dim);
+        }
+        .notif-item .badge-new {
+            background: var(--purple);
+            color: #FFFFFF;
+            font-size: 10px;
+            padding: 2px 12px;
+            border-radius: 30px;
+            flex-shrink: 0;
+        }
+
+        /* ============================================================
+                   MODALS
+                   ============================================================ */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-overlay.active {
+            display: flex;
+        }
+        .modal-content {
+            background: var(--bg-modal);
+            border-radius: 2rem;
+            padding: 2rem;
+            width: 90%;
+            max-width: 500px;
+            border: 1px solid rgba(108, 92, 231, 0.2);
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            transition: background 0.3s;
+        }
+        .modal-content h2 {
+            text-align: center;
+            margin-bottom: 4px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .modal-content h2 i {
+            color: var(--purple);
+        }
+        .modal-content .sub {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 1.2rem;
+        }
+        .close-modal-btn {
+            display: block;
+            margin: 1.2rem auto 0;
+            background: var(--bg-input);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 10px 30px;
+            border-radius: 2rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+        .close-modal-btn:hover {
+            background: var(--bg-card-hover);
+        }
+
+        .password-wrapper {
+            position: relative;
+            width: 100%;
+        }
+        .password-wrapper input {
+            width: 100%;
+            padding-right: 48px;
+        }
+        .password-toggle {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--text-dim);
+            cursor: pointer;
+            font-size: 1.1rem;
+            padding: 4px;
+            transition: 0.2s;
+        }
+        .password-toggle:hover {
+            color: var(--purple);
+        }
+
+        .auth-card {
+            background: var(--bg-auth);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            max-width: 450px;
+            margin: 0 auto;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+            transition: background 0.3s, border 0.3s;
+        }
+        .auth-card h2 {
+            text-align: center;
+            margin-bottom: 4px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .auth-card h2 i {
+            color: var(--purple);
+        }
+        .auth-card .sub {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 1.5rem;
+        }
+
+        .import-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 16px 0;
+        }
+        .import-options button {
+            padding: 16px;
+            border-radius: 1rem;
+            border: 1px solid var(--border-color);
+            background: var(--bg-input);
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            font-family: 'Inter', sans-serif;
+        }
+        .import-options button:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--purple);
+        }
+        .import-options button i {
+            font-size: 2rem;
+            color: var(--purple);
+        }
+        .import-options button .desc {
+            font-size: 11px;
+            color: var(--text-dim);
+        }
+        .paste-area {
+            width: 100%;
+            min-height: 120px;
+            padding: 12px 16px;
+            border-radius: 1rem;
+            background: var(--bg-input);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-family: 'Inter', monospace;
+            resize: vertical;
+            outline: none;
+        }
+        .paste-area:focus {
+            border-color: var(--purple);
+        }
+        .ocr-preview {
+            margin-top: 12px;
+            padding: 12px;
+            background: var(--bg-input);
+            border-radius: 0.8rem;
+            max-height: 200px;
+            overflow-y: auto;
+            font-size: 13px;
+            color: var(--text-muted);
+            white-space: pre-wrap;
+        }
+
+        .grade-badge {
+            display: inline-block;
+            padding: 2px 12px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .grade-A {
+            background: rgba(108, 92, 231, 0.2);
+            color: var(--purple-light);
+        }
+        .grade-B {
+            background: rgba(108, 92, 231, 0.15);
+            color: var(--text-muted);
+        }
+        .grade-C {
+            background: var(--bg-input);
+            color: var(--text-dim);
+        }
+        .grade-D {
+            background: var(--bg-input);
+            color: var(--text-dim);
+        }
+        .grade-F {
+            background: var(--bg-input);
+            color: var(--text-dim);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .stat-card {
+            background: var(--bg-stat);
+            border-radius: 1rem;
+            padding: 1.2rem;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: var(--shadow);
+        }
+        .stat-card:hover {
+            border-color: var(--purple);
+            background: var(--bg-card-hover);
+        }
+        .stat-card .number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--purple);
+        }
+        .stat-card .label {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+        .stat-card .label i {
+            margin-right: 4px;
+            color: var(--purple);
+        }
+
+        .admin-section {
+            background: var(--bg-section);
+            border-radius: 1rem;
+            padding: 1.2rem 1.5rem;
+            border: 1px solid var(--border-color);
+            margin-bottom: 1.5rem;
+            transition: background 0.3s, border 0.3s;
+        }
+        .admin-section h3 {
+            font-size: 18px;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .admin-section h3 i {
+            color: var(--purple);
+        }
+
+        .announcement-item {
+            background: var(--bg-input);
+            border-radius: 0.8rem;
+            padding: 12px 16px;
+            margin-bottom: 8px;
+            border-left: 3px solid var(--purple);
+        }
+        .announcement-item .title {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        .announcement-item .meta {
+            font-size: 12px;
+            color: var(--text-dim);
+            margin-top: 4px;
+        }
+
+        .file-upload-area {
+            background: var(--bg-input);
+            border: 2px dashed rgba(108, 92, 231, 0.25);
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+            margin: 1rem 0;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .file-upload-area:hover {
+            border-color: var(--purple);
+            background: var(--bg-card-hover);
+        }
+        .file-upload-area i {
+            font-size: 3rem;
+            color: var(--purple);
+            margin-bottom: 10px;
+        }
+        .file-upload-area p {
+            color: var(--text-muted);
+        }
+        .file-upload-area .file-types {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+        .file-upload-area .file-types span {
+            background: var(--bg-input);
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 11px;
+            color: var(--text-dim);
+        }
+
+        .upload-visibility {
+            display: flex;
+            gap: 12px;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+        .upload-visibility label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+        .upload-visibility input[type="radio"] {
+            accent-color: var(--purple);
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .chat-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(12px);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+        }
+        .chat-modal.active {
+            display: flex;
+        }
+        .chat-modal-content {
+            background: var(--bg-modal);
+            border-radius: 2rem;
+            width: 95%;
+            max-width: 500px;
+            height: 85vh;
+            max-height: 600px;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(108, 92, 231, 0.2);
+            overflow: hidden;
+        }
+        .chat-header {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .chat-header h3 {
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-primary);
+        }
+        .chat-header h3 i {
+            color: var(--purple);
+        }
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .chat-msg {
+            max-width: 80%;
+            padding: 10px 16px;
+            border-radius: 1rem;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        .chat-msg.sent {
+            background: var(--purple);
+            color: #FFFFFF;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+        .chat-msg.received {
+            background: var(--bg-input);
+            color: var(--text-secondary);
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+        }
+        .chat-msg .sender {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 2px;
+        }
+        .chat-msg .time {
+            font-size: 10px;
+            color: var(--text-dim);
+            margin-top: 4px;
+            display: block;
+        }
+        .chat-input-area {
+            padding: 0.8rem 1.5rem;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            gap: 8px;
+            flex-shrink: 0;
+            flex-wrap: wrap;
+        }
+        .chat-input-area input[type="text"] {
+            flex: 1;
+            padding: 10px 16px;
+            border-radius: 2rem;
+            border: 1px solid var(--border-color);
+            background: var(--bg-input);
+            color: var(--text-secondary);
+            font-size: 14px;
+            outline: none;
+            min-width: 100px;
+        }
+        .chat-input-area input::placeholder {
+            color: var(--text-dim);
+        }
+        .chat-input-area .chat-tools {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+        }
+        .chat-input-area .chat-tools button {
+            background: var(--bg-input);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 8px 12px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.2s;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .chat-input-area .chat-tools button:hover {
+            background: var(--purple);
+            color: #FFFFFF;
+            border-color: var(--purple);
+        }
+        .chat-input-area .send-btn {
+            background: var(--purple);
+            border: none;
+            color: #FFFFFF;
+            padding: 10px 20px;
+            border-radius: 2rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .chat-input-area .send-btn:hover {
+            background: var(--purple-dark);
+        }
+
+        .homework-banner {
+            background: rgba(108, 92, 231, 0.1);
+            border: 1px solid rgba(108, 92, 231, 0.15);
+            border-radius: 1rem;
+            padding: 12px 16px;
+            margin-bottom: 10px;
+        }
+        .homework-banner h4 {
+            font-size: 13px;
+            color: var(--purple-light);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .homework-banner p {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .teacher-dashboard {
+            display: none;
+        }
+        .teacher-dashboard.active {
+            display: block;
+        }
+        .admin-dashboard {
+            display: none;
+        }
+        .admin-dashboard.active {
+            display: block;
+        }
+
+        .parent-portal {
+            display: none;
+        }
+        .parent-portal.active {
+            display: block;
+        }
+        .child-result-card {
+            background: var(--bg-card);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            margin-bottom: 16px;
+            box-shadow: var(--shadow);
+        }
+        .child-result-card .child-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .child-result-card .child-name i {
+            color: var(--purple);
+        }
+        .child-result-card .result-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 12px;
+        }
+        .child-result-card .result-item {
+            background: var(--bg-input);
+            border-radius: 0.8rem;
+            padding: 10px;
+            text-align: center;
+        }
+        .child-result-card .result-item .week {
+            font-size: 11px;
+            color: var(--text-dim);
+        }
+        .child-result-card .result-item .score {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-top: 4px;
+        }
+        .child-result-card .result-item .score.pass {
+            color: var(--purple-light);
+        }
+        .child-result-card .result-item .score.fail {
+            color: var(--text-dim);
+        }
+        .child-result-card .overall {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        /* ============================================================
+                   BOTTOM NAV — Old Layout Style
+                   ============================================================ */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--bg-nav);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 0 12px;
+            z-index: 1000;
+            transition: background 0.3s, border 0.3s;
+        }
+        .bottom-nav button {
+            background: none;
+            border: none;
+            color: var(--text-dim);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            font-size: 10px;
+            font-family: 'Inter', sans-serif;
+            transition: 0.3s;
+            padding: 4px 12px;
+            position: relative;
+        }
+        .bottom-nav button i {
+            font-size: 1.4rem;
+            transition: 0.3s;
+            color: var(--text-dim);
+        }
+        .bottom-nav button span {
+            font-weight: 500;
+        }
+        .bottom-nav button.active {
+            color: var(--purple);
+        }
+        .bottom-nav button.active i {
+            color: var(--purple);
+            transform: translateY(-2px);
+        }
+        .bottom-nav button .nav-badge {
+            position: absolute;
+            top: 0;
+            right: 4px;
+            background: var(--purple);
+            color: #FFFFFF;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 1px 7px;
+            border-radius: 30px;
+            min-width: 18px;
+            text-align: center;
+        }
+
+        /* ============================================================
                    TOAST
                    ============================================================ */
         .toast {
@@ -764,6 +1799,42 @@
             box-shadow: var(--shadow);
         }
 
+        .live-list {
+            max-height: 450px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .live-list .live-item {
+            background: var(--bg-input);
+            border-radius: 1rem;
+            padding: 1rem 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            border: 1px solid var(--border-color);
+        }
+        .live-list .live-item:hover {
+            border-color: var(--purple);
+        }
+        .live-list .live-item .left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .live-list .live-item .left .info h4 {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        .live-list .live-item .left .info p {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
         /* ============================================================
                    RESPONSIVE
                    ============================================================ */
@@ -782,30 +1853,111 @@
                 width: 280px;
                 right: -280px;
             }
+            .subject-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+            }
+            .subject-card {
+                padding: 1rem 0.5rem;
+            }
+            .subject-card .icon {
+                font-size: 2rem;
+            }
+            .subject-card h4 {
+                font-size: 13px;
+            }
+            .subject-card p {
+                font-size: 10px;
+            }
+            .ai-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .pupil-join-card .join-grid {
+                grid-template-columns: 1fr;
+            }
+            .pupil-join-card .join-grid .full-width {
+                grid-column: span 1;
+            }
+            .bottom-nav button {
+                font-size: 9px;
+                padding: 2px 8px;
+            }
+            .bottom-nav button i {
+                font-size: 1.2rem;
+            }
+            .groups-tabs button {
+                font-size: 12px;
+                padding: 8px 14px;
+            }
+            .group-card {
+                padding: 1rem;
+            }
+            .group-card .left .icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.4rem;
+            }
+            .import-options {
+                grid-template-columns: 1fr;
+            }
+            .child-result-card .result-grid {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .live-card {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+            }
+            .live-list .live-item {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+            }
+            .live-list .live-item .left {
+                flex-direction: column;
+            }
+            .admin-section {
+                padding: 1rem;
+            }
             .table-toolbar {
                 flex-direction: column;
                 align-items: stretch;
                 gap: 8px;
             }
-            .table-toolbar .toolbar-group {
-                border-right: none;
-                border-bottom: 1px solid var(--border-color);
-                padding-bottom: 8px;
-                padding-right: 0;
+            .theme-toggle span {
+                display: none;
             }
-            .table-toolbar .toolbar-group:last-child {
-                border-bottom: none;
-                padding-bottom: 0;
+            .resource-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .resource-filters button {
+                font-size: 11px;
+                padding: 6px 14px;
             }
             .table-name-input {
                 min-width: 100%;
             }
-            .theme-toggle span {
-                display: none;
-            }
         }
 
         @media (max-width: 450px) {
+            .subject-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .ai-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .child-result-card .result-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .resource-grid {
+                grid-template-columns: 1fr;
+            }
             .teacher-table {
                 font-size: 11px;
                 min-width: 400px;
@@ -820,7 +1972,7 @@
 <body>
 
     <!-- ============================================================
-    TOP NAV
+    TOP NAV — Old Layout Style
     ============================================================ -->
     <div class="top-nav">
         <div class="logo">
@@ -885,10 +2037,89 @@
     <div class="app">
 
         <!-- ============================================================
-        STUDENT PORTAL
+        STUDENT PORTAL — Old Layout Style
         ============================================================ -->
         <div class="page active" id="studentPortal">
-            <!-- Subjects -->
+
+            <!-- Find Your School — Old Layout -->
+            <div class="pupil-join-card">
+                <h3><i class="fas fa-school"></i> Find Your School</h3>
+                <p style="color: var(--text-muted); font-size:14px; margin-bottom:16px;">Enter your details to access your classes</p>
+
+                <div class="join-grid">
+                    <div class="form-group full-width">
+                        <label><i class="fas fa-school" style="color:var(--purple);"></i> School Name</label>
+                        <input type="text" id="pupilSchoolInput" placeholder="Enter your school name" />
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-user" style="color:var(--purple);"></i> Your Name</label>
+                        <input type="text" id="pupilNameInput" placeholder="Full name" />
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-layer-group" style="color:var(--purple);"></i> Class/Grade</label>
+                        <select id="pupilGradeInput">
+                            <option value="">Select Grade</option>
+                            <option value="1">Grade 1</option>
+                            <option value="2">Grade 2</option>
+                            <option value="3">Grade 3</option>
+                            <option value="4">Grade 4</option>
+                            <option value="5">Grade 5</option>
+                            <option value="6">Grade 6</option>
+                            <option value="7">Grade 7</option>
+                            <option value="8">Grade 8</option>
+                            <option value="9">Grade 9</option>
+                            <option value="10">Grade 10</option>
+                            <option value="11">Grade 11</option>
+                            <option value="12">Grade 12</option>
+                        </select>
+                    </div>
+                    <div class="form-group full-width">
+                        <label><i class="fas fa-book" style="color:var(--purple);"></i> Subject</label>
+                        <select id="pupilSubjectInput">
+                            <option value="">Select Subject</option>
+                            <option value="Mathematics">Mathematics</option>
+                            <option value="English">English</option>
+                            <option value="Science">Science</option>
+                            <option value="History">History</option>
+                            <option value="Geography">Geography</option>
+                            <option value="Computer Studies">Computer Studies</option>
+                            <option value="Art & Design">Art & Design</option>
+                            <option value="Business Studies">Business Studies</option>
+                            <option value="Religious Education">Religious Education</option>
+                            <option value="Physical Education">Physical Education</option>
+                            <option value="Music">Music</option>
+                            <option value="Home Economics">Home Economics</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button class="btn-primary" onclick="findPupilClass()" style="margin-top:8px;">
+                    <i class="fas fa-search"></i> Find My Class
+                </button>
+
+                <div id="pupilJoinResult" style="margin-top:16px; display:none;"></div>
+            </div>
+
+            <!-- LIVE CLASSES — Old Layout -->
+            <div style="margin-bottom:30px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:12px;">
+                    <div class="page-title" style="font-size:20px; margin-bottom:0;"><i class="fas fa-video"></i> Live Classes</div>
+                    <span style="color:var(--text-muted); font-size:13px;"><i class="fas fa-globe" style="color:var(--purple);"></i> Public · No login required</span>
+                </div>
+
+                <div class="live-card" onclick="openLiveList()">
+                    <span class="live-badge"><i class="fas fa-circle"></i> LIVE</span>
+                    <div class="info">
+                        <h4>3 live classes now</h4>
+                        <p><i class="fas fa-globe" style="color:var(--purple);"></i> 150+ students watching globally · Tap to see all</p>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:8px;">
+                        <span style="color:var(--text-muted); font-size:13px;"><i class="fas fa-chevron-right" style="color:var(--purple);"></i> View All</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SUBJECTS — Old Layout -->
             <div class="page-title"><i class="fas fa-graduation-cap"></i> Subjects</div>
             <p class="page-subtitle">Tap a subject to explore resources</p>
             <div class="subject-grid" id="subjectGrid">
@@ -904,6 +2135,34 @@
                 <div class="subject-card" onclick="openSubjectResources('Physical Education')"><div class="icon"><i class="fas fa-running"></i></div><h4>Physical Education</h4><p>Health &amp; Fitness</p></div>
                 <div class="subject-card" onclick="openSubjectResources('Music')"><div class="icon"><i class="fas fa-music"></i></div><h4>Music</h4><p>Rhythm &amp; Theory</p></div>
                 <div class="subject-card" onclick="openSubjectResources('Home Economics')"><div class="icon"><i class="fas fa-utensils"></i></div><h4>Home Economics</h4><p>Life Skills</p></div>
+            </div>
+
+            <!-- AI SECTION — Old Layout -->
+            <div style="margin-top:40px;">
+                <div class="page-title"><i class="fas fa-robot"></i> AI Assistants</div>
+                <p class="page-subtitle">Choose your favorite AI tutor</p>
+                <div class="ai-grid">
+                    <div class="ai-card" onclick="openAI('DeepSeek')">
+                        <div class="ai-logo">DS</div>
+                        <h4>DeepSeek</h4>
+                        <p>Advanced reasoning &amp; coding</p>
+                    </div>
+                    <div class="ai-card" onclick="openAI('Grok')">
+                        <div class="ai-logo">G</div>
+                        <h4>Grok</h4>
+                        <p>Conversational &amp; witty</p>
+                    </div>
+                    <div class="ai-card" onclick="openAI('ChatGPT')">
+                        <div class="ai-logo">GPT</div>
+                        <h4>ChatGPT</h4>
+                        <p>Versatile &amp; creative</p>
+                    </div>
+                    <div class="ai-card" onclick="openAI('Claude')">
+                        <div class="ai-logo">C</div>
+                        <h4>Claude</h4>
+                        <p>Safe &amp; thoughtful</p>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -961,21 +2220,25 @@
         <div class="page" id="groupsPage">
             <div class="page-title"><i class="fas fa-users"></i> Groups</div>
             <p class="page-subtitle">Connect with classmates and study together</p>
+
             <div class="groups-tabs">
                 <button class="active-tab" onclick="switchGroupTab('school', this)"><i class="fas fa-school"></i> School</button>
                 <button onclick="switchGroupTab('class', this)"><i class="fas fa-chalkboard"></i> Class <span class="tab-badge">5</span></button>
                 <button onclick="switchGroupTab('social', this)"><i class="fas fa-globe"></i> Social <span class="tab-badge">12</span></button>
             </div>
+
             <div class="group-content active-content" id="schoolGroups">
                 <div class="group-card" onclick="showToast('School announcements')"><div class="left"><div class="icon"><i class="fas fa-bullhorn"></i></div><div class="info"><h4>School Announcements</h4><p>Latest updates</p></div></div><div class="right"><div class="meta">3 new</div></div></div>
                 <div class="group-card" onclick="showToast('School exam timetables')"><div class="left"><div class="icon"><i class="fas fa-calendar-alt"></i></div><div class="info"><h4>Exam Timetables</h4><p>Final exams schedule</p></div></div><div class="right"><div class="meta">View</div></div></div>
                 <div class="group-card" onclick="showToast('School events')"><div class="left"><div class="icon"><i class="fas fa-star"></i></div><div class="info"><h4>School Events</h4><p>Sports day, assemblies</p></div></div><div class="right"><div class="meta">2 upcoming</div></div></div>
             </div>
+
             <div class="group-content" id="classGroups">
                 <div class="group-card" onclick="openChat('Grade 12 Math', 'fa-calculator')"><div class="left"><div class="icon"><i class="fas fa-calculator"></i></div><div class="info"><h4>Grade 12 Math</h4><p>Mr. Banda · 25 pupils</p></div></div><div class="right"><div class="meta">5 new</div><span class="badge">Active</span></div></div>
                 <div class="group-card" onclick="openChat('Grade 10 Science', 'fa-flask')"><div class="left"><div class="icon"><i class="fas fa-flask"></i></div><div class="info"><h4>Grade 10 Science</h4><p>Mrs. Zulu · 22 pupils</p></div></div><div class="right"><div class="meta">3 new</div><span class="badge">Active</span></div></div>
                 <div class="group-card" onclick="openChat('Grade 11 English', 'fa-book-open')"><div class="left"><div class="icon"><i class="fas fa-book-open"></i></div><div class="info"><h4>Grade 11 English</h4><p>Ms. Phiri · 18 pupils</p></div></div><div class="right"><div class="meta">2 new</div><span class="badge">Active</span></div></div>
             </div>
+
             <div class="group-content" id="socialGroups">
                 <div class="group-card" onclick="showToast('Global Science Help')"><div class="left"><div class="icon"><i class="fas fa-flask"></i></div><div class="info"><h4>Global Science Help</h4><p>1,200 members</p></div></div><div class="right"><span class="badge">Invite Only</span></div></div>
                 <div class="group-card" onclick="showToast('Math Masters')"><div class="left"><div class="icon"><i class="fas fa-calculator"></i></div><div class="info"><h4>Math Masters</h4><p>850 members</p></div></div><div class="right"><span class="badge">Invite Only</span></div></div>
@@ -1010,7 +2273,7 @@
         </div>
 
         <!-- ============================================================
-        TEACHER PORTAL
+        TEACHER PORTAL — Old Layout Style
         ============================================================ -->
         <div class="page" id="teacherPortal">
             <div id="teacherLoginFlow" style="max-width:450px; margin:0 auto;">
@@ -1046,7 +2309,7 @@
                 </div>
             </div>
 
-            <!-- Teacher Dashboard -->
+            <!-- Teacher Dashboard — Old Layout Style -->
             <div id="teacherDashboard" class="teacher-dashboard">
                 <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center; background:var(--bg-section); padding:1rem; border-radius:1rem; border:1px solid var(--border-color); margin-bottom:1.5rem;">
                     <div>
@@ -1062,64 +2325,24 @@
                     <div class="stat-card"><div class="number" id="teacherStatAvg">78%</div><div class="label"><i class="fas fa-chart-line"></i> Class Avg</div></div>
                 </div>
 
-                <!-- ============================================================
-                TEACHER TABLE - FULL FEATURES TOOLBAR
-                ============================================================ -->
+                <!-- Teacher Table — Old Layout Style -->
                 <div style="margin-bottom:16px;">
                     <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:12px;">
                         <h3 style="font-size:18px; color:var(--text-primary); display:flex; align-items:center; gap:10px;"><i class="fas fa-table" style="color:var(--purple);"></i> Grade Table</h3>
                     </div>
 
-                    <!-- TOOLBAR -->
                     <div class="table-toolbar">
-                        <div class="toolbar-group">
-                            <span class="group-label"><i class="fas fa-table"></i> Table</span>
-                            <input type="text" class="table-name-input" id="tableNameInput" value="Mathematics - Grade 12 Results" onchange="renameTable()" />
-                            <button class="tb-btn" onclick="showCreateTable()"><i class="fas fa-plus"></i> New</button>
-                            <button class="tb-btn" onclick="deleteTable()"><i class="fas fa-trash"></i> Delete</button>
-                            <button class="tb-btn" onclick="duplicateTable()"><i class="fas fa-copy"></i> Duplicate</button>
-                        </div>
-
-                        <div class="toolbar-group">
-                            <span class="group-label"><i class="fas fa-columns"></i> Columns</span>
-                            <button class="tb-btn" onclick="showAddColumn()"><i class="fas fa-plus"></i> Add</button>
-                            <button class="tb-btn" onclick="showInsertColumn()"><i class="fas fa-arrow-right"></i> Insert</button>
-                            <button class="tb-btn" onclick="showRenameColumn()"><i class="fas fa-edit"></i> Rename</button>
-                            <button class="tb-btn danger" onclick="showDeleteColumn()"><i class="fas fa-trash"></i> Delete</button>
-                            <button class="tb-btn" onclick="showReorderColumns()"><i class="fas fa-arrows-alt-h"></i> Reorder</button>
-                        </div>
-
-                        <div class="toolbar-group">
-                            <span class="group-label"><i class="fas fa-user-graduate"></i> Rows</span>
-                            <button class="tb-btn" onclick="showAddRow()"><i class="fas fa-plus"></i> Add</button>
-                            <button class="tb-btn" onclick="showInsertRow()"><i class="fas fa-arrow-down"></i> Insert</button>
-                            <button class="tb-btn danger" onclick="showDeleteRow()"><i class="fas fa-trash"></i> Delete</button>
-                            <button class="tb-btn" onclick="sortTable()"><i class="fas fa-sort"></i> Sort</button>
-                            <button class="tb-btn" onclick="showBulkAdd()"><i class="fas fa-users"></i> Bulk</button>
-                        </div>
-
-                        <div class="toolbar-group">
-                            <span class="group-label"><i class="fas fa-file-export"></i> Import/Export</span>
-                            <button class="tb-btn" onclick="showImportModal()"><i class="fas fa-upload"></i> Import</button>
-                            <button class="tb-btn" onclick="exportToExcel()"><i class="fas fa-file-excel"></i> Excel</button>
-                            <button class="tb-btn" onclick="exportToPDF()"><i class="fas fa-file-pdf"></i> PDF</button>
-                            <button class="tb-btn" onclick="printTable()"><i class="fas fa-print"></i> Print</button>
-                        </div>
-
-                        <div class="toolbar-group">
-                            <span class="group-label"><i class="fas fa-chart-bar"></i> Stats</span>
-                            <button class="tb-btn" onclick="showStats()"><i class="fas fa-chart-bar"></i> View</button>
-                            <button class="tb-btn success" onclick="generateReportCards()"><i class="fas fa-file-alt"></i> Reports</button>
-                        </div>
-
-                        <div class="toolbar-group">
-                            <span class="group-label"><i class="fas fa-filter"></i> Filter</span>
-                            <button class="tb-btn" onclick="showSearchFilter()"><i class="fas fa-search"></i> Search</button>
-                            <button class="tb-btn" onclick="clearFilters()"><i class="fas fa-times"></i> Clear</button>
-                        </div>
+                        <input type="text" class="table-name-input" id="tableNameInput" value="Mathematics - Grade 12 Results" onchange="renameTable()" />
+                        <button class="tb-btn" onclick="showCreateTable()"><i class="fas fa-plus"></i> New</button>
+                        <button class="tb-btn" onclick="showAddColumn()"><i class="fas fa-columns"></i> Add Col</button>
+                        <button class="tb-btn" onclick="showAddRow()"><i class="fas fa-user-plus"></i> Add Pupil</button>
+                        <button class="tb-btn" onclick="showImportModal()"><i class="fas fa-upload"></i> Import</button>
+                        <button class="tb-btn" onclick="exportToExcel()"><i class="fas fa-file-excel"></i> Excel</button>
+                        <button class="tb-btn" onclick="showStats()"><i class="fas fa-chart-bar"></i> Stats</button>
+                        <button class="tb-btn" onclick="generateReportCards()"><i class="fas fa-file-alt"></i> Reports</button>
+                        <button class="tb-btn" onclick="showSearchFilter()"><i class="fas fa-search"></i> Filter</button>
                     </div>
 
-                    <!-- TABLE -->
                     <div class="table-wrapper">
                         <table class="teacher-table" id="teacherTable">
                             <thead id="tableHead"></thead>
@@ -1128,14 +2351,13 @@
                         </table>
                     </div>
 
-                    <!-- Table Stats Footer -->
                     <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-top:12px; padding:0 8px;">
                         <span style="color:var(--text-dim); font-size:13px;" id="tableStats">0 pupils · 0 columns</span>
                         <span style="color:var(--text-dim); font-size:13px;" id="tableAvg">Class Avg: 0%</span>
                     </div>
                 </div>
 
-                <!-- Upload Resource -->
+                <!-- Upload Resource — Old Layout -->
                 <div style="background:var(--bg-section); border-radius:1rem; padding:1.2rem 1.5rem; border:1px solid var(--border-color); margin-bottom:1.5rem;">
                     <h3 style="font-size:18px; color:var(--text-primary); margin-bottom:12px; display:flex; align-items:center; gap:10px;"><i class="fas fa-upload" style="color:var(--purple);"></i> Upload Resource</h3>
                     <div class="form-group"><label><i class="fas fa-book" style="color:var(--purple);"></i> Subject</label><select id="uploadSubject"><option value="Mathematics">Mathematics</option><option value="English">English</option><option value="Science">Science</option><option value="History">History</option><option value="Geography">Geography</option><option value="Computer Studies">Computer Studies</option><option value="Art & Design">Art & Design</option><option value="Business Studies">Business Studies</option><option value="Religious Education">Religious Education</option><option value="Physical Education">Physical Education</option><option value="Music">Music</option><option value="Home Economics">Home Economics</option></select></div>
@@ -1152,7 +2374,7 @@
                     <button class="btn-primary" onclick="uploadResource()"><i class="fas fa-upload"></i> Upload</button>
                 </div>
 
-                <!-- Go Live -->
+                <!-- Go Live — Old Layout -->
                 <div style="background:var(--bg-section); border-radius:1rem; padding:1.2rem 1.5rem; border:1px solid var(--border-color); margin-bottom:1.5rem;">
                     <h3 style="font-size:18px; color:var(--text-primary); margin-bottom:12px; display:flex; align-items:center; gap:10px;"><i class="fas fa-video" style="color:var(--purple);"></i> Go Live</h3>
                     <div class="form-group"><label><i class="fas fa-heading" style="color:var(--purple);"></i> Title</label><input type="text" id="liveTitleInput" placeholder="e.g., Mathematics - Grade 12" /></div>
@@ -1164,7 +2386,7 @@
                     <div style="display:flex; gap:12px; flex-wrap:wrap;"><button class="btn-small btn-purple" onclick="startLive()"><i class="fas fa-circle" style="color:#EF4444; font-size:10px;"></i> Start Live</button><button class="btn-small btn-outline" onclick="showToast('Scheduled!')"><i class="fas fa-calendar-plus"></i> Schedule</button></div>
                 </div>
 
-                <!-- Teacher Settings -->
+                <!-- Teacher Settings — Old Layout -->
                 <div style="background:var(--bg-section); border-radius:1rem; padding:1.2rem 1.5rem; border:1px solid var(--border-color); margin-top:1.5rem;">
                     <h3 style="font-size:18px; color:var(--text-primary); margin-bottom:12px; display:flex; align-items:center; gap:10px;"><i class="fas fa-cog" style="color:var(--purple);"></i> Settings</h3>
                     <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
@@ -1177,7 +2399,7 @@
         </div>
 
         <!-- ============================================================
-        ADMIN PORTAL
+        ADMIN PORTAL — Old Layout Style
         ============================================================ -->
         <div class="page" id="adminPortal">
             <div id="adminLoginFlow" style="max-width:450px; margin:0 auto;">
@@ -1227,7 +2449,7 @@
         </div>
 
         <!-- ============================================================
-        PARENT PORTAL
+        PARENT PORTAL — Old Layout Style
         ============================================================ -->
         <div class="page" id="parentPortal">
             <div class="parent-portal active">
@@ -1250,126 +2472,92 @@
     </div>
 
     <!-- ============================================================
-    MODALS
+    MODALS — Old Layout Style
     ============================================================ -->
 
-    <!-- Add Column Modal -->
-    <div class="modal-overlay" id="addColumnModal">
-        <div class="modal-content">
-            <h2><i class="fas fa-plus"></i> Add Column</h2>
-            <p class="sub">Add a new assessment column to the table</p>
-            <div class="form-group"><label>Column Name</label><input type="text" id="newColumnName" placeholder="e.g., Final Exam" /></div>
-            <div class="form-group"><label>Column Type</label><select id="newColumnType"><option value="number">Number (Percentage)</option><option value="text">Text</option><option value="grade">Grade Letter (A, B, C)</option></select></div>
-            <button class="btn-primary" onclick="addColumn()"><i class="fas fa-plus"></i> Add Column</button>
-            <button class="close-modal-btn" onclick="closeModal('addColumnModal')">Cancel</button>
+    <!-- Live List Modal -->
+    <div class="modal-overlay" id="liveListModal">
+        <div class="modal-content" style="max-width:550px;">
+            <h2><i class="fas fa-video"></i> Live Classes</h2>
+            <p style="text-align:center; color:var(--text-muted); font-size:14px; margin-bottom:1rem;"><i class="fas fa-globe" style="color:var(--purple);"></i> Public · Join any class — no login required</p>
+            <div class="live-list">
+                <div class="live-item">
+                    <div class="left">
+                        <span class="live-badge" style="font-size:10px; padding:2px 10px;"><i class="fas fa-circle"></i> LIVE</span>
+                        <div class="info"><h4>Mathematics - Grade 12</h4><p><i class="fas fa-user" style="color:var(--purple);"></i> Mr. Banda · 45 watching</p></div>
+                    </div>
+                    <button class="btn-small btn-purple" onclick="showToast('Joining live class...')"><i class="fas fa-play"></i> Join</button>
+                </div>
+                <div class="live-item">
+                    <div class="left">
+                        <span class="live-badge" style="font-size:10px; padding:2px 10px;"><i class="fas fa-circle"></i> LIVE</span>
+                        <div class="info"><h4>Physics - Grade 10</h4><p><i class="fas fa-user" style="color:var(--purple);"></i> Mrs. Zulu · 32 watching</p></div>
+                    </div>
+                    <button class="btn-small btn-purple" onclick="showToast('Joining live class...')"><i class="fas fa-play"></i> Join</button>
+                </div>
+                <div class="live-item">
+                    <div class="left">
+                        <span class="live-badge" style="font-size:10px; padding:2px 10px;"><i class="fas fa-circle"></i> LIVE</span>
+                        <div class="info"><h4>English Literature</h4><p><i class="fas fa-user" style="color:var(--purple);"></i> Ms. Phiri · 28 watching</p></div>
+                    </div>
+                    <button class="btn-small btn-purple" onclick="showToast('Joining live class...')"><i class="fas fa-play"></i> Join</button>
+                </div>
+            </div>
+            <button class="close-modal-btn" onclick="closeLiveList()">Close</button>
         </div>
     </div>
 
-    <!-- Insert Column Modal -->
-    <div class="modal-overlay" id="insertColumnModal">
+    <!-- Teacher List Modal -->
+    <div class="modal-overlay" id="teacherListModal">
         <div class="modal-content">
-            <h2><i class="fas fa-arrow-right"></i> Insert Column</h2>
-            <p class="sub">Insert a new column before an existing one</p>
-            <div class="form-group"><label>Column Name</label><input type="text" id="insertColumnName" placeholder="e.g., Midterm" /></div>
-            <div class="form-group"><label>Insert Before</label><select id="insertColumnBefore"></select></div>
-            <button class="btn-primary" onclick="insertColumn()"><i class="fas fa-arrow-right"></i> Insert Column</button>
-            <button class="close-modal-btn" onclick="closeModal('insertColumnModal')">Cancel</button>
+            <h2><i class="fas fa-chalkboard-teacher"></i> Teachers</h2>
+            <p class="sub" id="teacherListCount">3 teachers</p>
+            <div class="list-modal-list" id="teacherListContainer">
+                <div class="list-item" data-teacher-id="1" onmousedown="startTeacherPress(event, '1')" onmouseup="endPress()" onmouseleave="endPress()" ontouchstart="startTeacherPress(event, '1')" ontouchend="endPress()">
+                    <div><span class="name"><i class="fas fa-user"></i> Mr. Banda</span> <span class="details">Grade 12 Math</span></div>
+                    <div><span class="count">25 pupils</span> <span class="status status-active">Active</span></div>
+                </div>
+                <div class="list-item" data-teacher-id="2" onmousedown="startTeacherPress(event, '2')" onmouseup="endPress()" onmouseleave="endPress()" ontouchstart="startTeacherPress(event, '2')" ontouchend="endPress()">
+                    <div><span class="name"><i class="fas fa-user"></i> Mrs. Zulu</span> <span class="details">Grade 10 Science</span></div>
+                    <div><span class="count">22 pupils</span> <span class="status status-active">Active</span></div>
+                </div>
+                <div class="list-item" data-teacher-id="3" onmousedown="startTeacherPress(event, '3')" onmouseup="endPress()" onmouseleave="endPress()" ontouchstart="startTeacherPress(event, '3')" ontouchend="endPress()">
+                    <div><span class="name"><i class="fas fa-user"></i> Ms. Phiri</span> <span class="details">Grade 11 English</span></div>
+                    <div><span class="count">18 pupils</span> <span class="status status-inactive">Inactive</span></div>
+                </div>
+            </div>
+            <button class="close-modal-btn" onclick="closeTeacherList()">Close</button>
         </div>
     </div>
 
-    <!-- Rename Column Modal -->
-    <div class="modal-overlay" id="renameColumnModal">
+    <!-- Student List Modal -->
+    <div class="modal-overlay" id="studentListModal">
         <div class="modal-content">
-            <h2><i class="fas fa-edit"></i> Rename Column</h2>
-            <p class="sub">Change the name of a column</p>
-            <div class="form-group"><label>Select Column</label><select id="renameColumnSelect"></select></div>
-            <div class="form-group"><label>New Name</label><input type="text" id="renameColumnNewName" placeholder="New column name" /></div>
-            <button class="btn-primary" onclick="renameColumn()"><i class="fas fa-save"></i> Rename</button>
-            <button class="close-modal-btn" onclick="closeModal('renameColumnModal')">Cancel</button>
-        </div>
-    </div>
-
-    <!-- Delete Column Modal -->
-    <div class="modal-overlay" id="deleteColumnModal">
-        <div class="modal-content">
-            <h2><i class="fas fa-trash"></i> Delete Column</h2>
-            <p class="sub">Remove a column from the table</p>
-            <div class="form-group"><label>Select Column to Delete</label><select id="deleteColumnSelect"></select></div>
-            <p style="color:var(--red); font-size:13px; text-align:center;"><i class="fas fa-exclamation-triangle"></i> This will permanently delete all data in this column.</p>
-            <button class="btn-primary" onclick="deleteColumn()" style="background:var(--red);"><i class="fas fa-trash"></i> Delete Column</button>
-            <button class="close-modal-btn" onclick="closeModal('deleteColumnModal')">Cancel</button>
-        </div>
-    </div>
-
-    <!-- Add Row Modal -->
-    <div class="modal-overlay" id="addRowModal">
-        <div class="modal-content">
-            <h2><i class="fas fa-plus"></i> Add Pupil</h2>
-            <p class="sub">Add a new pupil to the table</p>
-            <div class="form-group"><label>Pupil Name</label><input type="text" id="addPupilName" placeholder="Full name" /></div>
-            <div class="form-group"><label>Grade</label><select id="addPupilGrade"><option value="1">Grade 1</option><option value="2">Grade 2</option><option value="3">Grade 3</option><option value="4">Grade 4</option><option value="5">Grade 5</option><option value="6">Grade 6</option><option value="7">Grade 7</option><option value="8">Grade 8</option><option value="9">Grade 9</option><option value="10">Grade 10</option><option value="11">Grade 11</option><option value="12">Grade 12</option></select></div>
-            <div id="addRowScores"></div>
-            <button class="btn-primary" onclick="addRow()"><i class="fas fa-plus"></i> Add Pupil</button>
-            <button class="close-modal-btn" onclick="closeModal('addRowModal')">Cancel</button>
-        </div>
-    </div>
-
-    <!-- Insert Row Modal -->
-    <div class="modal-overlay" id="insertRowModal">
-        <div class="modal-content">
-            <h2><i class="fas fa-arrow-down"></i> Insert Pupil</h2>
-            <p class="sub">Insert a new pupil before an existing one</p>
-            <div class="form-group"><label>Pupil Name</label><input type="text" id="insertPupilName" placeholder="Full name" /></div>
-            <div class="form-group"><label>Insert Before</label><select id="insertRowBefore"></select></div>
-            <div id="insertRowScores"></div>
-            <button class="btn-primary" onclick="insertRow()"><i class="fas fa-arrow-down"></i> Insert Pupil</button>
-            <button class="close-modal-btn" onclick="closeModal('insertRowModal')">Cancel</button>
-        </div>
-    </div>
-
-    <!-- Delete Row Modal -->
-    <div class="modal-overlay" id="deleteRowModal">
-        <div class="modal-content">
-            <h2><i class="fas fa-trash"></i> Delete Pupil</h2>
-            <p class="sub">Remove a pupil from the table</p>
-            <div class="form-group"><label>Select Pupil</label><select id="deleteRowSelect"></select></div>
-            <p style="color:var(--red); font-size:13px; text-align:center;"><i class="fas fa-exclamation-triangle"></i> This will permanently delete this pupil's data.</p>
-            <button class="btn-primary" onclick="deleteRow()" style="background:var(--red);"><i class="fas fa-trash"></i> Delete Pupil</button>
-            <button class="close-modal-btn" onclick="closeModal('deleteRowModal')">Cancel</button>
-        </div>
-    </div>
-
-    <!-- Bulk Add Modal -->
-    <div class="modal-overlay" id="bulkAddModal">
-        <div class="modal-content">
-            <h2><i class="fas fa-users"></i> Bulk Add Pupils</h2>
-            <p class="sub">Add multiple pupils at once</p>
-            <div class="form-group"><label>Pupils (one per line)</label><textarea id="bulkPupilNames" rows="5" placeholder="John Banda&#10;Mary Zulu&#10;Peter Phiri" style="width:100%; padding:12px 16px; border-radius:1rem; background:var(--bg-input); border:1px solid var(--border-color); color:var(--text-secondary); font-size:14px; outline:none; font-family:'Inter',sans-serif; resize:vertical;"></textarea></div>
-            <div class="form-group"><label>Grade</label><select id="bulkPupilGrade"><option value="1">Grade 1</option><option value="2">Grade 2</option><option value="3">Grade 3</option><option value="4">Grade 4</option><option value="5">Grade 5</option><option value="6">Grade 6</option><option value="7">Grade 7</option><option value="8">Grade 8</option><option value="9">Grade 9</option><option value="10">Grade 10</option><option value="11">Grade 11</option><option value="12">Grade 12</option></select></div>
-            <button class="btn-primary" onclick="bulkAdd()"><i class="fas fa-users"></i> Add Pupils</button>
-            <button class="close-modal-btn" onclick="closeModal('bulkAddModal')">Cancel</button>
-        </div>
-    </div>
-
-    <!-- Search Filter Modal -->
-    <div class="modal-overlay" id="searchFilterModal">
-        <div class="modal-content">
-            <h2><i class="fas fa-search"></i> Search & Filter</h2>
-            <p class="sub">Find specific pupils or filter results</p>
-            <div class="form-group"><label>Search Pupil</label><input type="text" id="searchPupilInput" placeholder="Type pupil name..." oninput="applySearchFilter()" /></div>
-            <div class="form-group"><label>Filter by Score</label><select id="filterScore"><option value="all">All Scores</option><option value="pass">Pass (>=50%)</option><option value="fail">Fail (<50%)</option><option value="above70">Above 70%</option><option value="above80">Above 80%</option></select></div>
-            <button class="btn-secondary" onclick="applySearchFilter()"><i class="fas fa-filter"></i> Apply Filter</button>
-            <button class="close-modal-btn" onclick="closeModal('searchFilterModal')">Close</button>
-        </div>
-    </div>
-
-    <!-- Stats Modal -->
-    <div class="modal-overlay" id="statsModal">
-        <div class="modal-content">
-            <h2><i class="fas fa-chart-bar"></i> Class Statistics</h2>
-            <p class="sub" id="statsSub">Overview of class performance</p>
-            <div id="statsContent"></div>
-            <button class="close-modal-btn" onclick="closeModal('statsModal')">Close</button>
+            <h2><i class="fas fa-user-graduate"></i> Students</h2>
+            <p class="sub" id="studentListCount">65 students</p>
+            <div class="list-modal-list" id="studentListContainer">
+                <div class="list-item" data-student-id="1" onmousedown="startStudentPress(event, '1')" onmouseup="endPress()" onmouseleave="endPress()" ontouchstart="startStudentPress(event, '1')" ontouchend="endPress()">
+                    <div><span class="name"><i class="fas fa-user"></i> John Banda</span> <span class="details">Grade 12</span></div>
+                    <div><span class="count">78% · 82% · 88%</span></div>
+                </div>
+                <div class="list-item" data-student-id="2" onmousedown="startStudentPress(event, '2')" onmouseup="endPress()" onmouseleave="endPress()" ontouchstart="startStudentPress(event, '2')" ontouchend="endPress()">
+                    <div><span class="name"><i class="fas fa-user"></i> Mary Zulu</span> <span class="details">Grade 12</span></div>
+                    <div><span class="count">65% · 70% · 72%</span></div>
+                </div>
+                <div class="list-item" data-student-id="3" onmousedown="startStudentPress(event, '3')" onmouseup="endPress()" onmouseleave="endPress()" ontouchstart="startStudentPress(event, '3')" ontouchend="endPress()">
+                    <div><span class="name"><i class="fas fa-user"></i> Peter Phiri</span> <span class="details">Grade 12</span></div>
+                    <div><span class="count">92% · 88% · 94%</span></div>
+                </div>
+                <div class="list-item" data-student-id="4" onmousedown="startStudentPress(event, '4')" onmouseup="endPress()" onmouseleave="endPress()" ontouchstart="startStudentPress(event, '4')" ontouchend="endPress()">
+                    <div><span class="name"><i class="fas fa-user"></i> Grace Mwale</span> <span class="details">Grade 12</span></div>
+                    <div><span class="count">55% · 60% · 58%</span></div>
+                </div>
+                <div class="list-item" data-student-id="5" onmousedown="startStudentPress(event, '5')" onmouseup="endPress()" onmouseleave="endPress()" ontouchstart="startStudentPress(event, '5')" ontouchend="endPress()">
+                    <div><span class="name"><i class="fas fa-user"></i> David Ngoma</span> <span class="details">Grade 12</span></div>
+                    <div><span class="count">45% · 50% · 55%</span></div>
+                </div>
+            </div>
+            <button class="close-modal-btn" onclick="closeStudentList()">Close</button>
         </div>
     </div>
 
@@ -1395,55 +2583,72 @@
         </div>
     </div>
 
-    <!-- Reorder Columns Modal -->
-    <div class="modal-overlay" id="reorderColumnsModal">
+    <!-- Add Column Modal -->
+    <div class="modal-overlay" id="addColumnModal">
         <div class="modal-content">
-            <h2><i class="fas fa-arrows-alt-h"></i> Reorder Columns</h2>
-            <p class="sub">Drag to reorder columns or use the buttons</p>
-            <div id="reorderList" style="display:flex; flex-direction:column; gap:8px; margin:12px 0;"></div>
-            <button class="btn-primary" onclick="applyReorder()"><i class="fas fa-save"></i> Save Order</button>
-            <button class="close-modal-btn" onclick="closeModal('reorderColumnsModal')">Cancel</button>
+            <h2><i class="fas fa-plus"></i> Add Column</h2>
+            <p class="sub">Add a new assessment column</p>
+            <div class="form-group"><label>Column Name</label><input type="text" id="newColumnName" placeholder="e.g., Final Exam" /></div>
+            <button class="btn-primary" onclick="addColumn()"><i class="fas fa-plus"></i> Add Column</button>
+            <button class="close-modal-btn" onclick="closeModal('addColumnModal')">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Add Row Modal -->
+    <div class="modal-overlay" id="addRowModal">
+        <div class="modal-content">
+            <h2><i class="fas fa-plus"></i> Add Pupil</h2>
+            <p class="sub">Add a new pupil to the table</p>
+            <div class="form-group"><label>Pupil Name</label><input type="text" id="addPupilName" placeholder="Full name" /></div>
+            <div id="addRowScores"></div>
+            <button class="btn-primary" onclick="addRow()"><i class="fas fa-plus"></i> Add Pupil</button>
+            <button class="close-modal-btn" onclick="closeModal('addRowModal')">Cancel</button>
         </div>
     </div>
 
     <!-- Create Table Modal -->
     <div class="modal-overlay" id="createTableModal">
         <div class="modal-content">
-            <h2><i class="fas fa-plus"></i> Create New Table</h2>
-            <p class="sub">Create a new grade table for a subject</p>
+            <h2><i class="fas fa-plus"></i> Create Table</h2>
+            <p class="sub">Create a new grade table</p>
             <div class="form-group"><label>Table Name</label><input type="text" id="createTableName" placeholder="e.g., Mathematics - Grade 12" /></div>
-            <div class="form-group"><label>Subject</label><select id="createTableSubject"><option value="Mathematics">Mathematics</option><option value="English">English</option><option value="Science">Science</option><option value="History">History</option><option value="Geography">Geography</option><option value="Computer Studies">Computer Studies</option><option value="Art & Design">Art & Design</option><option value="Business Studies">Business Studies</option><option value="Religious Education">Religious Education</option><option value="Physical Education">Physical Education</option><option value="Music">Music</option><option value="Home Economics">Home Economics</option></select></div>
-            <div class="form-group"><label>Grade</label><select id="createTableGrade"><option value="1">Grade 1</option><option value="2">Grade 2</option><option value="3">Grade 3</option><option value="4">Grade 4</option><option value="5">Grade 5</option><option value="6">Grade 6</option><option value="7">Grade 7</option><option value="8">Grade 8</option><option value="9">Grade 9</option><option value="10">Grade 10</option><option value="11">Grade 11</option><option value="12">Grade 12</option></select></div>
-            <button class="btn-primary" onclick="createTable()"><i class="fas fa-plus"></i> Create Table</button>
+            <button class="btn-primary" onclick="createTable()"><i class="fas fa-plus"></i> Create</button>
             <button class="close-modal-btn" onclick="closeModal('createTableModal')">Cancel</button>
         </div>
     </div>
 
-    <!-- Context Menu Modal (Alerts) -->
-    <div class="modal-overlay" id="contextMenuModal">
-        <div class="modal-content" style="max-width:380px;">
-            <h3 style="text-align:center; color:var(--text-primary); margin-bottom:8px; display:flex; align-items:center; justify-content:center; gap:8px;"><i class="fas fa-ellipsis-h" style="color:var(--purple);"></i> Options</h3>
-            <p style="text-align:center; color:var(--text-muted); font-size:13px; margin-bottom:1.2rem;" id="contextNotifTitle">Notification</p>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
-                <button class="context-btn" onclick="contextAction('pin')" style="padding:14px; border-radius:1rem; border:1px solid var(--border-color); background:var(--bg-input); color:var(--text-secondary); cursor:pointer; transition:0.3s; display:flex; flex-direction:column; align-items:center; gap:6px; font-family:'Inter',sans-serif;"><i class="fas fa-thumbtack" style="font-size:1.5rem; color:var(--purple);"></i><span style="font-size:12px;">Pin</span></button>
-                <button class="context-btn" onclick="contextAction('read')" style="padding:14px; border-radius:1rem; border:1px solid var(--border-color); background:var(--bg-input); color:var(--text-secondary); cursor:pointer; transition:0.3s; display:flex; flex-direction:column; align-items:center; gap:6px; font-family:'Inter',sans-serif;"><i class="fas fa-check-circle" style="font-size:1.5rem; color:var(--green);"></i><span style="font-size:12px;">Mark Read</span></button>
-                <button class="context-btn" onclick="contextAction('download')" style="padding:14px; border-radius:1rem; border:1px solid var(--border-color); background:var(--bg-input); color:var(--text-secondary); cursor:pointer; transition:0.3s; display:flex; flex-direction:column; align-items:center; gap:6px; font-family:'Inter',sans-serif;"><i class="fas fa-download" style="font-size:1.5rem; color:var(--purple-light);"></i><span style="font-size:12px;">Download</span></button>
-                <button class="context-btn" onclick="contextAction('share')" style="padding:14px; border-radius:1rem; border:1px solid var(--border-color); background:var(--bg-input); color:var(--text-secondary); cursor:pointer; transition:0.3s; display:flex; flex-direction:column; align-items:center; gap:6px; font-family:'Inter',sans-serif;"><i class="fas fa-share-alt" style="font-size:1.5rem; color:var(--purple);"></i><span style="font-size:12px;">Share</span></button>
-                <button class="context-btn" onclick="contextAction('delete')" style="padding:14px; border-radius:1rem; border:1px solid var(--border-color); background:var(--bg-input); color:var(--text-secondary); cursor:pointer; transition:0.3s; display:flex; flex-direction:column; align-items:center; gap:6px; font-family:'Inter',sans-serif; grid-column: span 2;"><i class="fas fa-trash-alt" style="font-size:1.5rem; color:var(--red);"></i><span style="font-size:12px;">Delete</span></button>
-            </div>
-            <button class="close-modal-btn" onclick="closeModal('contextMenuModal')">Close</button>
+    <!-- Stats Modal -->
+    <div class="modal-overlay" id="statsModal">
+        <div class="modal-content">
+            <h2><i class="fas fa-chart-bar"></i> Class Statistics</h2>
+            <p class="sub" id="statsSub">Overview of class performance</p>
+            <div id="statsContent"></div>
+            <button class="close-modal-btn" onclick="closeModal('statsModal')">Close</button>
         </div>
     </div>
 
-    <!-- Delete Confirm Modal -->
-    <div class="modal-overlay" id="deleteConfirmModal">
-        <div class="modal-content" style="max-width:400px;">
-            <h2 style="color:var(--red);"><i class="fas fa-exclamation-triangle"></i> Confirm Delete</h2>
-            <p style="text-align:center; color:var(--text-muted); font-size:14px; margin:12px 0;" id="deleteConfirmMessage">Are you sure you want to delete this item?</p>
-            <div style="display:flex; gap:12px;">
-                <button class="btn-secondary" onclick="closeModal('deleteConfirmModal')" style="flex:1; margin-top:0;"><i class="fas fa-times"></i> Cancel</button>
-                <button class="btn-primary" onclick="confirmDelete()" style="flex:1; background:var(--red);"><i class="fas fa-trash-alt"></i> Delete</button>
+    <!-- Search Filter Modal -->
+    <div class="modal-overlay" id="searchFilterModal">
+        <div class="modal-content">
+            <h2><i class="fas fa-search"></i> Search & Filter</h2>
+            <p class="sub">Find specific pupils or filter results</p>
+            <div class="form-group"><label>Search Pupil</label><input type="text" id="searchPupilInput" placeholder="Type pupil name..." oninput="applySearchFilter()" /></div>
+            <div class="form-group"><label>Filter by Score</label><select id="filterScore"><option value="all">All Scores</option><option value="pass">Pass (>=50%)</option><option value="fail">Fail (<50%)</option><option value="above70">Above 70%</option><option value="above80">Above 80%</option></select></div>
+            <button class="btn-secondary" onclick="applySearchFilter()"><i class="fas fa-filter"></i> Apply Filter</button>
+            <button class="close-modal-btn" onclick="closeModal('searchFilterModal')">Close</button>
+        </div>
+    </div>
+
+    <!-- Report Card Modal -->
+    <div class="modal-overlay" id="reportCardModal">
+        <div class="modal-content">
+            <h2><i class="fas fa-file-alt"></i> Report Cards</h2>
+            <p class="sub" id="reportCardSub">Generate report cards</p>
+            <div style="display:flex; gap:10px; flex-wrap:wrap; margin:12px 0;">
+                <button class="btn-primary" onclick="generateAllReportCards()"><i class="fas fa-file-pdf"></i> Generate All</button>
+                <button class="btn-secondary" onclick="generateIndividualReportCard()"><i class="fas fa-user"></i> Individual</button>
             </div>
+            <button class="close-modal-btn" onclick="closeModal('reportCardModal')">Close</button>
         </div>
     </div>
 
@@ -1476,22 +2681,48 @@
         </div>
     </div>
 
-    <!-- Report Card Modal -->
-    <div class="modal-overlay" id="reportCardModal">
-        <div class="modal-content">
-            <h2><i class="fas fa-file-alt"></i> Report Cards</h2>
-            <p class="sub" id="reportCardSub">Generate report cards for all pupils</p>
-            <div style="display:flex; gap:10px; flex-wrap:wrap; margin:12px 0;">
-                <button class="btn-primary" onclick="generateAllReportCards()"><i class="fas fa-file-pdf"></i> Generate All</button>
-                <button class="btn-secondary" onclick="generateIndividualReportCard()"><i class="fas fa-user"></i> Individual</button>
+    <!-- Context Menu Modal -->
+    <div class="modal-overlay" id="contextMenuModal">
+        <div class="modal-content" style="max-width:380px;">
+            <h3 style="text-align:center; color:var(--text-primary); margin-bottom:8px; display:flex; align-items:center; justify-content:center; gap:8px;"><i class="fas fa-ellipsis-h" style="color:var(--purple);"></i> Options</h3>
+            <p style="text-align:center; color:var(--text-muted); font-size:13px; margin-bottom:1.2rem;" id="contextNotifTitle">Notification</p>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+                <button class="context-btn" onclick="contextAction('pin')" style="padding:14px; border-radius:1rem; border:1px solid var(--border-color); background:var(--bg-input); color:var(--text-secondary); cursor:pointer; transition:0.3s; display:flex; flex-direction:column; align-items:center; gap:6px; font-family:'Inter',sans-serif;"><i class="fas fa-thumbtack" style="font-size:1.5rem; color:var(--purple);"></i><span style="font-size:12px;">Pin</span></button>
+                <button class="context-btn" onclick="contextAction('read')" style="padding:14px; border-radius:1rem; border:1px solid var(--border-color); background:var(--bg-input); color:var(--text-secondary); cursor:pointer; transition:0.3s; display:flex; flex-direction:column; align-items:center; gap:6px; font-family:'Inter',sans-serif;"><i class="fas fa-check-circle" style="font-size:1.5rem; color:var(--green);"></i><span style="font-size:12px;">Mark Read</span></button>
+                <button class="context-btn" onclick="contextAction('download')" style="padding:14px; border-radius:1rem; border:1px solid var(--border-color); background:var(--bg-input); color:var(--text-secondary); cursor:pointer; transition:0.3s; display:flex; flex-direction:column; align-items:center; gap:6px; font-family:'Inter',sans-serif;"><i class="fas fa-download" style="font-size:1.5rem; color:var(--purple-light);"></i><span style="font-size:12px;">Download</span></button>
+                <button class="context-btn" onclick="contextAction('share')" style="padding:14px; border-radius:1rem; border:1px solid var(--border-color); background:var(--bg-input); color:var(--text-secondary); cursor:pointer; transition:0.3s; display:flex; flex-direction:column; align-items:center; gap:6px; font-family:'Inter',sans-serif;"><i class="fas fa-share-alt" style="font-size:1.5rem; color:var(--purple);"></i><span style="font-size:12px;">Share</span></button>
+                <button class="context-btn" onclick="contextAction('delete')" style="padding:14px; border-radius:1rem; border:1px solid var(--border-color); background:var(--bg-input); color:var(--text-secondary); cursor:pointer; transition:0.3s; display:flex; flex-direction:column; align-items:center; gap:6px; font-family:'Inter',sans-serif; grid-column: span 2;"><i class="fas fa-trash-alt" style="font-size:1.5rem; color:var(--red);"></i><span style="font-size:12px;">Delete</span></button>
             </div>
-            <div id="reportCardPreview"></div>
-            <button class="close-modal-btn" onclick="closeModal('reportCardModal')">Close</button>
+            <button class="close-modal-btn" onclick="closeModal('contextMenuModal')">Close</button>
+        </div>
+    </div>
+
+    <!-- Delete Confirm Modal -->
+    <div class="modal-overlay" id="deleteConfirmModal">
+        <div class="modal-content" style="max-width:400px;">
+            <h2 style="color:var(--red);"><i class="fas fa-exclamation-triangle"></i> Confirm Delete</h2>
+            <p style="text-align:center; color:var(--text-muted); font-size:14px; margin:12px 0;" id="deleteConfirmMessage">Are you sure you want to delete this item?</p>
+            <div style="display:flex; gap:12px;">
+                <button class="btn-secondary" onclick="closeModal('deleteConfirmModal')" style="flex:1; margin-top:0;"><i class="fas fa-times"></i> Cancel</button>
+                <button class="btn-primary" onclick="confirmDelete()" style="flex:1; background:var(--red);"><i class="fas fa-trash-alt"></i> Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Post Announcement Modal -->
+    <div class="modal-overlay" id="announcementModal">
+        <div class="modal-content">
+            <h2><i class="fas fa-bullhorn"></i> Post Announcement</h2>
+            <p class="sub">Share news with your school</p>
+            <div class="form-group"><label><i class="fas fa-heading" style="color:var(--purple);"></i> Title</label><input type="text" id="announcementTitle" placeholder="e.g., School closed on Friday" /></div>
+            <div class="form-group"><label><i class="fas fa-align-left" style="color:var(--purple);"></i> Details</label><textarea id="announcementDetails" rows="3" placeholder="Write your announcement..." style="width:100%; padding:12px 16px; border-radius:1rem; background:var(--bg-input); border:1px solid var(--border-color); color:var(--text-secondary); font-size:14px; outline:none; font-family:'Inter',sans-serif; resize:vertical;"></textarea></div>
+            <button class="btn-primary" onclick="postAnnouncement()"><i class="fas fa-paper-plane"></i> Post</button>
+            <button class="close-modal-btn" onclick="closeModal('announcementModal')">Cancel</button>
         </div>
     </div>
 
     <!-- ============================================================
-    BOTTOM NAV
+    BOTTOM NAV — Old Layout Style
     ============================================================ -->
     <nav class="bottom-nav">
         <button class="active" onclick="switchPage('studentPortal', this)"><i class="fas fa-home"></i><span>Home</span></button>
@@ -1501,7 +2732,7 @@
     </nav>
 
     <!-- ============================================================
-    JAVASCRIPT
+    JAVASCRIPT — Full Version
     ============================================================ -->
     <script>
         // ============================================================
@@ -1530,36 +2761,11 @@
         let audioChunks = [];
         let isTeacherLoggedIn = false;
         let isAdminLoggedIn = false;
-        let teacherRole = '';
-        let teacherSchool = '';
         let selectedFiles = [];
         let uploadFile = null;
         let currentPage = 'studentPortal';
         let loginStep = 1;
 
-        // ============================================================
-        // TABLE DATA
-        // ============================================================
-        let tableData = {
-            name: 'Mathematics - Grade 12 Results',
-            subject: 'Mathematics',
-            teacher: 'Mr. Banda',
-            school: 'Greenhill Academy',
-            grade: '12',
-            columns: [
-                { id: 'pupil', name: 'Pupil Name', type: 'text' },
-                { id: 'w4', name: 'Week 4', type: 'number' },
-                { id: 'w8', name: 'Week 8', type: 'number' },
-                { id: 'w14', name: 'Week 14', type: 'number' }
-            ],
-            rows: [
-                { pupil: 'John Banda', w4: 78, w8: 82, w14: 88 },
-                { pupil: 'Mary Zulu', w4: 65, w8: 70, w14: 72 },
-                { pupil: 'Peter Phiri', w4: 92, w8: 88, w14: 94 }
-            ]
-        };
-
-        let tableFilters = { search: '', score: 'all' };
         let teachers = [
             { id: 1, name: 'Mr. Banda', class: 'Grade 12 Math', pupils: 25, active: true },
             { id: 2, name: 'Mrs. Zulu', class: 'Grade 10 Science', pupils: 22, active: true },
@@ -1599,15 +2805,34 @@
             { name: 'David Ngoma', grade: '12', w4: 45, w8: 50, w14: 55 }
         ];
 
+        // ============================================================
+        // TABLE DATA
+        // ============================================================
+        let tableData = {
+            name: 'Mathematics - Grade 12 Results',
+            subject: 'Mathematics',
+            teacher: 'Mr. Banda',
+            school: 'Greenhill Academy',
+            grade: '12',
+            columns: [
+                { id: 'pupil', name: 'Pupil Name', type: 'text' },
+                { id: 'w4', name: 'Week 4', type: 'number' },
+                { id: 'w8', name: 'Week 8', type: 'number' },
+                { id: 'w14', name: 'Week 14', type: 'number' }
+            ],
+            rows: [
+                { pupil: 'John Banda', w4: 78, w8: 82, w14: 88 },
+                { pupil: 'Mary Zulu', w4: 65, w8: 70, w14: 72 },
+                { pupil: 'Peter Phiri', w4: 92, w8: 88, w14: 94 }
+            ]
+        };
+
+        let tableFilters = { search: '', score: 'all' };
         let currentSubject = 'Mathematics';
         let currentFilter = 'all';
         let currentSearchQuery = '';
         let pendingDeleteTarget = null;
         let pendingDeleteType = '';
-        let teacherPressTimer = null;
-        let currentTeacherId = null;
-        let studentPressTimer = null;
-        let currentStudentId = null;
         let pressTimer = null;
         let currentNotifId = null;
         let currentNotifTitle = '';
@@ -1730,7 +2955,6 @@
             const tbody = document.getElementById('tableBody');
             const tfoot = document.getElementById('tableFoot');
 
-            // Filter rows
             let filteredRows = [...tableData.rows];
             if (tableFilters.search) {
                 filteredRows = filteredRows.filter(r =>
@@ -1747,30 +2971,21 @@
                 filteredRows = filteredRows.filter(r => calculateAvg(r) > 80);
             }
 
-            // Head
             let headHtml = '<tr><th>#</th>';
-            tableData.columns.forEach((col, idx) => {
-                headHtml += `<th>
-                            ${col.name}
-                            <span class="col-actions">
-                                <button onclick="showRenameColumnFor('${col.id}')" title="Rename"><i class="fas fa-edit"></i></button>
-                                <button onclick="showDeleteColumnFor('${col.id}')" title="Delete"><i class="fas fa-trash"></i></button>
-                            </span>
-                        </th>`;
+            tableData.columns.forEach((col) => {
+                headHtml += `<th>${col.name}</th>`;
             });
             headHtml += '<th>Avg</th><th>Status</th><th>Actions</th></tr>';
             thead.innerHTML = headHtml;
 
-            // Body
             if (filteredRows.length === 0) {
                 tbody.innerHTML =
-                '<tr><td colspan="' + (tableData.columns.length + 4) + '" style="text-align:center; padding:2rem; color:var(--text-dim);">No pupils. Click "Add Pupil" to get started.</td></tr>';
+                    '<tr><td colspan="' + (tableData.columns.length + 4) + '" style="text-align:center; padding:2rem; color:var(--text-dim);">No pupils. Click "Add Pupil" to get started.</td></tr>';
             } else {
                 let bodyHtml = '';
                 filteredRows.forEach((row, idx) => {
                     const avg = calculateAvg(row);
                     const status = getStatus(avg);
-                    const gradeLetter = getGradeLetter(avg);
                     bodyHtml += `<tr>
                                 <td>${idx + 1}</td>`;
                     tableData.columns.forEach(col => {
@@ -1778,17 +2993,9 @@
                         if (col.type === 'number') {
                             const cls = val !== '' && val !== undefined ? getGradeClass(parseFloat(val)) :
                             '';
-                            bodyHtml += `<td>
-                                        <span class="editable-cell ${cls}" onclick="editCell(${idx}, '${col.id}')" data-value="${val}">
-                                            ${val !== '' && val !== undefined ? val + '%' : '-'}
-                                        </span>
-                                    </td>`;
+                            bodyHtml += `<td><span class="${cls}">${val !== '' && val !== undefined ? val + '%' : '-'}</span></td>`;
                         } else {
-                            bodyHtml += `<td>
-                                        <span class="editable-cell" onclick="editCell(${idx}, '${col.id}')" data-value="${val}">
-                                            ${val || '-'}
-                                        </span>
-                                    </td>`;
+                            bodyHtml += `<td>${val || '-'}</td>`;
                         }
                     });
                     bodyHtml += `<td><strong>${avg}%</strong></td>
@@ -1804,7 +3011,6 @@
                 tbody.innerHTML = bodyHtml;
             }
 
-            // Foot - averages
             let footHtml = '<tr style="font-weight:600; background:var(--bg-section);"><td></td>';
             tableData.columns.forEach(col => {
                 if (col.type === 'number') {
@@ -1820,12 +3026,9 @@
             footHtml += `<td style="color:var(--purple);">${allAvg}%</td><td></td><td></td></tr>`;
             tfoot.innerHTML = footHtml;
 
-            // Stats
             document.getElementById('tableStats').textContent = filteredRows.length + ' pupils · ' + tableData.columns.length +
                 ' columns';
             document.getElementById('tableAvg').textContent = 'Class Avg: ' + allAvg + '%';
-
-            // Update name
             document.getElementById('tableNameInput').value = tableData.name;
         }
 
@@ -1834,10 +3037,8 @@
         // ============================================================
         function renameTable() {
             const name = document.getElementById('tableNameInput').value.trim();
-            if (name) {
-                tableData.name = name;
-                showToast('Table renamed to: ' + name);
-            }
+            if (name) { tableData.name = name;
+                showToast('Table renamed to: ' + name); }
         }
 
         // ============================================================
@@ -1847,120 +3048,14 @@
 
         function addColumn() {
             const name = document.getElementById('newColumnName').value.trim();
-            const type = document.getElementById('newColumnType').value;
             if (!name) { showToast('Please enter a column name'); return; }
             const id = name.toLowerCase().replace(/\s+/g, '_') + '_' + Date.now();
-            tableData.columns.push({ id, name, type });
+            tableData.columns.push({ id, name, type: 'number' });
             tableData.rows.forEach(row => row[id] = '');
             closeModal('addColumnModal');
             document.getElementById('newColumnName').value = '';
             renderTable();
             showToast('Column "' + name + '" added!');
-        }
-
-        function showInsertColumn() {
-            const select = document.getElementById('insertColumnBefore');
-            select.innerHTML = tableData.columns.map((c, i) =>
-                `<option value="${i}">${c.name}</option>`).join('');
-            openModal('insertColumnModal');
-        }
-
-        function insertColumn() {
-            const name = document.getElementById('insertColumnName').value.trim();
-            const beforeIdx = parseInt(document.getElementById('insertColumnBefore').value);
-            if (!name) { showToast('Please enter a column name'); return; }
-            const id = name.toLowerCase().replace(/\s+/g, '_') + '_' + Date.now();
-            tableData.columns.splice(beforeIdx, 0, { id, name, type: 'number' });
-            tableData.rows.forEach(row => row[id] = '');
-            closeModal('insertColumnModal');
-            document.getElementById('insertColumnName').value = '';
-            renderTable();
-            showToast('Column "' + name + '" inserted!');
-        }
-
-        function showRenameColumn() {
-            const select = document.getElementById('renameColumnSelect');
-            select.innerHTML = tableData.columns.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
-            openModal('renameColumnModal');
-        }
-
-        function showRenameColumnFor(colId) {
-            const select = document.getElementById('renameColumnSelect');
-            select.innerHTML = tableData.columns.map(c => `<option value="${c.id}" ${c.id === colId ? 'selected' : ''}>${c.name}</option>`)
-                .join('');
-            openModal('renameColumnModal');
-        }
-
-        function renameColumn() {
-            const colId = document.getElementById('renameColumnSelect').value;
-            const newName = document.getElementById('renameColumnNewName').value.trim();
-            if (!newName) { showToast('Please enter a new name'); return; }
-            const col = tableData.columns.find(c => c.id === colId);
-            if (col) {
-                const oldName = col.name;
-                col.name = newName;
-                closeModal('renameColumnModal');
-                document.getElementById('renameColumnNewName').value = '';
-                renderTable();
-                showToast('Column renamed from "' + oldName + '" to "' + newName + '"');
-            }
-        }
-
-        function showDeleteColumn() {
-            const select = document.getElementById('deleteColumnSelect');
-            select.innerHTML = tableData.columns.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
-            openModal('deleteColumnModal');
-        }
-
-        function showDeleteColumnFor(colId) {
-            const select = document.getElementById('deleteColumnSelect');
-            select.innerHTML = tableData.columns.map(c => `<option value="${c.id}" ${c.id === colId ? 'selected' : ''}>${c.name}</option>`)
-                .join('');
-            openModal('deleteColumnModal');
-        }
-
-        function deleteColumn() {
-            const colId = document.getElementById('deleteColumnSelect').value;
-            if (confirm('Delete column "' + tableData.columns.find(c => c.id === colId).name + '"?')) {
-                tableData.columns = tableData.columns.filter(c => c.id !== colId);
-                tableData.rows.forEach(row => delete row[colId]);
-                closeModal('deleteColumnModal');
-                renderTable();
-                showToast('Column deleted!');
-            }
-        }
-
-        function showReorderColumns() {
-            const list = document.getElementById('reorderList');
-            list.innerHTML = tableData.columns.map((c, i) =>
-                `<div style="display:flex; align-items:center; gap:10px; padding:8px 12px; background:var(--bg-input); border-radius:0.8rem; border:1px solid var(--border-color);">
-                            <i class="fas fa-grip-vertical" style="color:var(--text-dim); cursor:grab;"></i>
-                            <span style="flex:1;">${c.name}</span>
-                            <button onclick="moveColumnUp(${i})" style="background:none; border:none; color:var(--text-dim); cursor:pointer;"><i class="fas fa-arrow-up"></i></button>
-                            <button onclick="moveColumnDown(${i})" style="background:none; border:none; color:var(--text-dim); cursor:pointer;"><i class="fas fa-arrow-down"></i></button>
-                        </div>`
-            ).join('');
-            openModal('reorderColumnsModal');
-        }
-
-        function moveColumnUp(idx) {
-            if (idx > 0) {
-                [tableData.columns[idx], tableData.columns[idx - 1]] = [tableData.columns[idx - 1], tableData.columns[idx]];
-                showReorderColumns();
-            }
-        }
-
-        function moveColumnDown(idx) {
-            if (idx < tableData.columns.length - 1) {
-                [tableData.columns[idx], tableData.columns[idx + 1]] = [tableData.columns[idx + 1], tableData.columns[idx]];
-                showReorderColumns();
-            }
-        }
-
-        function applyReorder() {
-            closeModal('reorderColumnsModal');
-            renderTable();
-            showToast('Columns reordered!');
         }
 
         // ============================================================
@@ -1976,7 +3071,6 @@
 
         function addRow() {
             const name = document.getElementById('addPupilName').value.trim();
-            const grade = document.getElementById('addPupilGrade').value;
             if (!name) { showToast('Please enter a pupil name'); return; }
             const row = { pupil: name };
             tableData.columns.forEach(c => {
@@ -1994,54 +3088,9 @@
             showToast('Pupil ' + name + ' added!');
         }
 
-        function showInsertRow() {
-            const select = document.getElementById('insertRowBefore');
-            select.innerHTML = tableData.rows.map((r, i) => `<option value="${i}">${r.pupil}</option>`).join('');
-            const scoresDiv = document.getElementById('insertRowScores');
-            scoresDiv.innerHTML = tableData.columns.filter(c => c.type === 'number').map(c =>
-                `<div class="form-group"><label>${c.name}</label><input type="number" id="insert_${c.id}" placeholder="Score" /></div>`
-            ).join('');
-            openModal('insertRowModal');
-        }
-
-        function insertRow() {
-            const name = document.getElementById('insertPupilName').value.trim();
-            const beforeIdx = parseInt(document.getElementById('insertRowBefore').value);
-            if (!name) { showToast('Please enter a pupil name'); return; }
-            const row = { pupil: name };
-            tableData.columns.forEach(c => {
-                if (c.id === 'pupil') { row[c.id] = name; } else if (c.type === 'number') {
-                    const val = document.getElementById('insert_' + c.id);
-                    row[c.id] = val ? parseFloat(val.value) || '' : '';
-                } else {
-                    row[c.id] = '';
-                }
-            });
-            tableData.rows.splice(beforeIdx, 0, row);
-            closeModal('insertRowModal');
-            document.getElementById('insertPupilName').value = '';
-            renderTable();
-            showToast('Pupil ' + name + ' inserted!');
-        }
-
-        function showDeleteRow() {
-            const select = document.getElementById('deleteRowSelect');
-            select.innerHTML = tableData.rows.map((r, i) => `<option value="${i}">${r.pupil}</option>`).join('');
-            openModal('deleteRowModal');
-        }
-
         function showDeleteRowFor(idx) {
-            const select = document.getElementById('deleteRowSelect');
-            select.innerHTML = tableData.rows.map((r, i) => `<option value="${i}" ${i === idx ? 'selected' : ''}>${r.pupil}</option>`)
-                .join('');
-            openModal('deleteRowModal');
-        }
-
-        function deleteRow() {
-            const idx = parseInt(document.getElementById('deleteRowSelect').value);
             if (confirm('Delete pupil "' + tableData.rows[idx].pupil + '"?')) {
                 tableData.rows.splice(idx, 1);
-                closeModal('deleteRowModal');
                 renderTable();
                 showToast('Pupil deleted!');
             }
@@ -2049,145 +3098,34 @@
 
         function editRow(idx) {
             const row = tableData.rows[idx];
-            let msg = 'Edit pupil:\nName: ' + row.pupil + '\n\n';
-            tableData.columns.forEach(c => {
-                if (c.id !== 'pupil') {
-                    msg += c.name + ': ' + (row[c.id] || '') + '\n';
-                }
-            });
             const newName = prompt('Pupil Name:', row.pupil);
             if (newName === null) return;
             row.pupil = newName.trim() || row.pupil;
             tableData.columns.forEach(c => {
                 if (c.id !== 'pupil' && c.type === 'number') {
                     const val = prompt(c.name + ':', row[c.id] || '');
-                    if (val !== null) {
-                        row[c.id] = val.trim() !== '' ? parseFloat(val) || 0 : '';
-                    }
+                    if (val !== null) { row[c.id] = val.trim() !== '' ? parseFloat(val) || 0 : ''; }
                 }
             });
             renderTable();
             showToast('Pupil updated!');
         }
 
-        function editCell(rowIdx, colId) {
-            const row = tableData.rows[rowIdx];
-            const col = tableData.columns.find(c => c.id === colId);
-            if (!col) return;
-            const currentVal = row[colId] !== undefined ? row[colId] : '';
-            const newVal = prompt(col.name + ':', currentVal);
-            if (newVal === null) return;
-            if (col.type === 'number') {
-                row[colId] = newVal.trim() !== '' ? parseFloat(newVal) || 0 : '';
-            } else {
-                row[colId] = newVal.trim();
-            }
-            renderTable();
-            showToast('Cell updated!');
-        }
-
         // ============================================================
-        // TABLE - BULK ADD
-        // ============================================================
-        function showBulkAdd() { openModal('bulkAddModal'); }
-
-        function bulkAdd() {
-            const names = document.getElementById('bulkPupilNames').value.split('\n').map(s => s.trim()).filter(s => s);
-            const grade = document.getElementById('bulkPupilGrade').value;
-            if (names.length === 0) { showToast('Please enter at least one name'); return; }
-            names.forEach(name => {
-                const row = { pupil: name };
-                tableData.columns.forEach(c => {
-                    if (c.id === 'pupil') { row[c.id] = name; } else { row[c.id] = ''; }
-                });
-                tableData.rows.push(row);
-            });
-            closeModal('bulkAddModal');
-            document.getElementById('bulkPupilNames').value = '';
-            renderTable();
-            showToast(names.length + ' pupils added!');
-        }
-
-        // ============================================================
-        // TABLE - SORT
-        // ============================================================
-        let sortAsc = true;
-        let sortCol = 'pupil';
-
-        function sortTable() {
-            const col = prompt('Sort by which column? (pupil, w4, w8, w14, avg)', 'pupil');
-            if (col === null) return;
-            const direction = confirm('Sort ascending? (OK=Yes, Cancel=No)');
-            tableData.rows.sort((a, b) => {
-                let valA = a[col] || 0,
-                    valB = b[col] || 0;
-                if (col === 'pupil') { valA = a[col] || '';
-                    valB = b[col] || ''; }
-                if (direction) { return valA > valB ? 1 : -1; } else { return valA < valB ? 1 : -1; }
-            });
-            renderTable();
-            showToast('Sorted by ' + col + (direction ? ' (asc)' : ' (desc)'));
-        }
-
-        // ============================================================
-        // TABLE - SEARCH / FILTER
-        // ============================================================
-        function showSearchFilter() { openModal('searchFilterModal'); }
-
-        function applySearchFilter() {
-            tableFilters.search = document.getElementById('searchPupilInput').value.trim();
-            tableFilters.score = document.getElementById('filterScore').value;
-            renderTable();
-            showToast('Filters applied');
-        }
-
-        function clearFilters() {
-            tableFilters.search = '';
-            tableFilters.score = 'all';
-            document.getElementById('searchPupilInput').value = '';
-            document.getElementById('filterScore').value = 'all';
-            renderTable();
-            showToast('Filters cleared');
-        }
-
-        // ============================================================
-        // TABLE - CREATE / DELETE / DUPLICATE
+        // TABLE - CREATE
         // ============================================================
         function showCreateTable() { openModal('createTableModal'); }
 
         function createTable() {
             const name = document.getElementById('createTableName').value.trim();
-            const subject = document.getElementById('createTableSubject').value;
-            const grade = document.getElementById('createTableGrade').value;
             if (!name) { showToast('Please enter a table name'); return; }
             tableData.name = name;
-            tableData.subject = subject;
-            tableData.grade = grade;
             tableData.columns = [{ id: 'pupil', name: 'Pupil Name', type: 'text' }];
             tableData.rows = [];
             closeModal('createTableModal');
             document.getElementById('createTableName').value = '';
             renderTable();
             showToast('Table "' + name + '" created!');
-        }
-
-        function deleteTable() {
-            if (confirm('Delete the entire table "' + tableData.name + '"?')) {
-                tableData.rows = [];
-                renderTable();
-                showToast('Table cleared');
-            }
-        }
-
-        function duplicateTable() {
-            const newName = prompt('Duplicate table name:', tableData.name + ' (Copy)');
-            if (newName) {
-                const newTable = JSON.parse(JSON.stringify(tableData));
-                newTable.name = newName;
-                tableData = newTable;
-                renderTable();
-                showToast('Table duplicated as "' + newName + '"');
-            }
         }
 
         // ============================================================
@@ -2208,12 +3146,6 @@
             XLSX.writeFile(wb, tableData.name.replace(/\s+/g, '_') + '.xlsx');
             showToast('Exported to Excel!');
         }
-
-        function exportToPDF() {
-            showToast('PDF export coming soon!');
-        }
-
-        function printTable() { window.print(); }
 
         function showImportModal() { openModal('importModal'); }
 
@@ -2361,7 +3293,6 @@
                 const min = Math.min(...averages);
                 const passCount = averages.filter(a => a >= 50).length;
                 const failCount = averages.filter(a => a < 50).length;
-
                 let gradeCount = { A: 0, B: 0, C: 0, D: 0, F: 0 };
                 averages.forEach(a => { gradeCount[getGradeLetter(a)]++; });
 
@@ -2465,345 +3396,80 @@
             a.download = row.pupil.replace(/\s+/g, '_') + '_Report_Card.txt';
             a.click();
             URL.revokeObjectURL(url);
-            showToast('Report card for ' + row.pupil + ' generated!');
+            showToast('Report card generated!');
             closeModal('reportCardModal');
         }
 
         // ============================================================
-        // TEACHER LOGIN
+        // TABLE - SEARCH / FILTER
         // ============================================================
-        function loginTeacher() {
-            const schoolCode = document.getElementById('teacherSchoolCodeInput').value.trim();
-            const username = document.getElementById('teacherUsernameInput').value.trim();
-            const password = document.getElementById('teacherPasswordInput').value.trim();
+        function showSearchFilter() { openModal('searchFilterModal'); }
 
-            if (!schoolCode) { showToast('Please enter your school code'); return; }
-            if (!username) { showToast('Please enter your username'); return; }
-            if (!password) { showToast('Please enter your password'); return; }
-            if (schoolCode !== 'SCHOOL2024') { showToast('Invalid school code'); return; }
-
-            const isFirstTime = document.getElementById('firstTimeSetup').style.display === 'block';
-            if (isFirstTime) {
-                const newPass = document.getElementById('newPasswordInput').value.trim();
-                const confirmPass = document.getElementById('confirmPasswordInput').value.trim();
-                if (!newPass || !confirmPass) { showToast('Please set a new password'); return; }
-                if (newPass !== confirmPass) { showToast('Passwords do not match'); return; }
-                showToast('Password set successfully!');
-            }
-
-            isTeacherLoggedIn = true;
-            document.getElementById('teacherLoginFlow').style.display = 'none';
-            document.getElementById('teacherDashboard').classList.add('active');
-
-            pupilsData = [...samplePupils];
+        function applySearchFilter() {
+            tableFilters.search = document.getElementById('searchPupilInput').value.trim();
+            tableFilters.score = document.getElementById('filterScore').value;
             renderTable();
-            document.getElementById('teacherStatStudents').textContent = tableData.rows.length;
-            document.getElementById('teacherStatResults').textContent = tableData.rows.length * tableData.columns.length;
-            const allAvg = tableData.rows.length > 0 ? Math.round(tableData.rows.reduce((sum, r) => sum + calculateAvg(r),
-                0) / tableData.rows.length) : 0;
-            document.getElementById('teacherStatAvg').textContent = allAvg + '%';
-
-            showToast('Welcome ' + username + '!');
-        }
-
-        function logoutTeacher() {
-            isTeacherLoggedIn = false;
-            document.getElementById('teacherDashboard').classList.remove('active');
-            document.getElementById('teacherLoginFlow').style.display = 'block';
-            document.getElementById('teacherSchoolCodeInput').value = '';
-            document.getElementById('teacherUsernameInput').value = '';
-            document.getElementById('teacherPasswordInput').value = '';
-            showToast('Logged out');
+            showToast('Filters applied');
+            closeModal('searchFilterModal');
         }
 
         // ============================================================
-        // ADMIN LOGIN
+        // STUDENT PORTAL
         // ============================================================
-        function loginAdmin() {
-            const schoolCode = document.getElementById('adminSchoolCodeInput').value.trim();
-            const username = document.getElementById('adminUsernameInput').value.trim();
-            const password = document.getElementById('adminPasswordInput').value.trim();
+        function findPupilClass() {
+            const school = document.getElementById('pupilSchoolInput').value.trim();
+            const name = document.getElementById('pupilNameInput').value.trim();
+            const grade = document.getElementById('pupilGradeInput').value;
+            const subject = document.getElementById('pupilSubjectInput').value;
 
-            if (!schoolCode) { showToast('Please enter school code'); return; }
-            if (!username) { showToast('Please enter admin username'); return; }
-            if (!password) { showToast('Please enter admin password'); return; }
+            if (!school) { showToast('Please enter your school name'); return; }
+            if (!name) { showToast('Please enter your name'); return; }
+            if (!grade) { showToast('Please select your grade'); return; }
+            if (!subject) { showToast('Please select your subject'); return; }
 
-            if (schoolCode === 'SCHOOL2024' && username === 'admin' && password === 'admin123') {
-                isAdminLoggedIn = true;
-                document.getElementById('adminLoginFlow').style.display = 'none';
-                document.getElementById('adminDashboard').classList.add('active');
-                showToast('Welcome Admin!');
-            } else {
-                showToast('Invalid admin credentials');
-            }
-        }
+            const resultDiv = document.getElementById('pupilJoinResult');
+            resultDiv.style.display = 'block';
 
-        function logoutAdmin() {
-            isAdminLoggedIn = false;
-            document.getElementById('adminDashboard').classList.remove('active');
-            document.getElementById('adminLoginFlow').style.display = 'block';
-            document.getElementById('adminSchoolCodeInput').value = '';
-            document.getElementById('adminUsernameInput').value = '';
-            document.getElementById('adminPasswordInput').value = '';
-            showToast('Logged out');
-        }
-
-        // ============================================================
-        // ADMIN - TEACHER LIST
-        // ============================================================
-        function openTeacherList() {
-            document.getElementById('teacherListCount').textContent = teachers.length + ' teachers';
-            openModal('teacherListModal');
-        }
-
-        function closeTeacherList() { closeModal('teacherListModal'); }
-
-        function startTeacherPress(event, teacherId) {
-            if (event.type === 'touchstart') event.preventDefault();
-            clearTimeout(teacherPressTimer);
-            currentTeacherId = teacherId;
-            teacherPressTimer = setTimeout(() => {
-                document.getElementById('deleteConfirmMessage').textContent = 'Delete this teacher?';
-                pendingDeleteTarget = teacherId;
-                pendingDeleteType = 'teacher';
-                openModal('deleteConfirmModal');
-            }, 800);
-        }
-
-        function openStudentList() {
-            document.getElementById('studentListCount').textContent = students.length + ' students';
-            openModal('studentListModal');
-        }
-
-        function closeStudentList() { closeModal('studentListModal'); }
-
-        function startStudentPress(event, studentId) {
-            if (event.type === 'touchstart') event.preventDefault();
-            clearTimeout(studentPressTimer);
-            currentStudentId = studentId;
-            studentPressTimer = setTimeout(() => {
-                document.getElementById('deleteConfirmMessage').textContent = 'Delete this student?';
-                pendingDeleteTarget = studentId;
-                pendingDeleteType = 'student';
-                openModal('deleteConfirmModal');
-            }, 800);
-        }
-
-        function endPress() {
-            clearTimeout(teacherPressTimer);
-            clearTimeout(studentPressTimer);
-            clearTimeout(pressTimer);
-        }
-
-        function confirmDelete() {
-            if (pendingDeleteType === 'teacher') {
-                const index = teachers.findIndex(t => t.id == pendingDeleteTarget);
-                if (index !== -1) {
-                    const name = teachers[index].name;
-                    teachers.splice(index, 1);
-                    showToast('Deleted ' + name);
-                    document.getElementById('adminStatTeachers').textContent = teachers.length;
-                    closeModal('deleteConfirmModal');
-                    closeTeacherList();
-                    openTeacherList();
-                }
-            } else if (pendingDeleteType === 'student') {
-                const index = students.findIndex(s => s.id == pendingDeleteTarget);
-                if (index !== -1) {
-                    const name = students[index].name;
-                    students.splice(index, 1);
-                    showToast('Deleted ' + name);
-                    document.getElementById('adminStatStudents').textContent = students.length;
-                    document.getElementById('adminStatPupils').textContent = students.length;
-                    closeModal('deleteConfirmModal');
-                    closeStudentList();
-                    openStudentList();
-                }
-            } else if (pendingDeleteType === 'notification') {
-                const item = document.querySelector(`.notif-item[data-notif-id="${pendingDeleteTarget}"]`);
-                if (item) {
-                    item.style.opacity = '0';
-                    item.style.transform = 'translateX(100px)';
-                    setTimeout(() => { item.remove();
-                        showToast('Notification deleted'); }, 300);
-                }
-                closeModal('deleteConfirmModal');
-            }
-            pendingDeleteTarget = null;
-            pendingDeleteType = '';
-        }
-
-        // ============================================================
-        // ADMIN - ADD TEACHER
-        // ============================================================
-        function addTeacher() {
-            const name = document.getElementById('newTeacherName').value.trim();
-            const username = document.getElementById('newTeacherUsername').value.trim();
-            const cls = document.getElementById('newTeacherClass').value.trim();
-
-            if (!name) { showToast('Please enter teacher name'); return; }
-            if (!username) { showToast('Please enter username'); return; }
-            if (!cls) { showToast('Please enter class/subject'); return; }
-
-            const newId = teachers.length + 1;
-            teachers.push({ id: newId, name: name, class: cls, pupils: 0, active: true });
-            document.getElementById('adminStatTeachers').textContent = teachers.length;
-            document.getElementById('newTeacherName').value = '';
-            document.getElementById('newTeacherUsername').value = '';
-            document.getElementById('newTeacherClass').value = '';
-            showToast('Teacher ' + name + ' added!');
-        }
-
-        // ============================================================
-        // ADMIN FUNCTIONS
-        // ============================================================
-        function showPostAnnouncement() { openModal('announcementModal'); }
-
-        function closeAnnouncementModal() { closeModal('announcementModal'); }
-
-        function postAnnouncement() {
-            const title = document.getElementById('announcementTitle').value.trim();
-            const details = document.getElementById('announcementDetails').value.trim();
-            if (!title) { showToast('Please enter a title'); return; }
-            const list = document.getElementById('announcementList');
-            const item = document.createElement('div');
-            item.className = 'announcement-item';
-            item.innerHTML = `<div class="title"><i class="fas fa-bullhorn" style="color:var(--purple);"></i> ${title}</div>
-                        <div class="meta"><i class="fas fa-calendar-alt" style="color:var(--purple);"></i> Posted: Just now · By: Admin</div>
-                        ${details ? `<div style="color:var(--text-muted); font-size:13px; margin-top:6px;">${details}</div>` : ''}`;
-            list.prepend(item);
-            closeModal('announcementModal');
-            document.getElementById('announcementTitle').value = '';
-            document.getElementById('announcementDetails').value = '';
-            showToast('Announcement posted!');
-        }
-
-        function updateSchoolName() {
-            const name = document.getElementById('adminSchoolName').value.trim();
-            if (!name) { showToast('Please enter a school name'); return; }
-            document.getElementById('adminSchoolNameDisplay').innerHTML = '<i class="fas fa-school" style="color:var(--purple);"></i> ' +
-                name;
-            showToast('School name updated to: ' + name);
-        }
-
-        function updateSchoolCode() {
-            const code = document.getElementById('adminSchoolCode').value.trim();
-            if (!code) { showToast('Please enter a school code'); return; }
-            showToast('School code updated to: ' + code);
-        }
-
-        function updateAdminPassword() {
-            const pass = document.getElementById('adminPassword').value.trim();
-            if (!pass || pass.length < 6) { showToast('Password must be at least 6 characters'); return; }
-            document.getElementById('adminPassword').value = '';
-            showToast('Admin password updated!');
-        }
-
-        function updateTeacherPassword() {
-            const pass = document.getElementById('teacherNewPassword').value.trim();
-            if (!pass || pass.length < 6) { showToast('Password must be at least 6 characters'); return; }
-            document.getElementById('teacherNewPassword').value = '';
-            showToast('Teacher password updated!');
-        }
-
-        // ============================================================
-        // PARENT PORTAL
-        // ============================================================
-        function findChild() {
-            const school = document.getElementById('parentSchoolSelect').value;
-            const grade = document.getElementById('parentGradeSelect').value;
-            const name = document.getElementById('parentChildName').value.trim();
-
-            if (!school) { showToast('Please select a school'); return; }
-            if (!grade) { showToast('Please select a grade'); return; }
-            if (!name) { showToast('Please enter your child\'s name'); return; }
-
-            const child = tableData.rows.find(r =>
-                r.pupil.toLowerCase().includes(name.toLowerCase())
+            const pupil = samplePupils.find(p =>
+                p.name.toLowerCase() === name.toLowerCase() &&
+                p.grade === grade
             );
 
-            const container = document.getElementById('parentResults');
-            if (child) {
-                const avg = calculateAvg(child);
-                const status = getStatus(avg);
-                const gradeLetter = getGradeLetter(avg);
-                container.style.display = 'block';
-
-                let resultsHtml = tableData.columns.filter(c => c.id !== 'pupil' && c.type === 'number').map(c => `
-                            <div class="result-item">
-                                <div class="week">${c.name}</div>
-                                <div class="score ${parseFloat(child[c.id]) >= 60 ? 'pass' : 'fail'}">${child[c.id] !== undefined && child[c.id] !== '' ? child[c.id] + '%' : '-'}</div>
-                            </div>
-                        `).join('');
-
-                container.innerHTML = `
-                            <div class="child-result-card">
-                                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
-                                    <div>
-                                        <div class="child-name"><i class="fas fa-user" style="color:var(--purple);"></i> ${child.pupil}</div>
-                                        <div class="child-school"><i class="fas fa-school" style="color:var(--purple);"></i> ${school} · <i class="fas fa-layer-group" style="color:var(--purple);"></i> Grade ${grade}</div>
-                                    </div>
-                                    <span style="background:${status.class === 'status-pass' ? 'var(--purple)' : 'var(--bg-input)'}; color:#FFFFFF; padding:4px 16px; border-radius:30px; font-weight:700; font-size:14px;">${status.text}</span>
+            if (pupil) {
+                resultDiv.innerHTML = `
+                            <div style="background:rgba(108,92,231,0.15); border:1px solid rgba(108,92,231,0.3); border-radius:1rem; padding:1.2rem;">
+                                <div style="display:flex; align-items:center; gap:10px; color:var(--purple-light); font-weight:600; font-size:1.1rem;">
+                                    <i class="fas fa-check-circle" style="color:var(--green);"></i> Welcome, ${name}!
                                 </div>
-                                <div class="result-grid">
-                                    ${resultsHtml}
+                                <div style="color:var(--text-muted); font-size:14px; margin-top:8px;">
+                                    <i class="fas fa-school" style="color:var(--purple);"></i> ${school} · 
+                                    <i class="fas fa-layer-group" style="color:var(--purple);"></i> Grade ${grade} · 
+                                    <i class="fas fa-book" style="color:var(--purple);"></i> ${subject}
                                 </div>
-                                <div class="overall">
-                                    <span><i class="fas fa-chart-line" style="color:var(--purple);"></i> Average: <span style="font-size:1.3rem; color:${avg >= 60 ? 'var(--purple-light)' : 'var(--text-dim)'};">${avg}%</span></span>
-                                    <span><i class="fas fa-trophy" style="color:var(--purple);"></i> Grade: ${gradeLetter}</span>
-                                </div>
-                                <div class="parent-actions">
-                                    <button class="btn-small btn-purple" onclick="viewParentReportCard('${child.pupil}')"><i class="fas fa-file-pdf"></i> Report Card</button>
-                                    <button class="btn-small btn-outline" onclick="showToast('Message sent to teacher!')"><i class="fas fa-envelope"></i> Message Teacher</button>
-                                    <button class="btn-small btn-outline" onclick="showToast('Notifications enabled')"><i class="fas fa-bell"></i> Notify</button>
+                                <div style="color:var(--text-dim); font-size:13px; margin-top:8px;">
+                                    <i class="fas fa-check" style="color:var(--green);"></i> You now have access to your class resources
                                 </div>
                             </div>
                         `;
-                showToast('Found ' + child.pupil + '!');
+                showToast('✅ Welcome ' + name + '!');
             } else {
-                container.style.display = 'block';
-                container.innerHTML = `
-                            <div style="background:var(--bg-card); border-radius:1rem; padding:2rem; text-align:center; border:1px solid var(--border-color);">
-                                <div style="font-size:3rem; margin-bottom:12px; color:var(--purple);"><i class="fas fa-search"></i></div>
-                                <h3 style="color:var(--text-primary);">No results found</h3>
-                                <p style="color:var(--text-muted); margin-top:8px;">Couldn't find "${name}" in Grade ${grade} at ${school}.</p>
-                                <p style="color:var(--text-dim); font-size:13px; margin-top:8px;"><i class="fas fa-lightbulb" style="color:var(--orange);"></i> Check spelling or contact the teacher.</p>
+                resultDiv.innerHTML = `
+                            <div style="background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.2); border-radius:1rem; padding:1.2rem;">
+                                <div style="display:flex; align-items:center; gap:10px; color:var(--red); font-weight:600;">
+                                    <i class="fas fa-times-circle"></i> No match found
+                                </div>
+                                <div style="color:var(--text-muted); font-size:14px; margin-top:8px;">
+                                    We couldn't find "${name}" in Grade ${grade} for ${subject} at ${school}.
+                                </div>
+                                <div style="color:var(--text-dim); font-size:13px; margin-top:8px;">
+                                    <i class="fas fa-lightbulb" style="color:var(--orange);"></i> Check spelling or contact your teacher.
+                                </div>
                             </div>
                         `;
-                showToast('No results found');
+                showToast('❌ No match found');
             }
         }
 
-        function viewParentReportCard(name) {
-            const row = tableData.rows.find(r => r.pupil === name);
-            if (!row) { showToast('Child not found'); return; }
-            const avg = calculateAvg(row);
-            const status = getStatus(avg);
-            const grade = getGradeLetter(avg);
-            let report = 'SCHOOLHUB - REPORT CARD\n' + '='.repeat(40) + '\n\n';
-            report += `Pupil: ${row.pupil}\n`;
-            report += `Grade: ${tableData.grade}\n`;
-            report += `Subject: ${tableData.subject}\n\n`;
-            tableData.columns.forEach(c => {
-                if (c.id !== 'pupil') {
-                    report += `${c.name}: ${row[c.id] !== undefined && row[c.id] !== '' ? row[c.id] + (c.type === 'number' ? '%' : '') : '-'}\n`;
-                }
-            });
-            report += `\nAverage: ${avg}% (${grade})\n`;
-            report += `Status: ${status.text}\n`;
-            const blob = new Blob([report], { type: 'text/plain' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = row.pupil.replace(/\s+/g, '_') + '_Report_Card.txt';
-            a.click();
-            URL.revokeObjectURL(url);
-            showToast('Report card downloaded!');
-        }
-
-        // ============================================================
-        // SUBJECT RESOURCES
-        // ============================================================
         function openSubjectResources(subject) {
             currentSubject = subject;
             currentFilter = 'all';
@@ -2991,6 +3657,342 @@
         }
 
         // ============================================================
+        // TEACHER LOGIN
+        // ============================================================
+        function loginTeacher() {
+            const schoolCode = document.getElementById('teacherSchoolCodeInput').value.trim();
+            const username = document.getElementById('teacherUsernameInput').value.trim();
+            const password = document.getElementById('teacherPasswordInput').value.trim();
+
+            if (!schoolCode) { showToast('Please enter your school code'); return; }
+            if (!username) { showToast('Please enter your username'); return; }
+            if (!password) { showToast('Please enter your password'); return; }
+            if (schoolCode !== 'SCHOOL2024') { showToast('Invalid school code'); return; }
+
+            const isFirstTime = document.getElementById('firstTimeSetup').style.display === 'block';
+            if (isFirstTime) {
+                const newPass = document.getElementById('newPasswordInput').value.trim();
+                const confirmPass = document.getElementById('confirmPasswordInput').value.trim();
+                if (!newPass || !confirmPass) { showToast('Please set a new password'); return; }
+                if (newPass !== confirmPass) { showToast('Passwords do not match'); return; }
+                showToast('Password set successfully!');
+            }
+
+            isTeacherLoggedIn = true;
+            document.getElementById('teacherLoginFlow').style.display = 'none';
+            document.getElementById('teacherDashboard').classList.add('active');
+
+            pupilsData = [...samplePupils];
+            renderTable();
+            document.getElementById('teacherStatStudents').textContent = tableData.rows.length;
+            document.getElementById('teacherStatResults').textContent = tableData.rows.length * tableData.columns.length;
+            const allAvg = tableData.rows.length > 0 ? Math.round(tableData.rows.reduce((sum, r) => sum + calculateAvg(r),
+                0) / tableData.rows.length) : 0;
+            document.getElementById('teacherStatAvg').textContent = allAvg + '%';
+
+            showToast('Welcome ' + username + '!');
+        }
+
+        function logoutTeacher() {
+            isTeacherLoggedIn = false;
+            document.getElementById('teacherDashboard').classList.remove('active');
+            document.getElementById('teacherLoginFlow').style.display = 'block';
+            document.getElementById('teacherSchoolCodeInput').value = '';
+            document.getElementById('teacherUsernameInput').value = '';
+            document.getElementById('teacherPasswordInput').value = '';
+            showToast('Logged out');
+        }
+
+        // ============================================================
+        // ADMIN LOGIN
+        // ============================================================
+        function loginAdmin() {
+            const schoolCode = document.getElementById('adminSchoolCodeInput').value.trim();
+            const username = document.getElementById('adminUsernameInput').value.trim();
+            const password = document.getElementById('adminPasswordInput').value.trim();
+
+            if (!schoolCode) { showToast('Please enter school code'); return; }
+            if (!username) { showToast('Please enter admin username'); return; }
+            if (!password) { showToast('Please enter admin password'); return; }
+
+            if (schoolCode === 'SCHOOL2024' && username === 'admin' && password === 'admin123') {
+                isAdminLoggedIn = true;
+                document.getElementById('adminLoginFlow').style.display = 'none';
+                document.getElementById('adminDashboard').classList.add('active');
+                showToast('Welcome Admin!');
+            } else {
+                showToast('Invalid admin credentials');
+            }
+        }
+
+        function logoutAdmin() {
+            isAdminLoggedIn = false;
+            document.getElementById('adminDashboard').classList.remove('active');
+            document.getElementById('adminLoginFlow').style.display = 'block';
+            document.getElementById('adminSchoolCodeInput').value = '';
+            document.getElementById('adminUsernameInput').value = '';
+            document.getElementById('adminPasswordInput').value = '';
+            showToast('Logged out');
+        }
+
+        // ============================================================
+        // ADMIN - TEACHER LIST
+        // ============================================================
+        function openTeacherList() {
+            document.getElementById('teacherListCount').textContent = teachers.length + ' teachers';
+            openModal('teacherListModal');
+        }
+
+        function closeTeacherList() { closeModal('teacherListModal'); }
+
+        let teacherPressTimer = null;
+        let currentTeacherId = null;
+
+        function startTeacherPress(event, teacherId) {
+            if (event.type === 'touchstart') event.preventDefault();
+            clearTimeout(teacherPressTimer);
+            currentTeacherId = teacherId;
+            teacherPressTimer = setTimeout(() => {
+                document.getElementById('deleteConfirmMessage').textContent = 'Delete this teacher?';
+                pendingDeleteTarget = teacherId;
+                pendingDeleteType = 'teacher';
+                openModal('deleteConfirmModal');
+            }, 800);
+        }
+
+        function openStudentList() {
+            document.getElementById('studentListCount').textContent = students.length + ' students';
+            openModal('studentListModal');
+        }
+
+        function closeStudentList() { closeModal('studentListModal'); }
+
+        let studentPressTimer = null;
+        let currentStudentId = null;
+
+        function startStudentPress(event, studentId) {
+            if (event.type === 'touchstart') event.preventDefault();
+            clearTimeout(studentPressTimer);
+            currentStudentId = studentId;
+            studentPressTimer = setTimeout(() => {
+                document.getElementById('deleteConfirmMessage').textContent = 'Delete this student?';
+                pendingDeleteTarget = studentId;
+                pendingDeleteType = 'student';
+                openModal('deleteConfirmModal');
+            }, 800);
+        }
+
+        function endPress() {
+            clearTimeout(teacherPressTimer);
+            clearTimeout(studentPressTimer);
+            clearTimeout(pressTimer);
+        }
+
+        function confirmDelete() {
+            if (pendingDeleteType === 'teacher') {
+                const index = teachers.findIndex(t => t.id == pendingDeleteTarget);
+                if (index !== -1) {
+                    const name = teachers[index].name;
+                    teachers.splice(index, 1);
+                    showToast('Deleted ' + name);
+                    document.getElementById('adminStatTeachers').textContent = teachers.length;
+                    closeModal('deleteConfirmModal');
+                    closeTeacherList();
+                    openTeacherList();
+                }
+            } else if (pendingDeleteType === 'student') {
+                const index = students.findIndex(s => s.id == pendingDeleteTarget);
+                if (index !== -1) {
+                    const name = students[index].name;
+                    students.splice(index, 1);
+                    showToast('Deleted ' + name);
+                    document.getElementById('adminStatStudents').textContent = students.length;
+                    document.getElementById('adminStatPupils').textContent = students.length;
+                    closeModal('deleteConfirmModal');
+                    closeStudentList();
+                    openStudentList();
+                }
+            } else if (pendingDeleteType === 'notification') {
+                const item = document.querySelector(`.notif-item[data-notif-id="${pendingDeleteTarget}"]`);
+                if (item) {
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateX(100px)';
+                    setTimeout(() => { item.remove();
+                        showToast('Notification deleted'); }, 300);
+                }
+                closeModal('deleteConfirmModal');
+            }
+            pendingDeleteTarget = null;
+            pendingDeleteType = '';
+        }
+
+        // ============================================================
+        // ADMIN - ADD TEACHER
+        // ============================================================
+        function addTeacher() {
+            const name = document.getElementById('newTeacherName').value.trim();
+            const username = document.getElementById('newTeacherUsername').value.trim();
+            const cls = document.getElementById('newTeacherClass').value.trim();
+
+            if (!name) { showToast('Please enter teacher name'); return; }
+            if (!username) { showToast('Please enter username'); return; }
+            if (!cls) { showToast('Please enter class/subject'); return; }
+
+            const newId = teachers.length + 1;
+            teachers.push({ id: newId, name: name, class: cls, pupils: 0, active: true });
+            document.getElementById('adminStatTeachers').textContent = teachers.length;
+            document.getElementById('newTeacherName').value = '';
+            document.getElementById('newTeacherUsername').value = '';
+            document.getElementById('newTeacherClass').value = '';
+            showToast('Teacher ' + name + ' added!');
+        }
+
+        // ============================================================
+        // ADMIN FUNCTIONS
+        // ============================================================
+        function showPostAnnouncement() { openModal('announcementModal'); }
+
+        function postAnnouncement() {
+            const title = document.getElementById('announcementTitle').value.trim();
+            const details = document.getElementById('announcementDetails').value.trim();
+            if (!title) { showToast('Please enter a title'); return; }
+            const list = document.getElementById('announcementList');
+            const item = document.createElement('div');
+            item.className = 'announcement-item';
+            item.innerHTML = `<div class="title"><i class="fas fa-bullhorn" style="color:var(--purple);"></i> ${title}</div>
+                        <div class="meta"><i class="fas fa-calendar-alt" style="color:var(--purple);"></i> Posted: Just now · By: Admin</div>
+                        ${details ? `<div style="color:var(--text-muted); font-size:13px; margin-top:6px;">${details}</div>` : ''}`;
+            list.prepend(item);
+            closeModal('announcementModal');
+            document.getElementById('announcementTitle').value = '';
+            document.getElementById('announcementDetails').value = '';
+            showToast('Announcement posted!');
+        }
+
+        function updateSchoolName() {
+            const name = document.getElementById('adminSchoolName').value.trim();
+            if (!name) { showToast('Please enter a school name'); return; }
+            document.getElementById('adminSchoolNameDisplay').innerHTML = '<i class="fas fa-school" style="color:var(--purple);"></i> ' +
+                name;
+            showToast('School name updated to: ' + name);
+        }
+
+        function updateSchoolCode() {
+            const code = document.getElementById('adminSchoolCode').value.trim();
+            if (!code) { showToast('Please enter a school code'); return; }
+            showToast('School code updated to: ' + code);
+        }
+
+        function updateAdminPassword() {
+            const pass = document.getElementById('adminPassword').value.trim();
+            if (!pass || pass.length < 6) { showToast('Password must be at least 6 characters'); return; }
+            document.getElementById('adminPassword').value = '';
+            showToast('Admin password updated!');
+        }
+
+        function updateTeacherPassword() {
+            const pass = document.getElementById('teacherNewPassword').value.trim();
+            if (!pass || pass.length < 6) { showToast('Password must be at least 6 characters'); return; }
+            document.getElementById('teacherNewPassword').value = '';
+            showToast('Teacher password updated!');
+        }
+
+        // ============================================================
+        // PARENT PORTAL
+        // ============================================================
+        function findChild() {
+            const school = document.getElementById('parentSchoolSelect').value;
+            const grade = document.getElementById('parentGradeSelect').value;
+            const name = document.getElementById('parentChildName').value.trim();
+
+            if (!school) { showToast('Please select a school'); return; }
+            if (!grade) { showToast('Please select a grade'); return; }
+            if (!name) { showToast('Please enter your child\'s name'); return; }
+
+            const child = tableData.rows.find(r =>
+                r.pupil.toLowerCase().includes(name.toLowerCase())
+            );
+
+            const container = document.getElementById('parentResults');
+            if (child) {
+                const avg = calculateAvg(child);
+                const status = getStatus(avg);
+                const gradeLetter = getGradeLetter(avg);
+                container.style.display = 'block';
+
+                let resultsHtml = tableData.columns.filter(c => c.id !== 'pupil' && c.type === 'number').map(c => `
+                            <div class="result-item">
+                                <div class="week">${c.name}</div>
+                                <div class="score ${parseFloat(child[c.id]) >= 60 ? 'pass' : 'fail'}">${child[c.id] !== undefined && child[c.id] !== '' ? child[c.id] + '%' : '-'}</div>
+                            </div>
+                        `).join('');
+
+                container.innerHTML = `
+                            <div class="child-result-card">
+                                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+                                    <div>
+                                        <div class="child-name"><i class="fas fa-user" style="color:var(--purple);"></i> ${child.pupil}</div>
+                                        <div class="child-school"><i class="fas fa-school" style="color:var(--purple);"></i> ${school} · <i class="fas fa-layer-group" style="color:var(--purple);"></i> Grade ${grade}</div>
+                                    </div>
+                                    <span style="background:${status.class === 'status-pass' ? 'var(--purple)' : 'var(--bg-input)'}; color:#FFFFFF; padding:4px 16px; border-radius:30px; font-weight:700; font-size:14px;">${status.text}</span>
+                                </div>
+                                <div class="result-grid">
+                                    ${resultsHtml}
+                                </div>
+                                <div class="overall">
+                                    <span><i class="fas fa-chart-line" style="color:var(--purple);"></i> Average: <span style="font-size:1.3rem; color:${avg >= 60 ? 'var(--purple-light)' : 'var(--text-dim)'};">${avg}%</span></span>
+                                    <span><i class="fas fa-trophy" style="color:var(--purple);"></i> Grade: ${gradeLetter}</span>
+                                </div>
+                                <div class="parent-actions">
+                                    <button class="btn-small btn-purple" onclick="viewParentReportCard('${child.pupil}')"><i class="fas fa-file-pdf"></i> Report Card</button>
+                                    <button class="btn-small btn-outline" onclick="showToast('Message sent to teacher!')"><i class="fas fa-envelope"></i> Message Teacher</button>
+                                    <button class="btn-small btn-outline" onclick="showToast('Notifications enabled')"><i class="fas fa-bell"></i> Notify</button>
+                                </div>
+                            </div>
+                        `;
+                showToast('Found ' + child.pupil + '!');
+            } else {
+                container.style.display = 'block';
+                container.innerHTML = `
+                            <div style="background:var(--bg-card); border-radius:1rem; padding:2rem; text-align:center; border:1px solid var(--border-color);">
+                                <div style="font-size:3rem; margin-bottom:12px; color:var(--purple);"><i class="fas fa-search"></i></div>
+                                <h3 style="color:var(--text-primary);">No results found</h3>
+                                <p style="color:var(--text-muted); margin-top:8px;">Couldn't find "${name}" in Grade ${grade} at ${school}.</p>
+                                <p style="color:var(--text-dim); font-size:13px; margin-top:8px;"><i class="fas fa-lightbulb" style="color:var(--orange);"></i> Check spelling or contact the teacher.</p>
+                            </div>
+                        `;
+                showToast('No results found');
+            }
+        }
+
+        function viewParentReportCard(name) {
+            const row = tableData.rows.find(r => r.pupil === name);
+            if (!row) { showToast('Child not found'); return; }
+            const avg = calculateAvg(row);
+            const status = getStatus(avg);
+            const grade = getGradeLetter(avg);
+            let report = 'SCHOOLHUB - REPORT CARD\n' + '='.repeat(40) + '\n\n';
+            report += `Pupil: ${row.pupil}\n`;
+            report += `Grade: ${tableData.grade}\n`;
+            report += `Subject: ${tableData.subject}\n\n`;
+            tableData.columns.forEach(c => {
+                if (c.id !== 'pupil') {
+                    report += `${c.name}: ${row[c.id] !== undefined && row[c.id] !== '' ? row[c.id] + (c.type === 'number' ? '%' : '') : '-'}\n`;
+                }
+            });
+            report += `\nAverage: ${avg}% (${grade})\n`;
+            report += `Status: ${status.text}\n`;
+            const blob = new Blob([report], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = row.pupil.replace(/\s+/g, '_') + '_Report_Card.txt';
+            a.click();
+            URL.revokeObjectURL(url);
+            showToast('Report card downloaded!');
+        }
+
+        // ============================================================
         // LIVE CLASSES
         // ============================================================
         function openLiveList() { openModal('liveListModal'); }
@@ -3031,16 +4033,11 @@
             currentChatGroup = groupName;
             document.getElementById('chatGroupTitle').innerHTML = '<i class="fas ' + icon + '" style="color:var(--purple);"></i> ' +
                 groupName;
-            document.getElementById('chatModal').classList.add('active');
+            openModal('chatModal');
             document.getElementById('chatInput').focus();
         }
 
-        function closeChat() {
-            document.getElementById('chatModal').classList.remove('active');
-            if (mediaRecorder && isRecording) { mediaRecorder.stop();
-                isRecording = false;
-                document.getElementById('voiceBtn').classList.remove('recording'); }
-        }
+        function closeChat() { closeModal('chatModal'); }
 
         function sendMessage() {
             const input = document.getElementById('chatInput');
@@ -3190,6 +4187,22 @@
         }
 
         // ============================================================
+        // GO LIVE (Teacher)
+        // ============================================================
+        function startLive() {
+            if (!isTeacherLoggedIn) { showToast('Teacher login required!'); return; }
+            const title = document.getElementById('liveTitleInput').value.trim();
+            const desc = document.getElementById('liveDescInput').value.trim();
+            const audience = document.querySelector('input[name="liveAudience"]:checked');
+            const isGlobal = audience && audience.value === 'global';
+
+            if (!title) { showToast('Please enter a title'); return; }
+
+            showToast('LIVE STARTED!\n\n' + title + '\n' +
+                (isGlobal ? 'Global (Public) - Everyone can watch' : 'Class Only'));
+        }
+
+        // ============================================================
         // ALERTS - CONTEXT MENU
         // ============================================================
         function startPress(event, notifId) {
@@ -3250,22 +4263,6 @@
         }
 
         // ============================================================
-        // GO LIVE (Teacher)
-        // ============================================================
-        function startLive() {
-            if (!isTeacherLoggedIn) { showToast('Teacher login required!'); return; }
-            const title = document.getElementById('liveTitleInput').value.trim();
-            const desc = document.getElementById('liveDescInput').value.trim();
-            const audience = document.querySelector('input[name="liveAudience"]:checked');
-            const isGlobal = audience && audience.value === 'global';
-
-            if (!title) { showToast('Please enter a title'); return; }
-
-            showToast('LIVE STARTED!\n\n' + title + '\n' +
-                (isGlobal ? 'Global (Public) - Everyone can watch' : 'Class Only'));
-        }
-
-        // ============================================================
         // KEYBOARD SHORTCUTS
         // ============================================================
         document.addEventListener('keydown', function(e) {
@@ -3290,7 +4287,6 @@
         // ============================================================
         // INIT
         // ============================================================
-        pupilsData = [...samplePupils];
         renderTable();
         document.getElementById('adminStatTeachers').textContent = teachers.length;
         document.getElementById('adminStatStudents').textContent = students.length;
