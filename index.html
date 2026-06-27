@@ -113,7 +113,7 @@
         }
 
         /* ============================================================
-                   TOP NAV — Old Layout Style
+                   TOP NAV
                    ============================================================ */
         .top-nav {
             padding: 0.8rem 2rem;
@@ -288,7 +288,7 @@
         }
 
         /* ============================================================
-                   PAGES — Old Layout Style
+                   PAGES
                    ============================================================ */
         .page {
             display: none;
@@ -327,7 +327,7 @@
         }
 
         /* ============================================================
-                   FIND YOUR SCHOOL — Old Layout Style
+                   FIND YOUR SCHOOL
                    ============================================================ */
         .pupil-join-card {
             background: var(--bg-section);
@@ -467,7 +467,7 @@
         }
 
         /* ============================================================
-                   SUBJECT CARDS — Old Layout Style
+                   SUBJECT CARDS
                    ============================================================ */
         .subject-grid {
             display: grid;
@@ -506,7 +506,7 @@
         }
 
         /* ============================================================
-                   LIVE CLASSES — Old Layout Style
+                   LIVE CLASSES
                    ============================================================ */
         .live-card {
             background: var(--bg-live);
@@ -565,7 +565,7 @@
         }
 
         /* ============================================================
-                   AI CARDS — Old Layout Style
+                   AI CARDS
                    ============================================================ */
         .ai-grid {
             display: grid;
@@ -613,7 +613,7 @@
         }
 
         /* ============================================================
-                   SUBJECT RESOURCES — Old Layout Style
+                   SUBJECT RESOURCES
                    ============================================================ */
         .back-btn {
             background: var(--bg-input);
@@ -850,7 +850,7 @@
         }
 
         /* ============================================================
-                   GROUPS — Old Layout Style
+                   GROUPS
                    ============================================================ */
         .groups-tabs {
             display: flex;
@@ -964,7 +964,7 @@
         }
 
         /* ============================================================
-                   TEACHER TABLE — Old Layout Style
+                   TEACHER TABLE
                    ============================================================ */
         .table-wrapper {
             overflow-x: auto;
@@ -1073,7 +1073,7 @@
         }
 
         /* ============================================================
-                   NOTIFICATIONS — Old Layout Style
+                   NOTIFICATIONS
                    ============================================================ */
         .notif-list {
             display: flex;
@@ -1717,7 +1717,7 @@
         }
 
         /* ============================================================
-                   BOTTOM NAV — Old Layout Style
+                   BOTTOM NAV
                    ============================================================ */
         .bottom-nav {
             position: fixed;
@@ -1777,9 +1777,6 @@
             text-align: center;
         }
 
-        /* ============================================================
-                   TOAST
-                   ============================================================ */
         .toast {
             position: fixed;
             bottom: 80px;
@@ -1972,7 +1969,7 @@
 <body>
 
     <!-- ============================================================
-    TOP NAV — Old Layout Style
+    TOP NAV
     ============================================================ -->
     <div class="top-nav">
         <div class="logo">
@@ -2037,11 +2034,10 @@
     <div class="app">
 
         <!-- ============================================================
-        STUDENT PORTAL — Old Layout Style
+        STUDENT PORTAL
         ============================================================ -->
         <div class="page active" id="studentPortal">
 
-            <!-- Find Your School — Old Layout -->
             <div class="pupil-join-card">
                 <h3><i class="fas fa-school"></i> Find Your School</h3>
                 <p style="color: var(--text-muted); font-size:14px; margin-bottom:16px;">Enter your details to access your classes</p>
@@ -2100,7 +2096,6 @@
                 <div id="pupilJoinResult" style="margin-top:16px; display:none;"></div>
             </div>
 
-            <!-- LIVE CLASSES — Old Layout -->
             <div style="margin-bottom:30px;">
                 <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:12px;">
                     <div class="page-title" style="font-size:20px; margin-bottom:0;"><i class="fas fa-video"></i> Live Classes</div>
@@ -2119,7 +2114,6 @@
                 </div>
             </div>
 
-            <!-- SUBJECTS — Old Layout -->
             <div class="page-title"><i class="fas fa-graduation-cap"></i> Subjects</div>
             <p class="page-subtitle">Tap a subject to explore resources</p>
             <div class="subject-grid" id="subjectGrid">
@@ -2137,31 +2131,14 @@
                 <div class="subject-card" onclick="openSubjectResources('Home Economics')"><div class="icon"><i class="fas fa-utensils"></i></div><h4>Home Economics</h4><p>Life Skills</p></div>
             </div>
 
-            <!-- AI SECTION — Old Layout -->
             <div style="margin-top:40px;">
                 <div class="page-title"><i class="fas fa-robot"></i> AI Assistants</div>
                 <p class="page-subtitle">Choose your favorite AI tutor</p>
                 <div class="ai-grid">
-                    <div class="ai-card" onclick="openAI('DeepSeek')">
-                        <div class="ai-logo">DS</div>
-                        <h4>DeepSeek</h4>
-                        <p>Advanced reasoning &amp; coding</p>
-                    </div>
-                    <div class="ai-card" onclick="openAI('Grok')">
-                        <div class="ai-logo">G</div>
-                        <h4>Grok</h4>
-                        <p>Conversational &amp; witty</p>
-                    </div>
-                    <div class="ai-card" onclick="openAI('ChatGPT')">
-                        <div class="ai-logo">GPT</div>
-                        <h4>ChatGPT</h4>
-                        <p>Versatile &amp; creative</p>
-                    </div>
-                    <div class="ai-card" onclick="openAI('Claude')">
-                        <div class="ai-logo">C</div>
-                        <h4>Claude</h4>
-                        <p>Safe &amp; thoughtful</p>
-                    </div>
+                    <div class="ai-card" onclick="openAI('DeepSeek')"><div class="ai-logo">DS</div><h4>DeepSeek</h4><p>Advanced reasoning</p></div>
+                    <div class="ai-card" onclick="openAI('Grok')"><div class="ai-logo">G</div><h4>Grok</h4><p>Conversational &amp; witty</p></div>
+                    <div class="ai-card" onclick="openAI('ChatGPT')"><div class="ai-logo">GPT</div><h4>ChatGPT</h4><p>Versatile &amp; creative</p></div>
+                    <div class="ai-card" onclick="openAI('Claude')"><div class="ai-logo">C</div><h4>Claude</h4><p>Safe &amp; thoughtful</p></div>
                 </div>
             </div>
         </div>
@@ -2273,7 +2250,7 @@
         </div>
 
         <!-- ============================================================
-        TEACHER PORTAL — Old Layout Style
+        TEACHER PORTAL
         ============================================================ -->
         <div class="page" id="teacherPortal">
             <div id="teacherLoginFlow" style="max-width:450px; margin:0 auto;">
@@ -2309,7 +2286,6 @@
                 </div>
             </div>
 
-            <!-- Teacher Dashboard — Old Layout Style -->
             <div id="teacherDashboard" class="teacher-dashboard">
                 <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center; background:var(--bg-section); padding:1rem; border-radius:1rem; border:1px solid var(--border-color); margin-bottom:1.5rem;">
                     <div>
@@ -2325,7 +2301,6 @@
                     <div class="stat-card"><div class="number" id="teacherStatAvg">78%</div><div class="label"><i class="fas fa-chart-line"></i> Class Avg</div></div>
                 </div>
 
-                <!-- Teacher Table — Old Layout Style -->
                 <div style="margin-bottom:16px;">
                     <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:12px;">
                         <h3 style="font-size:18px; color:var(--text-primary); display:flex; align-items:center; gap:10px;"><i class="fas fa-table" style="color:var(--purple);"></i> Grade Table</h3>
@@ -2357,7 +2332,6 @@
                     </div>
                 </div>
 
-                <!-- Upload Resource — Old Layout -->
                 <div style="background:var(--bg-section); border-radius:1rem; padding:1.2rem 1.5rem; border:1px solid var(--border-color); margin-bottom:1.5rem;">
                     <h3 style="font-size:18px; color:var(--text-primary); margin-bottom:12px; display:flex; align-items:center; gap:10px;"><i class="fas fa-upload" style="color:var(--purple);"></i> Upload Resource</h3>
                     <div class="form-group"><label><i class="fas fa-book" style="color:var(--purple);"></i> Subject</label><select id="uploadSubject"><option value="Mathematics">Mathematics</option><option value="English">English</option><option value="Science">Science</option><option value="History">History</option><option value="Geography">Geography</option><option value="Computer Studies">Computer Studies</option><option value="Art & Design">Art & Design</option><option value="Business Studies">Business Studies</option><option value="Religious Education">Religious Education</option><option value="Physical Education">Physical Education</option><option value="Music">Music</option><option value="Home Economics">Home Economics</option></select></div>
@@ -2374,7 +2348,6 @@
                     <button class="btn-primary" onclick="uploadResource()"><i class="fas fa-upload"></i> Upload</button>
                 </div>
 
-                <!-- Go Live — Old Layout -->
                 <div style="background:var(--bg-section); border-radius:1rem; padding:1.2rem 1.5rem; border:1px solid var(--border-color); margin-bottom:1.5rem;">
                     <h3 style="font-size:18px; color:var(--text-primary); margin-bottom:12px; display:flex; align-items:center; gap:10px;"><i class="fas fa-video" style="color:var(--purple);"></i> Go Live</h3>
                     <div class="form-group"><label><i class="fas fa-heading" style="color:var(--purple);"></i> Title</label><input type="text" id="liveTitleInput" placeholder="e.g., Mathematics - Grade 12" /></div>
@@ -2386,7 +2359,6 @@
                     <div style="display:flex; gap:12px; flex-wrap:wrap;"><button class="btn-small btn-purple" onclick="startLive()"><i class="fas fa-circle" style="color:#EF4444; font-size:10px;"></i> Start Live</button><button class="btn-small btn-outline" onclick="showToast('Scheduled!')"><i class="fas fa-calendar-plus"></i> Schedule</button></div>
                 </div>
 
-                <!-- Teacher Settings — Old Layout -->
                 <div style="background:var(--bg-section); border-radius:1rem; padding:1.2rem 1.5rem; border:1px solid var(--border-color); margin-top:1.5rem;">
                     <h3 style="font-size:18px; color:var(--text-primary); margin-bottom:12px; display:flex; align-items:center; gap:10px;"><i class="fas fa-cog" style="color:var(--purple);"></i> Settings</h3>
                     <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
@@ -2399,7 +2371,7 @@
         </div>
 
         <!-- ============================================================
-        ADMIN PORTAL — Old Layout Style
+        ADMIN PORTAL
         ============================================================ -->
         <div class="page" id="adminPortal">
             <div id="adminLoginFlow" style="max-width:450px; margin:0 auto;">
@@ -2449,7 +2421,7 @@
         </div>
 
         <!-- ============================================================
-        PARENT PORTAL — Old Layout Style
+        PARENT PORTAL
         ============================================================ -->
         <div class="page" id="parentPortal">
             <div class="parent-portal active">
@@ -2472,7 +2444,7 @@
     </div>
 
     <!-- ============================================================
-    MODALS — Old Layout Style
+    MODALS
     ============================================================ -->
 
     <!-- Live List Modal -->
@@ -2722,7 +2694,7 @@
     </div>
 
     <!-- ============================================================
-    BOTTOM NAV — Old Layout Style
+    BOTTOM NAV
     ============================================================ -->
     <nav class="bottom-nav">
         <button class="active" onclick="switchPage('studentPortal', this)"><i class="fas fa-home"></i><span>Home</span></button>
@@ -2732,7 +2704,7 @@
     </nav>
 
     <!-- ============================================================
-    JAVASCRIPT — Full Version
+    JAVASCRIPT
     ============================================================ -->
     <script>
         // ============================================================
@@ -3914,4 +3886,391 @@
             );
 
             const container = document.getElementById('parentResults');
-      
+            if (child) {
+                const avg = calculateAvg(child);
+                const status = getStatus(avg);
+                const gradeLetter = getGradeLetter(avg);
+                container.style.display = 'block';
+
+                let resultsHtml = tableData.columns.filter(c => c.id !== 'pupil' && c.type === 'number').map(c => `
+                            <div class="result-item">
+                                <div class="week">${c.name}</div>
+                                <div class="score ${parseFloat(child[c.id]) >= 60 ? 'pass' : 'fail'}">${child[c.id] !== undefined && child[c.id] !== '' ? child[c.id] + '%' : '-'}</div>
+                            </div>
+                        `).join('');
+
+                container.innerHTML = `
+                            <div class="child-result-card">
+                                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+                                    <div>
+                                        <div class="child-name"><i class="fas fa-user" style="color:var(--purple);"></i> ${child.pupil}</div>
+                                        <div class="child-school"><i class="fas fa-school" style="color:var(--purple);"></i> ${school} · <i class="fas fa-layer-group" style="color:var(--purple);"></i> Grade ${grade}</div>
+                                    </div>
+                                    <span style="background:${status.class === 'status-pass' ? 'var(--purple)' : 'var(--bg-input)'}; color:#FFFFFF; padding:4px 16px; border-radius:30px; font-weight:700; font-size:14px;">${status.text}</span>
+                                </div>
+                                <div class="result-grid">
+                                    ${resultsHtml}
+                                </div>
+                                <div class="overall">
+                                    <span><i class="fas fa-chart-line" style="color:var(--purple);"></i> Average: <span style="font-size:1.3rem; color:${avg >= 60 ? 'var(--purple-light)' : 'var(--text-dim)'};">${avg}%</span></span>
+                                    <span><i class="fas fa-trophy" style="color:var(--purple);"></i> Grade: ${gradeLetter}</span>
+                                </div>
+                                <div class="parent-actions">
+                                    <button class="btn-small btn-purple" onclick="viewParentReportCard('${child.pupil}')"><i class="fas fa-file-pdf"></i> Report Card</button>
+                                    <button class="btn-small btn-outline" onclick="showToast('Message sent to teacher!')"><i class="fas fa-envelope"></i> Message Teacher</button>
+                                    <button class="btn-small btn-outline" onclick="showToast('Notifications enabled')"><i class="fas fa-bell"></i> Notify</button>
+                                </div>
+                            </div>
+                        `;
+                showToast('Found ' + child.pupil + '!');
+            } else {
+                container.style.display = 'block';
+                container.innerHTML = `
+                            <div style="background:var(--bg-card); border-radius:1rem; padding:2rem; text-align:center; border:1px solid var(--border-color);">
+                                <div style="font-size:3rem; margin-bottom:12px; color:var(--purple);"><i class="fas fa-search"></i></div>
+                                <h3 style="color:var(--text-primary);">No results found</h3>
+                                <p style="color:var(--text-muted); margin-top:8px;">Couldn't find "${name}" in Grade ${grade} at ${school}.</p>
+                                <p style="color:var(--text-dim); font-size:13px; margin-top:8px;"><i class="fas fa-lightbulb" style="color:var(--orange);"></i> Check spelling or contact the teacher.</p>
+                            </div>
+                        `;
+                showToast('No results found');
+            }
+        }
+
+        function viewParentReportCard(name) {
+            const row = tableData.rows.find(r => r.pupil === name);
+            if (!row) { showToast('Child not found'); return; }
+            const avg = calculateAvg(row);
+            const status = getStatus(avg);
+            const grade = getGradeLetter(avg);
+            let report = 'SCHOOLHUB - REPORT CARD\n' + '='.repeat(40) + '\n\n';
+            report += `Pupil: ${row.pupil}\n`;
+            report += `Grade: ${tableData.grade}\n`;
+            report += `Subject: ${tableData.subject}\n\n`;
+            tableData.columns.forEach(c => {
+                if (c.id !== 'pupil') {
+                    report += `${c.name}: ${row[c.id] !== undefined && row[c.id] !== '' ? row[c.id] + (c.type === 'number' ? '%' : '') : '-'}\n`;
+                }
+            });
+            report += `\nAverage: ${avg}% (${grade})\n`;
+            report += `Status: ${status.text}\n`;
+            const blob = new Blob([report], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = row.pupil.replace(/\s+/g, '_') + '_Report_Card.txt';
+            a.click();
+            URL.revokeObjectURL(url);
+            showToast('Report card downloaded!');
+        }
+
+        // ============================================================
+        // LIVE CLASSES
+        // ============================================================
+        function openLiveList() { openModal('liveListModal'); }
+
+        function closeLiveList() { closeModal('liveListModal'); }
+
+        // ============================================================
+        // AI
+        // ============================================================
+        function openAI(provider) {
+            const urls = {
+                'DeepSeek': 'https://chat.deepseek.com/',
+                'Grok': 'https://grok.x.ai/',
+                'ChatGPT': 'https://chat.openai.com/',
+                'Claude': 'https://claude.ai/'
+            };
+            const url = urls[provider];
+            if (url) { window.open(url, '_blank');
+                showToast('Opening ' + provider + '...'); } else { showToast(provider + ' coming soon!'); }
+        }
+
+        // ============================================================
+        // GROUPS - TABS
+        // ============================================================
+        function switchGroupTab(tab, btn) {
+            document.querySelectorAll('.groups-tabs button').forEach(b => b.classList.remove('active-tab'));
+            if (btn) btn.classList.add('active-tab');
+            document.querySelectorAll('.group-content').forEach(c => c.classList.remove('active-content'));
+            if (tab === 'school') { document.getElementById('schoolGroups').classList.add('active-content'); } else if (tab ===
+                'class') { document.getElementById('classGroups').classList.add('active-content'); } else if (tab ===
+                'social') { document.getElementById('socialGroups').classList.add('active-content'); }
+        }
+
+        // ============================================================
+        // CHAT
+        // ============================================================
+        function openChat(groupName, icon) {
+            currentChatGroup = groupName;
+            document.getElementById('chatGroupTitle').innerHTML = '<i class="fas ' + icon + '" style="color:var(--purple);"></i> ' +
+                groupName;
+            openModal('chatModal');
+            document.getElementById('chatInput').focus();
+        }
+
+        function closeChat() { closeModal('chatModal'); }
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const msg = input.value.trim();
+            if (!msg) return;
+            const container = document.getElementById('chatMessages');
+            const div = document.createElement('div');
+            div.className = 'chat-msg sent';
+            const time = new Date();
+            const timeStr = time.getHours() + ':' + String(time.getMinutes()).padStart(2, '0');
+            div.innerHTML = msg + '<span class="time">' + timeStr + '</span>';
+            container.appendChild(div);
+            container.scrollTop = container.scrollHeight;
+            input.value = '';
+            setTimeout(() => {
+                const reply = document.createElement('div');
+                reply.className = 'chat-msg received';
+                const replies = ['Good question!', 'I agree!', 'Can you explain more?', 'That\'s helpful!'];
+                const randomReply = replies[Math.floor(Math.random() * replies.length)];
+                const replyTime = new Date();
+                const rTime = replyTime.getHours() + ':' + String(replyTime.getMinutes()).padStart(2, '0');
+                reply.innerHTML = '<div class="sender">Someone</div>' + randomReply + '<span class="time">' + rTime +
+                    '</span>';
+                container.appendChild(reply);
+                container.scrollTop = container.scrollHeight;
+            }, 1000 + Math.random() * 2000);
+        }
+
+        function attachImage() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            input.onchange = function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(ev) {
+                        const container = document.getElementById('chatMessages');
+                        const div = document.createElement('div');
+                        div.className = 'chat-msg sent';
+                        const time = new Date();
+                        const timeStr = time.getHours() + ':' + String(time.getMinutes()).padStart(2, '0');
+                        div.innerHTML = '<img src="' + ev.target.result + '" alt="Shared image" />' +
+                            '<span class="time">' + timeStr + '</span>';
+                        container.appendChild(div);
+                        container.scrollTop = container.scrollHeight;
+                        showToast('Image shared!');
+                    };
+                    reader.readAsDataURL(file);
+                }
+            };
+            input.click();
+        }
+
+        function startVoiceRecording() {
+            if (isRecording) {
+                if (mediaRecorder) mediaRecorder.stop();
+                isRecording = false;
+                document.getElementById('voiceBtn').classList.remove('recording');
+                document.getElementById('voiceBtn').innerHTML = '<i class="fas fa-microphone"></i>';
+                showToast('Stopped');
+                return;
+            }
+            navigator.mediaDevices.getUserMedia({ audio: true })
+                .then(function(stream) {
+                    mediaRecorder = new MediaRecorder(stream);
+                    audioChunks = [];
+                    mediaRecorder.ondataavailable = function(event) { audioChunks.push(event.data); };
+                    mediaRecorder.onstop = function() {
+                        const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+                        const audioUrl = URL.createObjectURL(audioBlob);
+                        const container = document.getElementById('chatMessages');
+                        const div = document.createElement('div');
+                        div.className = 'chat-msg sent';
+                        const time = new Date();
+                        const timeStr = time.getHours() + ':' + String(time.getMinutes()).padStart(2, '0');
+                        div.innerHTML = '<audio controls src="' + audioUrl + '"></audio>' +
+                            '<span class="time">' + timeStr + '</span>';
+                        container.appendChild(div);
+                        container.scrollTop = container.scrollHeight;
+                        showToast('Voice note sent!');
+                        stream.getTracks().forEach(track => track.stop());
+                    };
+                    mediaRecorder.start();
+                    isRecording = true;
+                    document.getElementById('voiceBtn').classList.add('recording');
+                    document.getElementById('voiceBtn').innerHTML = '<i class="fas fa-stop"></i>';
+                    showToast('Recording... tap again to stop');
+                })
+                .catch(function(err) { showToast('Microphone access denied'); });
+        }
+
+        function attachVideo() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'video/*';
+            input.onchange = function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(ev) {
+                        const container = document.getElementById('chatMessages');
+                        const div = document.createElement('div');
+                        div.className = 'chat-msg sent';
+                        const time = new Date();
+                        const timeStr = time.getHours() + ':' + String(time.getMinutes()).padStart(2, '0');
+                        div.innerHTML = '<video controls src="' + ev.target.result +
+                            '" style="max-width:200px;border-radius:10px;"></video>' +
+                            '<span class="time">' + timeStr + '</span>';
+                        container.appendChild(div);
+                        container.scrollTop = container.scrollHeight;
+                        showToast('Video shared!');
+                    };
+                    reader.readAsDataURL(file);
+                }
+            };
+            input.click();
+        }
+
+        function attachFile() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.onchange = function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    showToast('File: ' + file.name);
+                    const container = document.getElementById('chatMessages');
+                    const div = document.createElement('div');
+                    div.className = 'chat-msg sent';
+                    const time = new Date();
+                    const timeStr = time.getHours() + ':' + String(time.getMinutes()).padStart(2, '0');
+                    div.innerHTML = '<i class="fas fa-paperclip" style="color:var(--purple);"></i> <strong>' + file
+                        .name +
+                        '</strong> (' + (file.size / 1024).toFixed(1) +
+                        ' KB)<br><span style="font-size:12px;color:var(--text-muted);">File shared</span>' +
+                        '<span class="time">' + timeStr + '</span>';
+                    container.appendChild(div);
+                    container.scrollTop = container.scrollHeight;
+                }
+            };
+            input.click();
+        }
+
+        function leaveGroup() {
+            if (confirm('Leave this group?')) { showToast('Left ' + currentChatGroup);
+                closeChat(); }
+        }
+
+        // ============================================================
+        // GO LIVE (Teacher)
+        // ============================================================
+        function startLive() {
+            if (!isTeacherLoggedIn) { showToast('Teacher login required!'); return; }
+            const title = document.getElementById('liveTitleInput').value.trim();
+            const desc = document.getElementById('liveDescInput').value.trim();
+            const audience = document.querySelector('input[name="liveAudience"]:checked');
+            const isGlobal = audience && audience.value === 'global';
+
+            if (!title) { showToast('Please enter a title'); return; }
+
+            showToast('LIVE STARTED!\n\n' + title + '\n' +
+                (isGlobal ? 'Global (Public) - Everyone can watch' : 'Class Only'));
+        }
+
+        // ============================================================
+        // ALERTS - CONTEXT MENU
+        // ============================================================
+        function startPress(event, notifId) {
+            if (event.type === 'touchstart') event.preventDefault();
+            clearTimeout(pressTimer);
+            currentNotifId = notifId;
+            const item = document.querySelector(`.notif-item[data-notif-id="${notifId}"]`);
+            if (item) {
+                const title = item.querySelector('.info p')?.innerText || 'Notification';
+                currentNotifTitle = title;
+            }
+            pressTimer = setTimeout(() => {
+                document.getElementById('contextNotifTitle').textContent = currentNotifTitle || 'Notification';
+                openModal('contextMenuModal');
+            }, 800);
+        }
+
+        function contextAction(action) {
+            if (!currentNotifId) { showToast('No notification selected'); return; }
+            const item = document.querySelector(`.notif-item[data-notif-id="${currentNotifId}"]`);
+            switch (action) {
+                case 'pin':
+                    showToast('Pinned to top');
+                    if (item) { const parent = item.parentNode;
+                        parent.prepend(item); }
+                    break;
+                case 'read':
+                    showToast('Marked as read');
+                    if (item) { const badge = item.querySelector('.badge-new'); if (badge) badge.style.display = 'none'; }
+                    break;
+                case 'download':
+                    showToast('Downloading notification...');
+                    break;
+                case 'share':
+                    showToast('Share: ' + (currentNotifTitle || 'Notification'));
+                    break;
+                case 'delete':
+                    pendingDeleteTarget = currentNotifId;
+                    pendingDeleteType = 'notification';
+                    document.getElementById('deleteConfirmMessage').textContent = 'Delete this notification?';
+                    openModal('deleteConfirmModal');
+                    closeModal('contextMenuModal');
+                    break;
+            }
+            closeModal('contextMenuModal');
+        }
+
+        function openNotification(notifId) {
+            if (pressTimer) { clearTimeout(pressTimer);
+                pressTimer = null; return; }
+            const item = document.querySelector(`.notif-item[data-notif-id="${notifId}"]`);
+            if (item) {
+                const title = item.querySelector('.info p')?.innerText || 'Notification';
+                showToast('Opening: ' + title);
+                const badge = item.querySelector('.badge-new');
+                if (badge) badge.style.display = 'none';
+            }
+        }
+
+        // ============================================================
+        // KEYBOARD SHORTCUTS
+        // ============================================================
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const modals = document.querySelectorAll('.modal-overlay.active, .chat-modal.active');
+                modals.forEach(m => m.classList.remove('active'));
+                document.getElementById('suggestionsDropdown').classList.remove('active');
+            }
+            if (e.key === 'Enter' && document.activeElement?.id === 'chatInput') { sendMessage(); }
+        });
+
+        // ============================================================
+        // CLOSE SUGGESTIONS ON CLICK OUTSIDE
+        // ============================================================
+        document.addEventListener('click', function(e) {
+            const searchWrapper = document.querySelector('.search-wrapper');
+            if (searchWrapper && !searchWrapper.contains(e.target)) {
+                document.getElementById('suggestionsDropdown').classList.remove('active');
+            }
+        });
+
+        // ============================================================
+        // INIT
+        // ============================================================
+        renderTable();
+        document.getElementById('adminStatTeachers').textContent = teachers.length;
+        document.getElementById('adminStatStudents').textContent = students.length;
+        document.getElementById('adminStatPupils').textContent = students.length;
+
+        console.log('SchoolHub loaded successfully!');
+        console.log('Features: Student | AI | Groups | Alerts | Teacher | Admin | Parent');
+        console.log('Purple, Black, White theme - No emojis');
+        console.log('Dark/Light mode toggle available');
+        console.log('Admin login: school code: SCHOOL2024, username: admin, password: admin123');
+        console.log('Teacher Table: All features available!');
+    </script>
+
+</body>
+</html>
