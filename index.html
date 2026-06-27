@@ -1,0 +1,3522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>📚 SchoolHub - School Management System</title>
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/727/727245.png" type="image/png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@4/dist/tesseract.min.js"></script>
+    <style>
+        /* ============================================================
+                   RESET & BASE — Purple, Black, White Only
+                   ============================================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0A0A0F;
+            color: #EDEEF2;
+            min-height: 100vh;
+            padding: 1rem;
+            padding-bottom: 90px;
+        }
+        .app {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(10, 10, 15, 0.7);
+            backdrop-filter: blur(18px);
+            border-radius: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            overflow: hidden;
+            min-height: 80vh;
+        }
+
+        /* ============================================================
+                   TOP NAV
+                   ============================================================ */
+        .top-nav {
+            padding: 0.8rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            background: rgba(10, 10, 15, 0.8);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .logo h1 {
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, #FFFFFF, #8B7CF7);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .logo span {
+            font-size: 0.65rem;
+            color: #B6BDF0;
+            display: block;
+        }
+        .top-nav .nav-actions {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .menu-btn {
+            background: rgba(255, 255, 255, 0.06);
+            padding: 0.35rem 1rem;
+            border-radius: 2rem;
+            border: none;
+            color: #EDEEF2;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .menu-btn:hover {
+            background: #6C5CE7;
+            color: #FFFFFF;
+        }
+
+        /* ============================================================
+                   SIDEBAR
+                   ============================================================ */
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1500;
+        }
+        .sidebar-overlay.active {
+            display: block;
+        }
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: -320px;
+            width: 300px;
+            height: 100%;
+            background: #14172B;
+            z-index: 1600;
+            transition: 0.3s;
+            padding: 2rem 1.5rem;
+            border-left: 1px solid rgba(255, 255, 255, 0.06);
+            overflow-y: auto;
+        }
+        .sidebar.open {
+            right: 0;
+        }
+        .sidebar .close-sidebar {
+            background: none;
+            border: none;
+            color: #B6BDF0;
+            font-size: 1.5rem;
+            cursor: pointer;
+            float: right;
+        }
+        .sidebar .close-sidebar:hover {
+            color: #FFFFFF;
+        }
+        .sidebar .sidebar-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin-bottom: 1.5rem;
+            margin-top: 0.5rem;
+        }
+        .sidebar .sidebar-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 12px 16px;
+            border-radius: 1rem;
+            color: #B6BDF0;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-bottom: 4px;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+            font-family: 'Inter', sans-serif;
+        }
+        .sidebar .sidebar-item:hover {
+            background: rgba(108, 92, 231, 0.15);
+            color: #FFFFFF;
+        }
+        .sidebar .sidebar-item.active-sidebar {
+            background: #6C5CE7;
+            color: #FFFFFF;
+        }
+        .sidebar .sidebar-item i {
+            width: 24px;
+            font-size: 1.1rem;
+            color: #6C5CE7;
+        }
+        .sidebar .sidebar-item:hover i {
+            color: #8B7CF7;
+        }
+        .sidebar .sidebar-divider {
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            margin: 12px 0;
+        }
+
+        /* ============================================================
+                   PAGES
+                   ============================================================ */
+        .page {
+            display: none;
+            padding: 1.5rem;
+            animation: fadeIn 0.3s ease;
+        }
+        .page.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .page-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #FFFFFF;
+        }
+        .page-title i {
+            color: #6C5CE7;
+        }
+        .page-subtitle {
+            color: #B6BDF0;
+            font-size: 16px;
+            margin-bottom: 24px;
+        }
+
+        /* ============================================================
+                   FORM ELEMENTS
+                   ============================================================ */
+        .form-group {
+            margin-bottom: 14px;
+        }
+        .form-group label {
+            display: block;
+            color: #B6BDF0;
+            font-size: 14px;
+            margin-bottom: 4px;
+            font-weight: 500;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 1rem;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: #EDEEF2;
+            font-size: 14px;
+            outline: none;
+            transition: 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #6C5CE7;
+        }
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #9CA3E0;
+        }
+        .form-group select option {
+            background: #14172B;
+            color: #EDEEF2;
+        }
+
+        /* ============================================================
+                   BUTTONS
+                   ============================================================ */
+        .btn-primary {
+            width: 100%;
+            padding: 14px;
+            border-radius: 2rem;
+            background: #6C5CE7;
+            border: none;
+            color: #FFFFFF;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn-primary:hover {
+            background: #4A42DB;
+            transform: scale(1.01);
+        }
+        .btn-secondary {
+            width: 100%;
+            padding: 14px;
+            border-radius: 2rem;
+            background: rgba(255, 255, 255, 0.06);
+            border: none;
+            color: #EDEEF2;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 8px;
+        }
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.12);
+        }
+        .btn-small {
+            padding: 8px 16px;
+            border-radius: 2rem;
+            border: none;
+            color: #FFFFFF;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: 'Inter', sans-serif;
+        }
+        .btn-small:hover {
+            transform: scale(1.02);
+        }
+        .btn-purple {
+            background: #6C5CE7;
+        }
+        .btn-purple:hover {
+            background: #4A42DB;
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #EDEEF2;
+        }
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.06);
+        }
+        .auth-toggle {
+            text-align: center;
+            margin-top: 12px;
+            color: #B6BDF0;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .auth-toggle:hover {
+            color: #8B7CF7;
+            text-decoration: underline;
+        }
+
+        /* ============================================================
+                   AUTH CARDS
+                   ============================================================ */
+        .auth-card {
+            background: rgba(20, 23, 43, 0.9);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            max-width: 450px;
+            margin: 0 auto;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .auth-card h2 {
+            text-align: center;
+            margin-bottom: 4px;
+            color: #FFFFFF;
+        }
+        .auth-card .sub {
+            text-align: center;
+            color: #B6BDF0;
+            font-size: 14px;
+            margin-bottom: 1.5rem;
+        }
+        .auth-card .step-indicator {
+            text-align: center;
+            color: #9CA3E0;
+            font-size: 13px;
+            margin-bottom: 1rem;
+        }
+
+        /* ============================================================
+                   SUBJECT CARDS
+                   ============================================================ */
+        .subject-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 1.2rem;
+        }
+        .subject-card {
+            background: rgba(20, 23, 43, 0.8);
+            border-radius: 1.2rem;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            cursor: pointer;
+            transition: 0.3s;
+            color: #EDEEF2;
+        }
+        .subject-card:hover {
+            transform: translateY(-4px);
+            background: rgba(20, 23, 43, 1);
+            border-color: #6C5CE7;
+        }
+        .subject-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 8px;
+        }
+        .subject-card h4 {
+            font-size: 15px;
+            font-weight: 600;
+            color: #FFFFFF;
+        }
+        .subject-card p {
+            font-size: 12px;
+            color: #B6BDF0;
+            margin-top: 4px;
+        }
+
+        /* ============================================================
+                   AI CARDS
+                   ============================================================ */
+        .ai-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1.2rem;
+            margin-top: 1.5rem;
+        }
+        .ai-card {
+            background: rgba(20, 23, 43, 0.8);
+            border-radius: 1.2rem;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .ai-card:hover {
+            transform: translateY(-4px);
+            background: rgba(20, 23, 43, 1);
+            border-color: #6C5CE7;
+        }
+        .ai-card .icon {
+            font-size: 2.8rem;
+            margin-bottom: 8px;
+        }
+        .ai-card h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #FFFFFF;
+        }
+        .ai-card p {
+            font-size: 12px;
+            color: #B6BDF0;
+            margin-top: 4px;
+        }
+
+        /* ============================================================
+                   LIVE CLASSES
+                   ============================================================ */
+        .live-card {
+            background: rgba(20, 23, 43, 0.8);
+            border-radius: 1.2rem;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .live-card:hover {
+            background: rgba(20, 23, 43, 1);
+            border-color: #6C5CE7;
+        }
+        .live-badge {
+            background: #6C5CE7;
+            color: #FFFFFF;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 30px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            animation: livePulse 1.5s infinite;
+            flex-shrink: 0;
+        }
+        @keyframes livePulse {
+            0%,
+            100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+        .live-card .info {
+            flex: 1;
+        }
+        .live-card .info h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #FFFFFF;
+        }
+        .live-card .info p {
+            font-size: 13px;
+            color: #B6BDF0;
+            margin-top: 2px;
+        }
+
+        /* Live list modal */
+        .live-list {
+            max-height: 450px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .live-list .live-item {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 1rem;
+            padding: 1rem 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .live-list .live-item:hover {
+            border-color: #6C5CE7;
+        }
+        .live-list .live-item .left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .live-list .live-item .left .info h4 {
+            font-size: 15px;
+            font-weight: 600;
+            color: #FFFFFF;
+        }
+        .live-list .live-item .left .info p {
+            font-size: 12px;
+            color: #B6BDF0;
+        }
+
+        /* ============================================================
+                   GROUPS
+                   ============================================================ */
+        .groups-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding-bottom: 4px;
+            flex-wrap: wrap;
+        }
+        .groups-tabs button {
+            background: none;
+            border: none;
+            color: #9CA3E0;
+            padding: 10px 20px;
+            border-radius: 2rem;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Inter', sans-serif;
+        }
+        .groups-tabs button:hover {
+            color: #FFFFFF;
+            background: rgba(255, 255, 255, 0.04);
+        }
+        .groups-tabs button.active-tab {
+            background: #6C5CE7;
+            color: #FFFFFF;
+        }
+        .groups-tabs button .tab-badge {
+            background: #6C5CE7;
+            color: #FFFFFF;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 1px 8px;
+            border-radius: 30px;
+        }
+        .group-content {
+            display: none;
+        }
+        .group-content.active-content {
+            display: block;
+        }
+
+        .group-card {
+            background: rgba(20, 23, 43, 0.8);
+            border-radius: 1rem;
+            padding: 1.2rem 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .group-card:hover {
+            background: rgba(20, 23, 43, 1);
+            border-color: #6C5CE7;
+        }
+        .group-card .left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex: 1;
+        }
+        .group-card .left .icon {
+            font-size: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(108, 92, 231, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .group-card .left .info h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #FFFFFF;
+        }
+        .group-card .left .info p {
+            font-size: 13px;
+            color: #B6BDF0;
+            margin-top: 2px;
+        }
+        .group-card .right {
+            text-align: right;
+            flex-shrink: 0;
+        }
+        .group-card .right .meta {
+            font-size: 12px;
+            color: #9CA3E0;
+        }
+        .group-card .right .badge {
+            background: #6C5CE7;
+            color: #FFFFFF;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 2px 12px;
+            border-radius: 30px;
+            display: inline-block;
+            margin-top: 4px;
+        }
+
+        /* ============================================================
+                   CHAT MODAL
+                   ============================================================ */
+        .chat-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(12px);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+        }
+        .chat-modal.active {
+            display: flex;
+        }
+        .chat-modal-content {
+            background: #14172B;
+            border-radius: 2rem;
+            width: 95%;
+            max-width: 500px;
+            height: 85vh;
+            max-height: 600px;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(108, 92, 231, 0.2);
+            overflow: hidden;
+        }
+        .chat-header {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .chat-header h3 {
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #FFFFFF;
+        }
+        .chat-header .chat-actions {
+            display: flex;
+            gap: 6px;
+        }
+        .chat-header .chat-actions button {
+            background: rgba(255, 255, 255, 0.06);
+            border: none;
+            color: #B6BDF0;
+            padding: 4px 10px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: 0.2s;
+        }
+        .chat-header .chat-actions button:hover {
+            background: #6C5CE7;
+            color: #FFFFFF;
+        }
+        .chat-header .close-chat {
+            background: none;
+            border: none;
+            color: #B6BDF0;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .chat-msg {
+            max-width: 80%;
+            padding: 10px 16px;
+            border-radius: 1rem;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        .chat-msg.sent {
+            background: #6C5CE7;
+            color: #FFFFFF;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+        .chat-msg.received {
+            background: rgba(255, 255, 255, 0.06);
+            color: #EDEEF2;
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+        }
+        .chat-msg .sender {
+            font-size: 11px;
+            font-weight: 600;
+            color: #B6BDF0;
+            margin-bottom: 2px;
+        }
+        .chat-msg .time {
+            font-size: 10px;
+            color: #9CA3E0;
+            margin-top: 4px;
+            display: block;
+        }
+        .chat-msg img {
+            max-width: 200px;
+            border-radius: 10px;
+            margin-top: 4px;
+            max-height: 200px;
+            object-fit: cover;
+        }
+        .chat-msg audio {
+            max-width: 200px;
+            margin-top: 4px;
+            border-radius: 20px;
+        }
+        .chat-msg video {
+            max-width: 200px;
+            border-radius: 10px;
+            margin-top: 4px;
+            max-height: 200px;
+        }
+        .chat-input-area {
+            padding: 0.8rem 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            gap: 8px;
+            flex-shrink: 0;
+            flex-wrap: wrap;
+        }
+        .chat-input-area input[type="text"] {
+            flex: 1;
+            padding: 10px 16px;
+            border-radius: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            background: rgba(255, 255, 255, 0.04);
+            color: #EDEEF2;
+            font-size: 14px;
+            outline: none;
+            min-width: 100px;
+        }
+        .chat-input-area input::placeholder {
+            color: #9CA3E0;
+        }
+        .chat-input-area .chat-tools {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+        }
+        .chat-input-area .chat-tools button {
+            background: rgba(255, 255, 255, 0.06);
+            border: none;
+            color: #B6BDF0;
+            padding: 8px 12px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.2s;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .chat-input-area .chat-tools button:hover {
+            background: #6C5CE7;
+            color: #FFFFFF;
+        }
+        .chat-input-area .chat-tools button.recording {
+            background: #6C5CE7;
+            color: #FFFFFF;
+            animation: pulse 1s infinite;
+        }
+        @keyframes pulse {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+        .chat-input-area .send-btn {
+            background: #6C5CE7;
+            border: none;
+            color: #FFFFFF;
+            padding: 10px 20px;
+            border-radius: 2rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .chat-input-area .send-btn:hover {
+            background: #4A42DB;
+        }
+        .homework-banner {
+            background: rgba(108, 92, 231, 0.1);
+            border: 1px solid rgba(108, 92, 231, 0.15);
+            border-radius: 1rem;
+            padding: 12px 16px;
+            margin-bottom: 10px;
+        }
+        .homework-banner h4 {
+            font-size: 13px;
+            color: #8B7CF7;
+        }
+        .homework-banner p {
+            font-size: 13px;
+            color: #B6BDF0;
+            margin-top: 4px;
+        }
+
+        /* ============================================================
+                   TEACHER / ADMIN TABLES
+                   ============================================================ */
+        .teacher-dashboard {
+            display: none;
+        }
+        .teacher-dashboard.active {
+            display: block;
+        }
+        .admin-dashboard {
+            display: none;
+        }
+        .admin-dashboard.active {
+            display: block;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .stat-card {
+            background: rgba(20, 23, 43, 0.8);
+            border-radius: 1rem;
+            padding: 1.2rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .stat-card .number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #6C5CE7;
+        }
+        .stat-card .label {
+            font-size: 12px;
+            color: #B6BDF0;
+            margin-top: 4px;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            min-width: 500px;
+        }
+        table th {
+            background: rgba(108, 92, 231, 0.1);
+            padding: 12px 16px;
+            text-align: left;
+            font-weight: 600;
+            color: #FFFFFF;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        table td {
+            padding: 10px 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            color: #EDEEF2;
+        }
+        table tr:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .grade-badge {
+            display: inline-block;
+            padding: 2px 12px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .grade-A {
+            background: rgba(108, 92, 231, 0.2);
+            color: #8B7CF7;
+        }
+        .grade-B {
+            background: rgba(108, 92, 231, 0.15);
+            color: #B6BDF0;
+        }
+        .grade-C {
+            background: rgba(255, 255, 255, 0.06);
+            color: #9CA3E0;
+        }
+        .grade-D {
+            background: rgba(255, 255, 255, 0.04);
+            color: #9CA3E0;
+        }
+        .grade-F {
+            background: rgba(255, 255, 255, 0.02);
+            color: #9CA3E0;
+        }
+
+        .table-actions {
+            display: flex;
+            gap: 4px;
+        }
+        .table-actions button {
+            background: none;
+            border: none;
+            color: #9CA3E0;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 20px;
+            font-size: 12px;
+            transition: 0.2s;
+        }
+        .table-actions button:hover {
+            background: rgba(255, 255, 255, 0.06);
+            color: #FFFFFF;
+        }
+
+        /* ============================================================
+                   ADMIN SPECIFIC
+                   ============================================================ */
+        .admin-section {
+            background: rgba(20, 23, 43, 0.6);
+            border-radius: 1rem;
+            padding: 1.2rem 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            margin-bottom: 1.5rem;
+        }
+        .admin-section h3 {
+            font-size: 18px;
+            color: #FFFFFF;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .admin-section h3 i {
+            color: #6C5CE7;
+        }
+
+        .announcement-item {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 0.8rem;
+            padding: 12px 16px;
+            margin-bottom: 8px;
+            border-left: 3px solid #6C5CE7;
+        }
+        .announcement-item .title {
+            font-weight: 600;
+            color: #FFFFFF;
+        }
+        .announcement-item .meta {
+            font-size: 12px;
+            color: #9CA3E0;
+            margin-top: 4px;
+        }
+
+        .teacher-list-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .teacher-list-item .name {
+            font-weight: 500;
+            color: #FFFFFF;
+        }
+        .teacher-list-item .class {
+            color: #B6BDF0;
+            font-size: 13px;
+        }
+        .teacher-list-item .pupil-count {
+            color: #8B7CF7;
+            font-size: 13px;
+        }
+        .teacher-list-item .status {
+            font-size: 12px;
+            padding: 2px 12px;
+            border-radius: 30px;
+        }
+        .status-active {
+            background: rgba(74, 222, 128, 0.15);
+            color: #4ade80;
+        }
+        .status-inactive {
+            background: rgba(248, 113, 113, 0.15);
+            color: #f87171;
+        }
+
+        /* ============================================================
+                   FILE UPLOAD
+                   ============================================================ */
+        .file-upload-area {
+            background: rgba(20, 23, 43, 0.6);
+            border: 2px dashed rgba(108, 92, 231, 0.25);
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+            margin: 1rem 0;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .file-upload-area:hover {
+            border-color: #6C5CE7;
+            background: rgba(20, 23, 43, 0.8);
+        }
+        .file-upload-area i {
+            font-size: 3rem;
+            color: #6C5CE7;
+            margin-bottom: 10px;
+        }
+        .file-upload-area p {
+            color: #B6BDF0;
+        }
+        .file-upload-area .file-types {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+        .file-upload-area .file-types span {
+            background: rgba(255, 255, 255, 0.04);
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 11px;
+            color: #9CA3E0;
+        }
+
+        .upload-visibility {
+            display: flex;
+            gap: 12px;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+        .upload-visibility label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            color: #B6BDF0;
+            font-size: 14px;
+        }
+        .upload-visibility input[type="radio"] {
+            accent-color: #6C5CE7;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        /* ============================================================
+                   PARENT PORTAL
+                   ============================================================ */
+        .parent-portal {
+            display: none;
+        }
+        .parent-portal.active {
+            display: block;
+        }
+        .child-result-card {
+            background: rgba(20, 23, 43, 0.8);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            margin-bottom: 16px;
+        }
+        .child-result-card .child-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #FFFFFF;
+        }
+        .child-result-card .child-school {
+            color: #B6BDF0;
+            font-size: 14px;
+        }
+        .child-result-card .result-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 12px;
+        }
+        .child-result-card .result-item {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 0.8rem;
+            padding: 10px;
+            text-align: center;
+        }
+        .child-result-card .result-item .week {
+            font-size: 11px;
+            color: #9CA3E0;
+        }
+        .child-result-card .result-item .score {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-top: 4px;
+        }
+        .child-result-card .result-item .score.pass {
+            color: #8B7CF7;
+        }
+        .child-result-card .result-item .score.fail {
+            color: #9CA3E0;
+        }
+        .child-result-card .overall {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .child-result-card .overall .avg {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+        .child-result-card .parent-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+
+        /* ============================================================
+                   MODALS
+                   ============================================================ */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-overlay.active {
+            display: flex;
+        }
+        .modal-content {
+            background: #14172B;
+            border-radius: 2rem;
+            padding: 2rem;
+            width: 90%;
+            max-width: 500px;
+            border: 1px solid rgba(108, 92, 231, 0.2);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .modal-content h2 {
+            text-align: center;
+            margin-bottom: 4px;
+            color: #FFFFFF;
+        }
+        .modal-content .sub {
+            text-align: center;
+            color: #B6BDF0;
+            font-size: 14px;
+            margin-bottom: 1.2rem;
+        }
+        .close-modal-btn {
+            display: block;
+            margin: 1.2rem auto 0;
+            background: rgba(255, 255, 255, 0.06);
+            border: none;
+            color: #EDEEF2;
+            padding: 10px 30px;
+            border-radius: 2rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+        .close-modal-btn:hover {
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .grade-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        .grade-btn {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: #EDEEF2;
+            padding: 14px 0;
+            border-radius: 1rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            text-align: center;
+        }
+        .grade-btn:hover {
+            background: #6C5CE7;
+            border-color: #6C5CE7;
+            color: #FFFFFF;
+        }
+        .grade-btn .sub {
+            display: block;
+            font-size: 0.6rem;
+            font-weight: 400;
+            color: #9CA3E0;
+            margin-top: 2px;
+        }
+
+        /* ============================================================
+                   IMPORT MODAL
+                   ============================================================ */
+        .import-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 16px 0;
+        }
+        .import-options button {
+            padding: 16px;
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            background: rgba(255, 255, 255, 0.04);
+            color: #EDEEF2;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            font-family: 'Inter', sans-serif;
+        }
+        .import-options button:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: #6C5CE7;
+        }
+        .import-options button i {
+            font-size: 2rem;
+            color: #6C5CE7;
+        }
+        .import-options button .desc {
+            font-size: 11px;
+            color: #9CA3E0;
+        }
+        .paste-area {
+            width: 100%;
+            min-height: 120px;
+            padding: 12px 16px;
+            border-radius: 1rem;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: #EDEEF2;
+            font-size: 14px;
+            font-family: 'Inter', monospace;
+            resize: vertical;
+            outline: none;
+        }
+        .paste-area:focus {
+            border-color: #6C5CE7;
+        }
+        .ocr-preview {
+            margin-top: 12px;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 0.8rem;
+            max-height: 200px;
+            overflow-y: auto;
+            font-size: 13px;
+            color: #B6BDF0;
+            white-space: pre-wrap;
+        }
+
+        /* ============================================================
+                   REPORT MODAL
+                   ============================================================ */
+        .report-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(12px);
+            z-index: 4000;
+            align-items: center;
+            justify-content: center;
+        }
+        .report-modal.active {
+            display: flex;
+        }
+        .report-modal-content {
+            background: #14172B;
+            border-radius: 2rem;
+            padding: 2rem;
+            width: 90%;
+            max-width: 500px;
+            border: 1px solid rgba(108, 92, 231, 0.2);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .report-modal-content h2 {
+            text-align: center;
+            margin-bottom: 4px;
+            color: #FFFFFF;
+        }
+        .report-modal-content .report-sub {
+            text-align: center;
+            color: #B6BDF0;
+            margin-bottom: 1.5rem;
+        }
+        .report-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        .report-item .label {
+            color: #B6BDF0;
+        }
+        .report-item .value {
+            font-weight: 600;
+            color: #FFFFFF;
+        }
+        .report-item .value.pass {
+            color: #8B7CF7;
+        }
+        .report-item .value.fail {
+            color: #9CA3E0;
+        }
+        .report-print-btn {
+            display: block;
+            width: 100%;
+            margin-top: 1.5rem;
+            background: #6C5CE7;
+            border: none;
+            color: #FFFFFF;
+            padding: 12px;
+            border-radius: 2rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .report-print-btn:hover {
+            background: #4A42DB;
+        }
+
+        /* ============================================================
+                   NOTIFICATIONS
+                   ============================================================ */
+        .notif-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .notif-item {
+            background: rgba(20, 23, 43, 0.8);
+            border-radius: 1rem;
+            padding: 1rem 1.2rem;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            transition: 0.2s;
+        }
+        .notif-item:hover {
+            background: rgba(20, 23, 43, 1);
+        }
+        .notif-item .icon {
+            font-size: 1.4rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(108, 92, 231, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .notif-item .info {
+            flex: 1;
+        }
+        .notif-item .info p {
+            font-size: 14px;
+            color: #EDEEF2;
+        }
+        .notif-item .info .time {
+            font-size: 11px;
+            color: #9CA3E0;
+        }
+        .notif-item .badge-new {
+            background: #6C5CE7;
+            color: #FFFFFF;
+            font-size: 10px;
+            padding: 2px 10px;
+            border-radius: 30px;
+            flex-shrink: 0;
+        }
+
+        /* ============================================================
+                   SCHOOL FILTER
+                   ============================================================ */
+        .school-filter {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+            background: rgba(20, 23, 43, 0.6);
+            padding: 1rem;
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            margin-bottom: 20px;
+        }
+        .school-filter .label {
+            color: #B6BDF0;
+            font-size: 14px;
+        }
+        .school-filter input,
+        .school-filter select {
+            padding: 10px 16px;
+            border-radius: 1rem;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: #EDEEF2;
+            font-size: 14px;
+            outline: none;
+            flex: 1;
+            min-width: 150px;
+        }
+        .school-filter input:focus,
+        .school-filter select:focus {
+            border-color: #6C5CE7;
+        }
+        .school-filter input::placeholder {
+            color: #9CA3E0;
+        }
+        .school-filter select option {
+            background: #14172B;
+            color: #EDEEF2;
+        }
+
+        /* ============================================================
+                   BOTTOM NAV
+                   ============================================================ */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 0 12px;
+            z-index: 1000;
+        }
+        .bottom-nav button {
+            background: none;
+            border: none;
+            color: #9CA3E0;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            font-size: 10px;
+            font-family: 'Inter', sans-serif;
+            transition: 0.3s;
+            padding: 4px 12px;
+            position: relative;
+        }
+        .bottom-nav button i {
+            font-size: 1.4rem;
+            transition: 0.3s;
+        }
+        .bottom-nav button span {
+            font-weight: 500;
+        }
+        .bottom-nav button.active {
+            color: #6C5CE7;
+        }
+        .bottom-nav button.active i {
+            transform: translateY(-2px);
+        }
+        .bottom-nav button .nav-badge {
+            position: absolute;
+            top: 0;
+            right: 4px;
+            background: #6C5CE7;
+            color: #FFFFFF;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 1px 7px;
+            border-radius: 30px;
+            min-width: 18px;
+            text-align: center;
+        }
+
+        /* ============================================================
+                   TOAST
+                   ============================================================ */
+        .toast {
+            position: fixed;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #14172B;
+            backdrop-filter: blur(16px);
+            padding: 0.6rem 1.2rem;
+            border-radius: 40px;
+            z-index: 1100;
+            font-size: 0.8rem;
+            color: #EDEEF2;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            max-width: 90%;
+            text-align: center;
+            white-space: pre-line;
+        }
+
+        /* ============================================================
+                   RESPONSIVE
+                   ============================================================ */
+        @media (max-width: 768px) {
+            body {
+                padding: 0.5rem;
+                padding-bottom: 80px;
+            }
+            .top-nav {
+                padding: 0.6rem 1rem;
+            }
+            .page {
+                padding: 1rem;
+            }
+            .sidebar {
+                width: 280px;
+                right: -280px;
+            }
+            .subject-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+            }
+            .subject-card {
+                padding: 1rem 0.5rem;
+            }
+            .subject-card .icon {
+                font-size: 2rem;
+            }
+            .subject-card h4 {
+                font-size: 13px;
+            }
+            .subject-card p {
+                font-size: 10px;
+            }
+            .ai-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .grade-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .chat-modal-content {
+                height: 90vh;
+                max-height: 90vh;
+                border-radius: 1.5rem;
+            }
+            .bottom-nav button {
+                font-size: 9px;
+                padding: 2px 8px;
+            }
+            .bottom-nav button i {
+                font-size: 1.2rem;
+            }
+            .groups-tabs button {
+                font-size: 12px;
+                padding: 8px 14px;
+            }
+            .group-card {
+                padding: 1rem;
+            }
+            .group-card .left .icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.4rem;
+            }
+            .import-options {
+                grid-template-columns: 1fr;
+            }
+            .child-result-card .result-grid {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .live-card {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+            }
+            .live-list .live-item {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+            }
+            .live-list .live-item .left {
+                flex-direction: column;
+            }
+            .admin-section {
+                padding: 1rem;
+            }
+            .teacher-list-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 450px) {
+            .subject-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .ai-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .grade-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .child-result-card .result-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    TOP NAV
+    ============================================================ -->
+    <div class="top-nav">
+        <div class="logo">
+            <h1>📚 SchoolHub</h1>
+            <span>Study Portal</span>
+        </div>
+        <div class="nav-actions">
+            <button class="menu-btn" onclick="toggleSidebar()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    SIDEBAR
+    ============================================================ -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+    <div class="sidebar" id="sidebar">
+        <button class="close-sidebar" onclick="toggleSidebar()"><i class="fas fa-times"></i></button>
+        <div class="sidebar-title">📚 Menu</div>
+
+        <button class="sidebar-item active-sidebar" onclick="switchPortal('student')">
+            <i class="fas fa-user-graduate"></i> Student Portal
+        </button>
+        <button class="sidebar-item" onclick="switchPortal('teacher')">
+            <i class="fas fa-chalkboard-teacher"></i> Teacher Portal
+        </button>
+        <button class="sidebar-item" onclick="switchPortal('parent')">
+            <i class="fas fa-users"></i> Parent Portal
+        </button>
+
+        <div class="sidebar-divider"></div>
+
+        <button class="sidebar-item" onclick="showToast('🔐 Login coming soon!')">
+            <i class="fas fa-sign-in-alt"></i> Login
+        </button>
+        <button class="sidebar-item" onclick="showToast('📱 About SchoolHub')">
+            <i class="fas fa-info-circle"></i> About
+        </button>
+
+        <div class="sidebar-divider"></div>
+
+        <div style="padding: 0 16px; margin-top: 8px;">
+            <div style="color: #9CA3E0; font-size: 12px;">Version 2.0</div>
+            <div style="color: #6C5CE7; font-size: 11px; margin-top: 2px;">Purple, Black &amp; White</div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    APP CONTENT
+    ============================================================ -->
+    <div class="app">
+
+        <!-- ============================================================
+        STUDENT PORTAL
+        ============================================================ -->
+        <div class="page active" id="studentPortal">
+            <!-- School & Grade Filter -->
+            <div class="school-filter">
+                <span class="label">🏫 School:</span>
+                <input type="text" id="studentSchoolInput" placeholder="Enter your school name" />
+                <span class="label">📚 Grade:</span>
+                <select id="studentGradeInput">
+                    <option value="">Select Grade</option>
+                    <option value="1">Grade 1</option>
+                    <option value="2">Grade 2</option>
+                    <option value="3">Grade 3</option>
+                    <option value="4">Grade 4</option>
+                    <option value="5">Grade 5</option>
+                    <option value="6">Grade 6</option>
+                    <option value="7">Grade 7</option>
+                    <option value="8">Grade 8</option>
+                    <option value="9">Grade 9</option>
+                    <option value="10">Grade 10</option>
+                    <option value="11">Grade 11</option>
+                    <option value="12">Grade 12</option>
+                </select>
+                <button class="btn-small btn-purple" onclick="applyStudentFilter()"><i class="fas fa-check"></i> Apply</button>
+                <button class="btn-small btn-outline" onclick="showGlobalLibrary()"><i class="fas fa-globe"></i> Global</button>
+            </div>
+
+            <!-- LIVE CLASSES -->
+            <div style="margin-bottom:30px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:12px;">
+                    <div class="page-title" style="font-size:20px; margin-bottom:0;"><i class="fas fa-video"></i> 🔴 Live Classes</div>
+                    <span style="color:#B6BDF0; font-size:13px;">🌍 Public · No login required</span>
+                </div>
+
+                <div class="live-card" onclick="openLiveList()">
+                    <span class="live-badge"><i class="fas fa-circle"></i> LIVE</span>
+                    <div class="info">
+                        <h4>3 live classes now</h4>
+                        <p>🌍 150+ students watching globally · Tap to see all</p>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:8px;">
+                        <span style="color:#B6BDF0; font-size:13px;"><i class="fas fa-chevron-right"></i> View All</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SUBJECTS -->
+            <div class="page-title"><i class="fas fa-graduation-cap"></i> Subjects</div>
+            <p class="page-subtitle">Tap a subject to explore resources 📖</p>
+            <div class="subject-grid" id="subjectGrid">
+                <div class="subject-card" onclick="selectSubject('Mathematics')"><div class="icon">📐</div><h4>Mathematics</h4><p>Numbers &amp; Logic</p></div>
+                <div class="subject-card" onclick="selectSubject('English')"><div class="icon">📝</div><h4>English</h4><p>Language &amp; Literature</p></div>
+                <div class="subject-card" onclick="selectSubject('Science')"><div class="icon">🔬</div><h4>Science</h4><p>Biology, Chemistry, Physics</p></div>
+                <div class="subject-card" onclick="selectSubject('History')"><div class="icon">🏛️</div><h4>History</h4><p>Past &amp; Civilizations</p></div>
+                <div class="subject-card" onclick="selectSubject('Geography')"><div class="icon">🌍</div><h4>Geography</h4><p>Maps &amp; Environments</p></div>
+                <div class="subject-card" onclick="selectSubject('Computer Studies')"><div class="icon">💻</div><h4>Computer Studies</h4><p>Tech &amp; Coding</p></div>
+                <div class="subject-card" onclick="selectSubject('Art & Design')"><div class="icon">🎨</div><h4>Art &amp; Design</h4><p>Creative Expression</p></div>
+                <div class="subject-card" onclick="selectSubject('Business Studies')"><div class="icon">📊</div><h4>Business Studies</h4><p>Economics &amp; Commerce</p></div>
+                <div class="subject-card" onclick="selectSubject('Religious Education')"><div class="icon">⛪</div><h4>Religious Education</h4><p>Faith &amp; Values</p></div>
+                <div class="subject-card" onclick="selectSubject('Physical Education')"><div class="icon">🏃</div><h4>Physical Education</h4><p>Health &amp; Fitness</p></div>
+                <div class="subject-card" onclick="selectSubject('Music')"><div class="icon">🎵</div><h4>Music</h4><p>Rhythm &amp; Theory</p></div>
+                <div class="subject-card" onclick="selectSubject('Home Economics')"><div class="icon">🍳</div><h4>Home Economics</h4><p>Life Skills</p></div>
+            </div>
+
+            <!-- Resources -->
+            <div id="resourcesSection" style="margin-top:30px; display:none;">
+                <div class="page-title" style="font-size:20px;"><i class="fas fa-book"></i> <span id="resourceSubjectTitle">Resources</span></div>
+                <div id="resourcesList" style="display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:1.2rem; margin-top:16px;"></div>
+            </div>
+
+            <!-- Global Library -->
+            <div id="globalLibrarySection" style="margin-top:30px; display:none;">
+                <div class="page-title" style="font-size:20px;"><i class="fas fa-globe"></i> 🌍 Global Library</div>
+                <p class="page-subtitle">Study materials from schools around the world</p>
+                <div id="globalResourcesList" style="display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:1.2rem; margin-top:16px;"></div>
+            </div>
+
+            <!-- AI Section -->
+            <div style="margin-top:40px;">
+                <div class="page-title"><i class="fas fa-robot"></i> AI Assistants</div>
+                <p class="page-subtitle">Choose your favorite AI tutor 🤖</p>
+                <div class="ai-grid">
+                    <div class="ai-card" onclick="openAI('DeepSeek')"><div class="icon">🧠</div><h4>DeepSeek</h4><p>Advanced reasoning</p></div>
+                    <div class="ai-card" onclick="openAI('Grok')"><div class="icon">🪐</div><h4>Grok</h4><p>Conversational &amp; witty</p></div>
+                    <div class="ai-card" onclick="openAI('ChatGPT')"><div class="icon">💬</div><h4>ChatGPT</h4><p>Versatile &amp; creative</p></div>
+                    <div class="ai-card" onclick="openAI('Claude')"><div class="icon">🌿</div><h4>Claude</h4><p>Safe &amp; thoughtful</p></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+        AI PAGE
+        ============================================================ -->
+        <div class="page" id="aiPage">
+            <div class="page-title"><i class="fas fa-robot"></i> AI Assistants</div>
+            <p class="page-subtitle">Choose your favorite AI tutor 🤖</p>
+            <div class="ai-grid">
+                <div class="ai-card" onclick="openAI('DeepSeek')"><div class="icon">🧠</div><h4>DeepSeek</h4><p>Advanced reasoning &amp; coding</p></div>
+                <div class="ai-card" onclick="openAI('Grok')"><div class="icon">🪐</div><h4>Grok</h4><p>Fun, conversational &amp; witty</p></div>
+                <div class="ai-card" onclick="openAI('ChatGPT')"><div class="icon">💬</div><h4>ChatGPT</h4><p>Versatile &amp; creative</p></div>
+                <div class="ai-card" onclick="openAI('Claude')"><div class="icon">🌿</div><h4>Claude</h4><p>Safe, thoughtful &amp; helpful</p></div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+        GROUPS PAGE
+        ============================================================ -->
+        <div class="page" id="groupsPage">
+            <div class="page-title"><i class="fas fa-users"></i> Groups</div>
+            <p class="page-subtitle">Connect with classmates and study together</p>
+
+            <div class="groups-tabs">
+                <button class="active-tab" onclick="switchGroupTab('school', this)"><i class="fas fa-school"></i> School</button>
+                <button onclick="switchGroupTab('class', this)"><i class="fas fa-chalkboard"></i> Class <span class="tab-badge">5</span></button>
+                <button onclick="switchGroupTab('social', this)"><i class="fas fa-globe"></i> Social <span class="tab-badge">12</span></button>
+            </div>
+
+            <!-- School Groups -->
+            <div class="group-content active-content" id="schoolGroups">
+                <div class="group-card" onclick="showToast('🏫 School announcements &amp; timetables')">
+                    <div class="left"><div class="icon">🏫</div><div class="info"><h4>School Announcements</h4><p>Latest updates from administration</p></div></div>
+                    <div class="right"><div class="meta">📢 3 new</div></div>
+                </div>
+                <div class="group-card" onclick="showToast('📅 School exam timetables')">
+                    <div class="left"><div class="icon">📅</div><div class="info"><h4>Exam Timetables</h4><p>Final exams schedule</p></div></div>
+                    <div class="right"><div class="meta">📋 View</div></div>
+                </div>
+                <div class="group-card" onclick="showToast('🎉 School events &amp; activities')">
+                    <div class="left"><div class="icon">🎉</div><div class="info"><h4>School Events</h4><p>Sports day, assemblies, parent meetings</p></div></div>
+                    <div class="right"><div class="meta">📅 2 upcoming</div></div>
+                </div>
+            </div>
+
+            <!-- Class Groups -->
+            <div class="group-content" id="classGroups">
+                <div class="group-card" onclick="openChat('Grade 12 Math', '📐')">
+                    <div class="left"><div class="icon">📐</div><div class="info"><h4>Grade 12 Math</h4><p>Mr. Banda · 25 pupils</p></div></div>
+                    <div class="right"><div class="meta">💬 5 new</div><span class="badge">Active</span></div>
+                </div>
+                <div class="group-card" onclick="openChat('Grade 10 Science', '🔬')">
+                    <div class="left"><div class="icon">🔬</div><div class="info"><h4>Grade 10 Science</h4><p>Mrs. Zulu · 22 pupils</p></div></div>
+                    <div class="right"><div class="meta">💬 3 new</div><span class="badge">Active</span></div>
+                </div>
+                <div class="group-card" onclick="openChat('Grade 11 English', '📝')">
+                    <div class="left"><div class="icon">📝</div><div class="info"><h4>Grade 11 English</h4><p>Ms. Phiri · 18 pupils</p></div></div>
+                    <div class="right"><div class="meta">💬 2 new</div><span class="badge">Active</span></div>
+                </div>
+            </div>
+
+            <!-- Social Groups -->
+            <div class="group-content" id="socialGroups">
+                <div class="group-card" onclick="showToast('🌍 Global Science Help - 1,200 members')">
+                    <div class="left"><div class="icon">🧪</div><div class="info"><h4>Global Science Help</h4><p>1,200 members · Worldwide</p></div></div>
+                    <div class="right"><span class="badge">🔒 Invite Only</span></div>
+                </div>
+                <div class="group-card" onclick="showToast('🌍 Math Masters - 850 members')">
+                    <div class="left"><div class="icon">📊</div><div class="info"><h4>Math Masters</h4><p>850 members · Global</p></div></div>
+                    <div class="right"><span class="badge">🔒 Invite Only</span></div>
+                </div>
+                <div class="group-card" onclick="showToast('🌍 History Explorers - 600 members')">
+                    <div class="left"><div class="icon">🏛️</div><div class="info"><h4>History Explorers</h4><p>600 members · Global</p></div></div>
+                    <div class="right"><span class="badge">🔒 Invite Only</span></div>
+                </div>
+                <div class="group-card" onclick="showToast('➕ Create a new social group')" style="border:2px dashed rgba(108,92,231,0.3);">
+                    <div class="left"><div class="icon" style="background:transparent;">➕</div><div class="info"><h4>Create Social Group</h4><p>Start your own global community</p></div></div>
+                    <div class="right"><span style="color:#6C5CE7; font-size:13px;">Create →</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+        ALERTS PAGE
+        ============================================================ -->
+        <div class="page" id="alertsPage">
+            <div class="page-title"><i class="fas fa-bell"></i> Notifications</div>
+            <p class="page-subtitle">Stay updated with your classes</p>
+
+            <div class="notif-list">
+                <div class="notif-item">
+                    <div class="icon">📝</div>
+                    <div class="info"><p><strong>Teacher Smith</strong> uploaded new Mathematics notes</p><span class="time">10 minutes ago</span></div>
+                    <span class="badge-new">New</span>
+                </div>
+                <div class="notif-item">
+                    <div class="icon">✅</div>
+                    <div class="info"><p><strong>Quiz results</strong> for Grade 12 Science are now available</p><span class="time">1 hour ago</span></div>
+                    <span class="badge-new">New</span>
+                </div>
+                <div class="notif-item">
+                    <div class="icon">👥</div>
+                    <div class="info"><p><strong>Sarah</strong> invited you to join "Science Squad"</p><span class="time">3 hours ago</span></div>
+                    <span class="badge-new">New</span>
+                </div>
+                <div class="notif-item">
+                    <div class="icon">📢</div>
+                    <div class="info"><p><strong>Homework reminder:</strong> English essay due tomorrow</p><span class="time">5 hours ago</span></div>
+                </div>
+                <div class="notif-item">
+                    <div class="icon">📚</div>
+                    <div class="info"><p>New <strong>Past Papers</strong> for 2024 added to Library</p><span class="time">1 day ago</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+        TEACHER PORTAL
+        ============================================================ -->
+        <div class="page" id="teacherPortal">
+
+            <!-- Teacher Login Flow -->
+            <div id="teacherLoginFlow" style="max-width:450px; margin:0 auto;">
+                <!-- Step 1: School Code -->
+                <div id="loginStep1" class="auth-card">
+                    <h2>🔐 Teacher Login</h2>
+                    <p class="sub">Enter your school code to continue</p>
+                    <div class="step-indicator">Step 1 of 3</div>
+                    <div class="form-group">
+                        <label>🏫 School Code</label>
+                        <input type="password" id="schoolCodeInput" placeholder="Enter school code" />
+                        <div style="font-size:12px; color:#9CA3E0; margin-top:4px;">💡 Default: <strong style="color:#6C5CE7;">SCHOOL2024</strong></div>
+                    </div>
+                    <button class="btn-primary" onclick="verifySchoolCode()"><i class="fas fa-check"></i> Verify School</button>
+                    <div class="auth-toggle" onclick="showToast('📧 Contact your school administrator')">Don't have a school code?</div>
+                </div>
+
+                <!-- Step 2: Role Selection -->
+                <div id="loginStep2" class="auth-card" style="display:none;">
+                    <h2>👤 Choose Role</h2>
+                    <p class="sub">Select how you want to access the system</p>
+                    <div class="step-indicator">Step 2 of 3</div>
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:16px 0;">
+                        <button class="btn-primary" onclick="selectRole('admin')" style="padding:20px; font-size:14px;">
+                            <i class="fas fa-crown" style="font-size:1.5rem; display:block; margin-bottom:6px;"></i>
+                            School Admin
+                            <span style="font-size:11px; font-weight:400; display:block; color:#B6BDF0;">Manage school</span>
+                        </button>
+                        <button class="btn-primary" onclick="selectRole('teacher')" style="padding:20px; font-size:14px; background:rgba(255,255,255,0.06);">
+                            <i class="fas fa-chalkboard-teacher" style="font-size:1.5rem; display:block; margin-bottom:6px;"></i>
+                            Teacher
+                            <span style="font-size:11px; font-weight:400; display:block; color:#B6BDF0;">Manage class</span>
+                        </button>
+                    </div>
+                    <button class="btn-secondary" onclick="goBackToStep1()"><i class="fas fa-arrow-left"></i> Back</button>
+                </div>
+
+                <!-- Step 3: Login Credentials -->
+                <div id="loginStep3" class="auth-card" style="display:none;">
+                    <h2>🔐 <span id="loginRoleDisplay">Teacher</span> Login</h2>
+                    <p class="sub">Enter your credentials to continue</p>
+                    <div class="step-indicator">Step 3 of 3</div>
+                    <div class="form-group">
+                        <label>👤 Username</label>
+                        <input type="text" id="teacherUsernameInput" placeholder="Enter your username" />
+                    </div>
+                    <div class="form-group">
+                        <label>🔑 Password</label>
+                        <input type="password" id="teacherPasswordInput" placeholder="Enter your password" />
+                    </div>
+                    <div id="firstTimeSetup" style="display:none; background:rgba(108,92,231,0.1); border-radius:1rem; padding:1rem; margin-bottom:1rem; border:1px solid rgba(108,92,231,0.2);">
+                        <p style="color:#8B7CF7; font-size:14px; font-weight:600; margin-bottom:8px;">🔑 First Time Login</p>
+                        <div class="form-group">
+                            <label>Set New Password</label>
+                            <input type="password" id="newPasswordInput" placeholder="Create a new password" />
+                        </div>
+                        <div class="form-group">
+                            <label>Confirm Password</label>
+                            <input type="password" id="confirmPasswordInput" placeholder="Confirm your password" />
+                        </div>
+                    </div>
+                    <button class="btn-primary" onclick="loginTeacher()"><i class="fas fa-sign-in-alt"></i> Login</button>
+                    <button class="btn-secondary" onclick="goBackToStep2()"><i class="fas fa-arrow-left"></i> Back</button>
+                </div>
+            </div>
+
+            <!-- School Admin Dashboard -->
+            <div id="adminDashboard" class="admin-dashboard">
+                <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center; background:rgba(20,23,43,0.6); padding:1rem; border-radius:1rem; border:1px solid rgba(255,255,255,0.06); margin-bottom:1.5rem;">
+                    <div style="display:flex; align-items:center; gap:12px;">
+                        <div style="width:50px; height:50px; border-radius:50%; background:#6C5CE7; display:flex; align-items:center; justify-content:center; font-size:1.5rem; font-weight:700; color:#FFFFFF;">G</div>
+                        <div>
+                            <h3 style="color:#FFFFFF; font-size:1.2rem;" id="adminSchoolNameDisplay">Greenhill Academy</h3>
+                            <span style="color:#B6BDF0; font-size:13px;">👑 School Admin · <span id="adminTeacherCount">3</span> teachers</span>
+                        </div>
+                    </div>
+                    <button class="btn-small btn-outline" onclick="logoutTeacher()" style="margin-left:auto;"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card"><div class="number" id="adminStatTeachers">3</div><div class="label">👨‍🏫 Teachers</div></div>
+                    <div class="stat-card"><div class="number" id="adminStatStudents">65</div><div class="label">👨‍🎓 Students</div></div>
+                    <div class="stat-card"><div class="number" id="adminStatClasses">4</div><div class="label">📚 Classes</div></div>
+                    <div class="stat-card"><div class="number" id="adminStatPupils">65</div><div class="label">📊 Total Pupils</div></div>
+                </div>
+
+                <!-- Announcements -->
+                <div class="admin-section">
+                    <h3><i class="fas fa-bullhorn"></i> Announcements</h3>
+                    <div id="announcementList">
+                        <div class="announcement-item">
+                            <div class="title">🏫 School closed on Friday for sports day</div>
+                            <div class="meta">📅 Posted: 10:30 AM · By: Admin</div>
+                        </div>
+                        <div class="announcement-item">
+                            <div class="title">📝 End of term exams start June 10th</div>
+                            <div class="meta">📅 Posted: Yesterday · By: Admin</div>
+                        </div>
+                    </div>
+                    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
+                        <button class="btn-small btn-purple" onclick="showPostAnnouncement()"><i class="fas fa-plus"></i> Post Announcement</button>
+                    </div>
+                </div>
+
+                <!-- Timetables -->
+                <div class="admin-section">
+                    <h3><i class="fas fa-calendar-alt"></i> Timetables</h3>
+                    <div id="timetableList">
+                        <div class="announcement-item" style="border-left-color:#6C5CE7;">
+                            <div class="title">📅 Grade 12 Exam Timetable - June 2024</div>
+                            <div class="meta">📋 5 exams · View details</div>
+                        </div>
+                        <div class="announcement-item" style="border-left-color:#6C5CE7;">
+                            <div class="title">📅 Grade 10 Test Timetable - June 2024</div>
+                            <div class="meta">📋 4 tests · View details</div>
+                        </div>
+                    </div>
+                    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
+                        <button class="btn-small btn-purple" onclick="showToast('📅 Create new timetable')"><i class="fas fa-plus"></i> Create Timetable</button>
+                    </div>
+                </div>
+
+                <!-- Teacher Management -->
+                <div class="admin-section">
+                    <h3><i class="fas fa-chalkboard-teacher"></i> Teacher Management</h3>
+                    <div id="teacherList">
+                        <div class="teacher-list-item">
+                            <div><span class="name">Mr. Banda</span> <span class="class">Grade 12 Math</span></div>
+                            <div><span class="pupil-count">👨‍🎓 25 pupils</span> <span class="status status-active">Active</span></div>
+                        </div>
+                        <div class="teacher-list-item">
+                            <div><span class="name">Mrs. Zulu</span> <span class="class">Grade 10 Science</span></div>
+                            <div><span class="pupil-count">👨‍🎓 22 pupils</span> <span class="status status-active">Active</span></div>
+                        </div>
+                        <div class="teacher-list-item">
+                            <div><span class="name">Ms. Phiri</span> <span class="class">Grade 11 English</span></div>
+                            <div><span class="pupil-count">👨‍🎓 18 pupils</span> <span class="status status-inactive">Inactive</span></div>
+                        </div>
+                        <div class="teacher-list-item" style="border-bottom:none; padding-top:12px;">
+                            <div style="color:#B6BDF0; font-size:13px;">👥 Total Pupils: <strong style="color:#8B7CF7;">245</strong></div>
+                        </div>
+                    </div>
+                    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
+                        <button class="btn-small btn-purple" onclick="showToast('➕ Add new teacher')"><i class="fas fa-plus"></i> Add Teacher</button>
+                        <button class="btn-small btn-outline" onclick="showToast('✏️ Edit teacher details')"><i class="fas fa-edit"></i> Edit</button>
+                        <button class="btn-small btn-outline" onclick="showToast('🗑️ Remove teacher')"><i class="fas fa-trash"></i> Remove</button>
+                    </div>
+                </div>
+
+                <!-- Settings -->
+                <div class="admin-section">
+                    <h3><i class="fas fa-cog"></i> School Settings</h3>
+                    <div style="display:grid; gap:12px;">
+                        <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
+                            <span style="color:#B6BDF0; min-width:120px;">🏫 School Name</span>
+                            <input type="text" id="adminSchoolName" value="Greenhill Academy" style="flex:1; padding:10px 16px; border-radius:1rem; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.06); color:#EDEEF2; font-size:14px; outline:none; min-width:150px;" />
+                            <button class="btn-small btn-purple" onclick="updateSchoolName()">Update</button>
+                        </div>
+                        <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
+                            <span style="color:#B6BDF0; min-width:120px;">🔑 School Code</span>
+                            <input type="text" id="adminSchoolCode" value="SCHOOL2024" style="flex:1; padding:10px 16px; border-radius:1rem; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.06); color:#EDEEF2; font-size:14px; outline:none; min-width:150px;" />
+                            <button class="btn-small btn-purple" onclick="updateSchoolCode()">Update</button>
+                        </div>
+                        <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
+                            <span style="color:#B6BDF0; min-width:120px;">🔐 Admin Password</span>
+                            <input type="password" id="adminPassword" placeholder="New password" style="flex:1; padding:10px 16px; border-radius:1rem; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.06); color:#EDEEF2; font-size:14px; outline:none; min-width:150px;" />
+                            <button class="btn-small btn-purple" onclick="updateAdminPassword()">Change</button>
+                        </div>
+                        <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
+                            <span style="color:#B6BDF0; min-width:120px;">📷 School Logo</span>
+                            <button class="btn-small btn-outline" onclick="showToast('📤 Upload school logo')"><i class="fas fa-upload"></i> Upload</button>
+                            <span style="color:#9CA3E0; font-size:13px;">PNG, JPG up to 2MB</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Teacher Dashboard -->
+            <div id="teacherDashboard" class="teacher-dashboard">
+                <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center; background:rgba(20,23,43,0.6); padding:1rem; border-radius:1rem; border:1px solid rgba(255,255,255,0.06); margin-bottom:1.5rem;">
+                    <div>
+                        <h3 style="color:#FFFFFF; font-size:1.1rem;" id="teacherNameDisplay">Mr. Banda</h3>
+                        <span style="color:#B6BDF0; font-size:13px;">🏫 Greenhill Academy · 📚 <span id="teacherClassDisplay">Grade 12 Math</span></span>
+                    </div>
+                    <button class="btn-small btn-outline" onclick="logoutTeacher()" style="margin-left:auto;"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card"><div class="number" id="teacherStatStudents">25</div><div class="label">👨‍🎓 Students</div></div>
+                    <div class="stat-card"><div class="number" id="teacherStatResults">75</div><div class="label">📊 Results</div></div>
+                    <div class="stat-card"><div class="number" id="teacherStatAvg">78%</div><div class="label">📈 Class Avg</div></div>
+                </div>
+
+                <!-- Go Live -->
+                <div style="background:rgba(20,23,43,0.6); border-radius:1rem; padding:1.2rem 1.5rem; border:1px solid rgba(255,255,255,0.06); margin-bottom:1.5rem;">
+                    <h3 style="font-size:18px; color:#FFFFFF; margin-bottom:12px;"><i class="fas fa-video"></i> 🎥 Go Live</h3>
+                    <div class="form-group">
+                        <label>📝 Title</label>
+                        <input type="text" id="liveTitleInput" placeholder="e.g., Mathematics - Grade 12" />
+                    </div>
+                    <div class="form-group">
+                        <label>📝 Description</label>
+                        <input type="text" id="liveDescInput" placeholder="What will you teach?" />
+                    </div>
+                    <div style="display:flex; gap:16px; flex-wrap:wrap; margin:12px 0;">
+                        <label style="color:#B6BDF0; display:flex; align-items:center; gap:6px; cursor:pointer;">
+                            <input type="radio" name="liveAudience" value="global" checked /> 🌍 Global (Public)
+                        </label>
+                        <label style="color:#B6BDF0; display:flex; align-items:center; gap:6px; cursor:pointer;">
+                            <input type="radio" name="liveAudience" value="group" /> 👥 Class Only
+                        </label>
+                    </div>
+                    <div style="display:flex; gap:12px; flex-wrap:wrap;">
+                        <button class="btn-small btn-purple" onclick="startLive()"><i class="fas fa-circle" style="color:#FF4444;"></i> Start Live</button>
+                        <button class="btn-small btn-outline" onclick="showToast('📅 Scheduled!')"><i class="fas fa-calendar-plus"></i> Schedule</button>
+                    </div>
+                </div>
+
+                <!-- Upload -->
+                <div style="margin-bottom:1.5rem;">
+                    <h3 style="font-size:18px; color:#FFFFFF; margin-bottom:12px;"><i class="fas fa-upload"></i> Upload Resources</h3>
+                    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:12px;">
+                        <button class="btn-small btn-purple" onclick="showFileUpload()"><i class="fas fa-file"></i> Upload Files</button>
+                        <button class="btn-small btn-outline" onclick="showFileUpload()"><i class="fas fa-globe"></i> Upload Public</button>
+                        <button class="btn-small btn-outline" onclick="showFileUpload()"><i class="fas fa-users"></i> Upload for Group</button>
+                    </div>
+                    <div class="file-upload-area" onclick="document.getElementById('fileInput').click()">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Tap to select files (PDF, Video, Audio, Images)</p>
+                        <div class="file-types">
+                            <span>📄 PDF</span><span>🎥 MP4</span>
+                            <span>🎵 MP3</span><span>📷 JPG</span>
+                            <span>📝 DOC</span>
+                        </div>
+                        <input type="file" id="fileInput" multiple style="display:none;" onchange="handleFileSelect(event)" />
+                    </div>
+                    <div id="selectedFilesInfo" style="font-size:13px; color:#B6BDF0; margin-top:8px;"></div>
+                </div>
+
+                <!-- Grade Table -->
+                <div>
+                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:16px;">
+                        <h3 style="font-size:18px; color:#FFFFFF;"><i class="fas fa-table"></i> Grade Table</h3>
+                        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                            <button class="btn-small btn-purple" onclick="showImportModal()"><i class="fas fa-upload"></i> Import</button>
+                            <button class="btn-small btn-outline" onclick="exportToExcel()"><i class="fas fa-download"></i> Export</button>
+                            <button class="btn-small btn-outline" onclick="generateAllReportCards()"><i class="fas fa-file-pdf"></i> All Reports</button>
+                        </div>
+                    </div>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead><tr><th>#</th><th>Pupil Name</th><th>Grade</th><th>Week 4</th><th>Week 8</th><th>Week 14</th><th>Avg</th><th>Status</th><th>Actions</th></tr></thead>
+                            <tbody id="tableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Teacher Settings -->
+                <div style="background:rgba(20,23,43,0.6); border-radius:1rem; padding:1.2rem 1.5rem; border:1px solid rgba(255,255,255,0.06); margin-top:1.5rem;">
+                    <h3 style="font-size:18px; color:#FFFFFF; margin-bottom:12px;"><i class="fas fa-cog"></i> Settings</h3>
+                    <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
+                        <span style="color:#B6BDF0; min-width:120px;">🔐 Change Password</span>
+                        <input type="password" id="teacherNewPassword" placeholder="New password" style="flex:1; padding:10px 16px; border-radius:1rem; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.06); color:#EDEEF2; font-size:14px; outline:none; min-width:150px;" />
+                        <button class="btn-small btn-purple" onclick="updateTeacherPassword()">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+        PARENT PORTAL
+        ============================================================ -->
+        <div class="page" id="parentPortal">
+            <div class="parent-portal active">
+                <div class="page-title"><i class="fas fa-users"></i> 👨‍👩‍👧 Parent Portal</div>
+                <p class="page-subtitle">Enter your child's details to view results</p>
+
+                <div style="max-width:500px; margin:0 auto;">
+                    <div class="auth-card">
+                        <h2>🔍 Find Your Child</h2>
+                        <p class="sub">Enter your child's details to see their results</p>
+                        <div class="form-group">
+                            <label>🏫 School Name</label>
+                            <select id="parentSchoolSelect">
+                                <option value="">Select school...</option>
+                                <option value="Greenhill Academy">Greenhill Academy</option>
+                                <option value="Zambia High School">Zambia High School</option>
+                                <option value="Lusaka International School">Lusaka International School</option>
+                                <option value="Copperbelt Secondary">Copperbelt Secondary</option>
+                                <option value="Victoria Falls College">Victoria Falls College</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>📚 Child's Grade</label>
+                            <select id="parentGradeSelect">
+                                <option value="">Select grade...</option>
+                                <option value="1">Grade 1</option><option value="2">Grade 2</option>
+                                <option value="3">Grade 3</option><option value="4">Grade 4</option>
+                                <option value="5">Grade 5</option><option value="6">Grade 6</option>
+                                <option value="7">Grade 7</option><option value="8">Grade 8</option>
+                                <option value="9">Grade 9</option><option value="10">Grade 10</option>
+                                <option value="11">Grade 11</option><option value="12">Grade 12</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>👤 Child's Full Name</label>
+                            <input type="text" id="parentChildName" placeholder="e.g., John Banda" />
+                        </div>
+                        <button class="btn-primary" onclick="findChild()"><i class="fas fa-search"></i> Find My Child</button>
+                    </div>
+                    <div id="parentResults" style="display:none; margin-top:24px;"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ============================================================
+    MODALS
+    ============================================================ -->
+    <!-- Grade Modal -->
+    <div class="modal-overlay" id="gradeModal">
+        <div class="modal-content">
+            <h2>📚 Choose Grade</h2>
+            <div style="text-align:center; color:#B6BDF0; font-size:0.9rem; margin-bottom:1.2rem;" id="selectedSubjectDisplay">Subject: Mathematics</div>
+            <div class="grade-grid">
+                <button class="grade-btn" onclick="selectGrade(1)">1 <span class="sub">Primary</span></button>
+                <button class="grade-btn" onclick="selectGrade(2)">2 <span class="sub">Primary</span></button>
+                <button class="grade-btn" onclick="selectGrade(3)">3 <span class="sub">Primary</span></button>
+                <button class="grade-btn" onclick="selectGrade(4)">4 <span class="sub">Primary</span></button>
+                <button class="grade-btn" onclick="selectGrade(5)">5 <span class="sub">Primary</span></button>
+                <button class="grade-btn" onclick="selectGrade(6)">6 <span class="sub">Primary</span></button>
+                <button class="grade-btn" onclick="selectGrade(7)">7 <span class="sub">Junior</span></button>
+                <button class="grade-btn" onclick="selectGrade(8)">8 <span class="sub">Junior</span></button>
+                <button class="grade-btn" onclick="selectGrade(9)">9 <span class="sub">Junior</span></button>
+                <button class="grade-btn" onclick="selectGrade(10)">10 <span class="sub">Senior</span></button>
+                <button class="grade-btn" onclick="selectGrade(11)">11 <span class="sub">Senior</span></button>
+                <button class="grade-btn" onclick="selectGrade(12)">12 <span class="sub">Senior</span></button>
+            </div>
+            <button class="close-modal-btn" onclick="closeGradeModal()">Close</button>
+        </div>
+    </div>
+
+    <!-- Live List Modal -->
+    <div class="modal-overlay" id="liveListModal">
+        <div class="modal-content" style="max-width:550px;">
+            <h2>🔴 Live Classes</h2>
+            <p style="text-align:center; color:#B6BDF0; font-size:14px; margin-bottom:1rem;">🌍 Public · Join any class — no login required</p>
+            <div class="live-list">
+                <div class="live-item">
+                    <div class="left">
+                        <span class="live-badge" style="font-size:10px; padding:2px 10px;"><i class="fas fa-circle"></i> LIVE</span>
+                        <div class="info"><h4>Mathematics - Grade 12</h4><p>👨‍🏫 Mr. Banda · 45 watching</p></div>
+                    </div>
+                    <button class="btn-small btn-purple" onclick="showToast('🎥 Joining live class...')">Join</button>
+                </div>
+                <div class="live-item">
+                    <div class="left">
+                        <span class="live-badge" style="font-size:10px; padding:2px 10px;"><i class="fas fa-circle"></i> LIVE</span>
+                        <div class="info"><h4>Physics - Grade 10</h4><p>👨‍🏫 Mrs. Zulu · 32 watching</p></div>
+                    </div>
+                    <button class="btn-small btn-purple" onclick="showToast('🎥 Joining live class...')">Join</button>
+                </div>
+                <div class="live-item">
+                    <div class="left">
+                        <span class="live-badge" style="font-size:10px; padding:2px 10px;"><i class="fas fa-circle"></i> LIVE</span>
+                        <div class="info"><h4>English Literature</h4><p>👨‍🏫 Ms. Phiri · 28 watching</p></div>
+                    </div>
+                    <button class="btn-small btn-purple" onclick="showToast('🎥 Joining live class...')">Join</button>
+                </div>
+            </div>
+            <button class="close-modal-btn" onclick="closeLiveList()">Close</button>
+        </div>
+    </div>
+
+    <!-- Import Modal -->
+    <div class="modal-overlay" id="importModal">
+        <div class="modal-content" style="max-width:500px;">
+            <h2>📤 Import Results</h2>
+            <p style="text-align:center; color:#B6BDF0; font-size:14px; margin-bottom:1rem;">Choose how to add pupil results</p>
+            <div class="import-options">
+                <button onclick="triggerExcelImport()"><i class="fas fa-file-excel"></i>Upload Excel/CSV<span class="desc">.xlsx, .csv</span></button>
+                <button onclick="triggerImageImport()"><i class="fas fa-image"></i>Upload Image<span class="desc">Photo of table</span></button>
+                <button onclick="showPasteOption()" style="grid-column: span 2;"><i class="fas fa-paste"></i>Copy & Paste<span class="desc">From Word/Excel</span></button>
+            </div>
+            <input type="file" id="excelInput" accept=".xlsx,.xls,.csv" style="display:none;" onchange="handleExcelImport(event)" />
+            <input type="file" id="imageInput" accept="image/*" style="display:none;" onchange="handleImageImport(event)" />
+            <div id="pasteSection" style="display:none; margin-top:12px;">
+                <label style="color:#B6BDF0; font-size:14px; display:block; margin-bottom:4px;">📋 Paste your data</label>
+                <textarea class="paste-area" id="pasteArea" placeholder="John Banda 78 82 88&#10;Mary Zulu 65 70 72"></textarea>
+                <button class="btn-small btn-purple" onclick="parsePasteData()" style="margin-top:8px; width:100%; justify-content:center;"><i class="fas fa-check"></i> Parse & Add</button>
+            </div>
+            <div id="importPreview" style="margin-top:12px; display:none;"></div>
+            <button class="close-modal-btn" onclick="closeImportModal()">Close</button>
+        </div>
+    </div>
+
+    <!-- File Upload Modal -->
+    <div class="modal-overlay" id="fileUploadModal">
+        <div class="modal-content">
+            <h2>📁 Upload Files</h2>
+            <p style="text-align:center; color:#B6BDF0; font-size:14px; margin-bottom:1rem;">Upload resources for students</p>
+            <div class="file-upload-area" onclick="document.getElementById('fileInput2').click()">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <p>Tap to select files</p>
+                <div class="file-types">
+                    <span>📄 PDF</span><span>🎥 MP4</span>
+                    <span>🎵 MP3</span><span>📷 JPG</span>
+                    <span>📝 DOC</span>
+                </div>
+                <input type="file" id="fileInput2" multiple style="display:none;" onchange="handleFileSelect2(event)" />
+            </div>
+            <div id="selectedFilesInfo2" style="margin:10px 0; font-size:13px; color:#B6BDF0;"></div>
+            <div class="upload-visibility">
+                <label><input type="radio" name="visibility2" value="public" checked /> 🌍 Public (Everyone)</label>
+                <label><input type="radio" name="visibility2" value="group" /> 👥 Group Only</label>
+            </div>
+            <button class="btn-primary" onclick="uploadFiles()"><i class="fas fa-upload"></i> Upload</button>
+            <button class="close-modal-btn" onclick="closeFileUpload()">Close</button>
+        </div>
+    </div>
+
+    <!-- Chat Modal -->
+    <div class="chat-modal" id="chatModal">
+        <div class="chat-modal-content">
+            <div class="chat-header">
+                <h3 id="chatGroupTitle">📐 Group Chat <span class="status">● 5 online</span></h3>
+                <div class="chat-actions">
+                    <button onclick="showToast('📤 Share a book')"><i class="fas fa-share-alt"></i></button>
+                    <button onclick="leaveGroup()" style="color:#9CA3E0;"><i class="fas fa-sign-out-alt"></i> Leave</button>
+                    <button class="close-chat" onclick="closeChat()">✕</button>
+                </div>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="homework-banner"><h4>📝 Homework: Algebra</h4><p>Solve equations 1-10 on page 45. Due Friday.</p></div>
+                <div class="chat-msg received"><div class="sender">Alex</div>Anyone understand question 5?<span class="time">10:28 AM</span></div>
+                <div class="chat-msg sent">I can help! It's using the quadratic formula.<span class="time">10:30 AM</span></div>
+            </div>
+            <div class="chat-input-area">
+                <input type="text" id="chatInput" placeholder="Type a message..." />
+                <div class="chat-tools">
+                    <button onclick="attachImage()" title="Image"><i class="fas fa-image"></i></button>
+                    <button onclick="startVoiceRecording()" id="voiceBtn" title="Voice"><i class="fas fa-microphone"></i></button>
+                    <button onclick="attachVideo()" title="Video"><i class="fas fa-video"></i></button>
+                    <button onclick="attachFile()" title="File"><i class="fas fa-paperclip"></i></button>
+                </div>
+                <button class="send-btn" onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Report Modal -->
+    <div class="report-modal" id="reportModal">
+        <div class="report-modal-content">
+            <h2>📄 Report Card</h2>
+            <div class="report-sub" id="reportStudentName">Student Name</div>
+            <div id="reportDetails">
+                <div class="report-item"><span class="label">📚 Subject</span><span class="value" id="reportSubject">—</span></div>
+                <div class="report-item"><span class="label">📊 Week 4</span><span class="value" id="reportW4">—</span></div>
+                <div class="report-item"><span class="label">📊 Week 8</span><span class="value" id="reportW8">—</span></div>
+                <div class="report-item"><span class="label">📊 Week 14</span><span class="value" id="reportW14">—</span></div>
+                <div class="report-item"><span class="label">📈 Average</span><span class="value" id="reportAvg">—</span></div>
+                <div class="report-item"><span class="label">🏆 Status</span><span class="value" id="reportStatus">—</span></div>
+            </div>
+            <button class="report-print-btn" onclick="printReport()"><i class="fas fa-print"></i> Print / PDF</button>
+            <button class="close-modal-btn" onclick="closeReport()">Close</button>
+        </div>
+    </div>
+
+    <!-- Post Announcement Modal -->
+    <div class="modal-overlay" id="announcementModal">
+        <div class="modal-content">
+            <h2>📢 Post Announcement</h2>
+            <p class="sub">Share news with your school</p>
+            <div class="form-group">
+                <label>📝 Title</label>
+                <input type="text" id="announcementTitle" placeholder="e.g., School closed on Friday" />
+            </div>
+            <div class="form-group">
+                <label>📄 Details</label>
+                <textarea id="announcementDetails" rows="3" placeholder="Write your announcement..." style="width:100%; padding:12px 16px; border-radius:1rem; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.06); color:#EDEEF2; font-size:14px; outline:none; font-family:'Inter',sans-serif; resize:vertical;"></textarea>
+            </div>
+            <button class="btn-primary" onclick="postAnnouncement()"><i class="fas fa-paper-plane"></i> Post Announcement</button>
+            <button class="close-modal-btn" onclick="closeAnnouncementModal()">Cancel</button>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    BOTTOM NAV
+    ============================================================ -->
+    <nav class="bottom-nav">
+        <button class="active" onclick="switchPage('studentPortal', this)">
+            <i class="fas fa-home"></i><span>Home</span>
+        </button>
+        <button onclick="switchPage('aiPage', this)">
+            <i class="fas fa-robot"></i><span>AI</span>
+        </button>
+        <button onclick="switchPage('groupsPage', this)">
+            <i class="fas fa-users"></i><span>Groups</span>
+            <span class="nav-badge">5</span>
+        </button>
+        <button onclick="switchPage('alertsPage', this)">
+            <i class="fas fa-bell"></i><span>Alerts</span>
+            <span class="nav-badge">3</span>
+        </button>
+    </nav>
+
+    <!-- ============================================================
+    JAVASCRIPT
+    ============================================================ -->
+    <script>
+        // ============================================================
+        // DATA
+        // ============================================================
+        let pupilsData = [];
+        let selectedSubject = '';
+        let currentChatGroup = '';
+        let isRecording = false;
+        let mediaRecorder = null;
+        let audioChunks = [];
+        let isTeacherLoggedIn = false;
+        let teacherRole = '';
+        let teacherSchool = '';
+        let selectedFiles = [];
+        let currentPage = 'studentPortal';
+        let loginStep = 1;
+
+        const samplePupils = [
+            { name: 'John Banda', grade: '12', w4: 78, w8: 82, w14: 88 },
+            { name: 'Mary Zulu', grade: '12', w4: 65, w8: 70, w14: 72 },
+            { name: 'Peter Phiri', grade: '12', w4: 92, w8: 88, w14: 94 },
+            { name: 'Grace Mwale', grade: '12', w4: 55, w8: 60, w14: 58 },
+            { name: 'David Ngoma', grade: '12', w4: 45, w8: 50, w14: 55 },
+        ];
+
+        const sampleResources = [
+            { title: 'Mathematics Grade 12 Notes', subject: 'Mathematics', type: 'PDF', size: '2.4 MB' },
+            { title: 'Physics - Waves Explained', subject: 'Science', type: 'Video', size: '45 MB' },
+            { title: 'English Literature Guide', subject: 'English', type: 'PDF', size: '1.8 MB' },
+            { title: 'Chemistry Reactions', subject: 'Science', type: 'PDF', size: '3.2 MB' },
+            { title: 'History - World War II', subject: 'History', type: 'Audio', size: '12 MB' },
+            { title: 'Geography Maps', subject: 'Geography', type: 'PDF', size: '4.1 MB' },
+        ];
+
+        // ============================================================
+        // SIDEBAR
+        // ============================================================
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('active');
+        }
+
+        // ============================================================
+        // PAGE NAVIGATION (Bottom Nav)
+        // ============================================================
+        function switchPage(pageId, btn) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+
+            // Show target page
+            const target = document.getElementById(pageId);
+            if (target) target.classList.add('active');
+
+            // Update bottom nav
+            document.querySelectorAll('.bottom-nav button').forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+
+            currentPage = pageId;
+        }
+
+        // ============================================================
+        // PORTAL SWITCHING (Sidebar)
+        // ============================================================
+        function switchPortal(portal) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+
+            if (portal === 'student') {
+                document.getElementById('studentPortal').classList.add('active');
+                document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active-sidebar'));
+                document.querySelectorAll('.sidebar-item')[0].classList.add('active-sidebar');
+                document.querySelectorAll('.bottom-nav button').forEach(b => b.classList.remove('active'));
+                document.querySelector('.bottom-nav button:first-child').classList.add('active');
+            } else if (portal === 'teacher') {
+                document.getElementById('teacherPortal').classList.add('active');
+                document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active-sidebar'));
+                document.querySelectorAll('.sidebar-item')[1].classList.add('active-sidebar');
+                if (!isTeacherLoggedIn) {
+                    document.getElementById('loginStep1').style.display = 'block';
+                    document.getElementById('loginStep2').style.display = 'none';
+                    document.getElementById('loginStep3').style.display = 'none';
+                    document.getElementById('adminDashboard').classList.remove('active');
+                    document.getElementById('teacherDashboard').classList.remove('active');
+                }
+            } else if (portal === 'parent') {
+                document.getElementById('parentPortal').classList.add('active');
+                document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active-sidebar'));
+                document.querySelectorAll('.sidebar-item')[2].classList.add('active-sidebar');
+            }
+
+            toggleSidebar();
+        }
+
+        // ============================================================
+        // TOAST
+        // ============================================================
+        function showToast(msg) {
+            let t = document.querySelector('.toast');
+            if (t) t.remove();
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerText = msg;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 4000);
+        }
+
+        // ============================================================
+        // STUDENT PORTAL
+        // ============================================================
+        function applyStudentFilter() {
+            const school = document.getElementById('studentSchoolInput').value.trim();
+            const grade = document.getElementById('studentGradeInput').value;
+            if (!school || !grade) {
+                showToast('❌ Please enter your school name and select your grade');
+                return;
+            }
+            showToast('✅ Showing resources for ' + school + ' - Grade ' + grade);
+            document.getElementById('resourcesSection').style.display = 'block';
+            document.getElementById('globalLibrarySection').style.display = 'none';
+            renderResources();
+        }
+
+        function showGlobalLibrary() {
+            document.getElementById('globalLibrarySection').style.display = 'block';
+            document.getElementById('resourcesSection').style.display = 'none';
+            renderGlobalResources();
+        }
+
+        function renderResources() {
+            const container = document.getElementById('resourcesList');
+            container.innerHTML = sampleResources.map(r => `
+                        <div class="subject-card" style="text-align:left; padding:1.2rem;">
+                            <div style="display:flex; justify-content:space-between; align-items:start;">
+                                <div>
+                                    <div style="font-size:1.5rem;">${r.type === 'PDF' ? '📄' : r.type === 'Video' ? '🎥' : '🎵'}</div>
+                                    <h4 style="font-size:14px; margin-top:4px;">${r.title}</h4>
+                                    <p style="font-size:12px; color:#B6BDF0;">${r.subject} · ${r.size}</p>
+                                </div>
+                                <div style="display:flex; gap:6px;">
+                                    <button class="btn-small btn-purple" style="padding:4px 12px; font-size:11px;" onclick="event.stopPropagation(); showToast('📥 Downloading ${r.title}')"><i class="fas fa-download"></i></button>
+                                    <button class="btn-small btn-outline" style="padding:4px 12px; font-size:11px;" onclick="event.stopPropagation(); showToast('💾 Saved ${r.title}')"><i class="fas fa-bookmark"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('');
+        }
+
+        function renderGlobalResources() {
+            const container = document.getElementById('globalResourcesList');
+            const globalResources = [
+                ...sampleResources,
+                { title: 'Advanced Mathematics - Harvard', subject: 'Mathematics', type: 'PDF', size: '5.6 MB' },
+                { title: 'Physics for Everyone - MIT', subject: 'Science', type: 'Video', size: '120 MB' },
+                { title: 'World History - Oxford', subject: 'History', type: 'PDF', size: '8.2 MB' },
+                { title: 'Chemistry Made Simple', subject: 'Science', type: 'PDF', size: '3.8 MB' },
+            ];
+            container.innerHTML = globalResources.map(r => `
+                        <div class="subject-card" style="text-align:left; padding:1.2rem;">
+                            <div style="display:flex; justify-content:space-between; align-items:start;">
+                                <div>
+                                    <div style="font-size:1.5rem;">${r.type === 'PDF' ? '📄' : r.type === 'Video' ? '🎥' : '🎵'}</div>
+                                    <h4 style="font-size:14px; margin-top:4px;">${r.title}</h4>
+                                    <p style="font-size:12px; color:#B6BDF0;">${r.subject} · ${r.size}</p>
+                                </div>
+                                <div style="display:flex; gap:6px;">
+                                    <button class="btn-small btn-purple" style="padding:4px 12px; font-size:11px;" onclick="event.stopPropagation(); showToast('📥 Downloading ${r.title}')"><i class="fas fa-download"></i></button>
+                                    <button class="btn-small btn-outline" style="padding:4px 12px; font-size:11px;" onclick="event.stopPropagation(); showToast('💾 Saved ${r.title}')"><i class="fas fa-bookmark"></i></button>
+                                </div>
+                            </div>
+                            <div style="font-size:10px; color:#9CA3E0; margin-top:6px;">🌍 Uploaded by: ${['Greenhill Academy', 'Zambia High School', 'Lusaka International School'][Math.floor(Math.random()*3)]}</div>
+                        </div>
+                    `).join('');
+        }
+
+        function selectSubject(subject) {
+            selectedSubject = subject;
+            document.getElementById('selectedSubjectDisplay').textContent = 'Subject: ' + subject;
+            document.getElementById('gradeModal').classList.add('active');
+        }
+
+        function selectGrade(grade) {
+            closeGradeModal();
+            showToast('📚 ' + selectedSubject + ' - Grade ' + grade + '\n\n📄 Resources will appear here!');
+            document.getElementById('resourcesSection').style.display = 'block';
+            document.getElementById('resourceSubjectTitle').textContent = selectedSubject + ' - Grade ' + grade;
+            renderResources();
+        }
+
+        function closeGradeModal() {
+            document.getElementById('gradeModal').classList.remove('active');
+        }
+
+        // ============================================================
+        // LIVE CLASSES
+        // ============================================================
+        function openLiveList() {
+            document.getElementById('liveListModal').classList.add('active');
+        }
+
+        function closeLiveList() {
+            document.getElementById('liveListModal').classList.remove('active');
+        }
+
+        // ============================================================
+        // AI
+        // ============================================================
+        function openAI(provider) {
+            const urls = {
+                'DeepSeek': 'https://chat.deepseek.com/',
+                'Grok': 'https://grok.x.ai/',
+                'ChatGPT': 'https://chat.openai.com/',
+                'Claude': 'https://claude.ai/'
+            };
+            const url = urls[provider];
+            if (url) {
+                window.open(url, '_blank');
+                showToast('🤖 Opening ' + provider + '...');
+            } else {
+                showToast('🔗 ' + provider + ' coming soon!');
+            }
+        }
+
+        // ============================================================
+        // GROUPS - TABS
+        // ============================================================
+        function switchGroupTab(tab, btn) {
+            document.querySelectorAll('.groups-tabs button').forEach(b => b.classList.remove('active-tab'));
+            if (btn) btn.classList.add('active-tab');
+
+            document.querySelectorAll('.group-content').forEach(c => c.classList.remove('active-content'));
+
+            if (tab === 'school') {
+                document.getElementById('schoolGroups').classList.add('active-content');
+            } else if (tab === 'class') {
+                document.getElementById('classGroups').classList.add('active-content');
+            } else if (tab === 'social') {
+                document.getElementById('socialGroups').classList.add('active-content');
+            }
+        }
+
+        // ============================================================
+        // TEACHER LOGIN FLOW
+        // ============================================================
+        function verifySchoolCode() {
+            const code = document.getElementById('schoolCodeInput').value.trim();
+            if (code === 'SCHOOL2024') {
+                document.getElementById('loginStep1').style.display = 'none';
+                document.getElementById('loginStep2').style.display = 'block';
+                loginStep = 2;
+                showToast('✅ School verified! Choose your role.');
+            } else {
+                showToast('❌ Invalid school code. Please try again.');
+            }
+        }
+
+        function selectRole(role) {
+            teacherRole = role;
+            document.getElementById('loginRoleDisplay').textContent = role === 'admin' ? 'School Admin' : 'Teacher';
+            document.getElementById('loginStep2').style.display = 'none';
+            document.getElementById('loginStep3').style.display = 'block';
+            loginStep = 3;
+            document.getElementById('firstTimeSetup').style.display = 'block';
+        }
+
+        function goBackToStep1() {
+            loginStep = 1;
+            document.getElementById('loginStep1').style.display = 'block';
+            document.getElementById('loginStep2').style.display = 'none';
+            document.getElementById('loginStep3').style.display = 'none';
+        }
+
+        function goBackToStep2() {
+            loginStep = 2;
+            document.getElementById('loginStep2').style.display = 'block';
+            document.getElementById('loginStep3').style.display = 'none';
+        }
+
+        function loginTeacher() {
+            const username = document.getElementById('teacherUsernameInput').value.trim();
+            const password = document.getElementById('teacherPasswordInput').value.trim();
+
+            if (!username) { showToast('❌ Please enter your username'); return; }
+            if (!password) { showToast('❌ Please enter your password'); return; }
+
+            const isFirstTime = document.getElementById('firstTimeSetup').style.display === 'block';
+            if (isFirstTime) {
+                const newPass = document.getElementById('newPasswordInput').value.trim();
+                const confirmPass = document.getElementById('confirmPasswordInput').value.trim();
+                if (!newPass || !confirmPass) { showToast('❌ Please set a new password'); return; }
+                if (newPass !== confirmPass) { showToast('❌ Passwords do not match'); return; }
+                showToast('✅ Password set successfully!');
+            }
+
+            isTeacherLoggedIn = true;
+            document.getElementById('teacherLoginFlow').style.display = 'none';
+
+            if (teacherRole === 'admin') {
+                document.getElementById('adminDashboard').classList.add('active');
+                loadAdminData();
+                showToast('👑 Welcome Admin!');
+            } else {
+                document.getElementById('teacherDashboard').classList.add('active');
+                loadTeacherData();
+                showToast('👨‍🏫 Welcome ' + username + '!');
+            }
+        }
+
+        function loadAdminData() {
+            pupilsData = [...samplePupils];
+            renderTable(pupilsData);
+            updateStats(pupilsData);
+            document.getElementById('adminStatTeachers').textContent = '3';
+            document.getElementById('adminStatStudents').textContent = '65';
+            document.getElementById('adminStatClasses').textContent = '4';
+            document.getElementById('adminStatPupils').textContent = '65';
+            document.getElementById('adminTeacherCount').textContent = '3';
+        }
+
+        function loadTeacherData() {
+            pupilsData = [...samplePupils];
+            renderTable(pupilsData);
+            updateTeacherStats(pupilsData);
+            document.getElementById('teacherNameDisplay').textContent = 'Mr. Banda';
+            document.getElementById('teacherClassDisplay').textContent = 'Grade 12 Math';
+        }
+
+        function logoutTeacher() {
+            isTeacherLoggedIn = false;
+            teacherRole = '';
+            document.getElementById('adminDashboard').classList.remove('active');
+            document.getElementById('teacherDashboard').classList.remove('active');
+            document.getElementById('teacherLoginFlow').style.display = 'block';
+            loginStep = 1;
+            document.getElementById('loginStep1').style.display = 'block';
+            document.getElementById('loginStep2').style.display = 'none';
+            document.getElementById('loginStep3').style.display = 'none';
+            document.getElementById('teacherUsernameInput').value = '';
+            document.getElementById('teacherPasswordInput').value = '';
+            showToast('👋 Logged out');
+        }
+
+        // ============================================================
+        // TEACHER TABLE
+        // ============================================================
+        function getGradeLetter(percent) {
+            if (percent >= 80) return 'A';
+            if (percent >= 70) return 'B';
+            if (percent >= 60) return 'C';
+            if (percent >= 50) return 'D';
+            return 'F';
+        }
+
+        function getGradeClass(percent) {
+            return 'grade-' + getGradeLetter(percent);
+        }
+
+        function getStatus(avg) {
+            if (avg >= 80) return { text: '🌟 Excellent', class: 'pass' };
+            if (avg >= 70) return { text: '✅ Good', class: 'pass' };
+            if (avg >= 60) return { text: '📖 Satisfactory', class: 'pass' };
+            if (avg >= 50) return { text: '⚠️ Needs Improvement', class: 'fail' };
+            return { text: '🔴 Failing', class: 'fail' };
+        }
+
+        function renderTable(data) {
+            const tbody = document.getElementById('tableBody');
+            if (!data || data.length === 0) {
+                tbody.innerHTML =
+                    '<tr><td colspan="9" style="text-align:center; padding:2rem; color:#9CA3E0;">No pupils yet. Click "Import" to add.</td></tr>';
+                return;
+            }
+            tbody.innerHTML = '';
+            data.forEach((p, index) => {
+                const avg = Math.round((p.w4 + p.w8 + p.w14) / 3);
+                const status = getStatus(avg);
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                            <td>${index + 1}</td>
+                            <td><strong>${p.name}</strong></td>
+                            <td>Grade ${p.grade}</td>
+                            <td><span class="grade-badge ${getGradeClass(p.w4)}">${p.w4}%</span></td>
+                            <td><span class="grade-badge ${getGradeClass(p.w8)}">${p.w8}%</span></td>
+                            <td><span class="grade-badge ${getGradeClass(p.w14)}">${p.w14}%</span></td>
+                            <td><strong>${avg}%</strong></td>
+                            <td><span style="color:${status.class === 'pass' ? '#8B7CF7' : '#9CA3E0'}; font-weight:600;">${status.text}</span></td>
+                            <td>
+                                <div class="table-actions">
+                                    <button onclick="viewReportCard(${index})" title="Report"><i class="fas fa-file-alt"></i></button>
+                                    <button onclick="editRow(${index})" title="Edit"><i class="fas fa-edit"></i></button>
+                                    <button onclick="deleteRow(${index})" title="Delete"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </td>
+                        `;
+                tbody.appendChild(tr);
+            });
+            updateStats(data);
+        }
+
+        function updateStats(data) {
+            if (!data || data.length === 0) return;
+            const avg = Math.round(data.reduce((sum, p) => sum + (p.w4 + p.w8 + p.w14) / 3, 0) / data.length);
+            if (document.getElementById('teacherStatStudents')) {
+                document.getElementById('teacherStatStudents').textContent = data.length;
+                document.getElementById('teacherStatResults').textContent = data.length * 3;
+                document.getElementById('teacherStatAvg').textContent = avg + '%';
+            }
+        }
+
+        function updateTeacherStats(data) {
+            if (!data || data.length === 0) return;
+            const avg = Math.round(data.reduce((sum, p) => sum + (p.w4 + p.w8 + p.w14) / 3, 0) / data.length);
+            document.getElementById('teacherStatStudents').textContent = data.length;
+            document.getElementById('teacherStatResults').textContent = data.length * 3;
+            document.getElementById('teacherStatAvg').textContent = avg + '%';
+        }
+
+        function editRow(index) {
+            const p = pupilsData[index];
+            const name = prompt('Pupil name:', p.name);
+            if (!name) return;
+            const grade = prompt('Grade:', p.grade) || p.grade;
+            const w4 = parseInt(prompt('Week 4 %:', p.w4)) || p.w4;
+            const w8 = parseInt(prompt('Week 8 %:', p.w8)) || p.w8;
+            const w14 = parseInt(prompt('Week 14 %:', p.w14)) || p.w14;
+            pupilsData[index] = { name, grade, w4, w8, w14 };
+            renderTable(pupilsData);
+            showToast('✅ Updated ' + name);
+        }
+
+        function deleteRow(index) {
+            if (confirm('Delete ' + pupilsData[index].name + '?')) {
+                const name = pupilsData[index].name;
+                pupilsData.splice(index, 1);
+                renderTable(pupilsData);
+                showToast('🗑️ Deleted ' + name);
+            }
+        }
+
+        // ============================================================
+        // IMPORT
+        // ============================================================
+        function showImportModal() {
+            document.getElementById('importModal').classList.add('active');
+            document.getElementById('pasteSection').style.display = 'none';
+            document.getElementById('importPreview').style.display = 'none';
+        }
+
+        function closeImportModal() {
+            document.getElementById('importModal').classList.remove('active');
+        }
+
+        function triggerExcelImport() {
+            document.getElementById('excelInput').click();
+        }
+
+        function triggerImageImport() {
+            document.getElementById('imageInput').click();
+        }
+
+        function showPasteOption() {
+            const section = document.getElementById('pasteSection');
+            section.style.display = section.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function handleExcelImport(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = new Uint8Array(e.target.result);
+                    const workbook = XLSX.read(data, { type: 'array' });
+                    const sheet = workbook.Sheets[workbook.SheetNames[0]];
+                    const jsonData = XLSX.utils.sheet_to_json(sheet);
+                    let added = 0;
+                    jsonData.forEach(row => {
+                        const name = row['Pupil Name'] || row['Name'] || row['name'] || '';
+                        const grade = row['Grade'] || row['grade'] || '12';
+                        const w4 = parseInt(row['Week 4'] || row['W4'] || row['w4'] || 0);
+                        const w8 = parseInt(row['Week 8'] || row['W8'] || row['w8'] || 0);
+                        const w14 = parseInt(row['Week 14'] || row['W14'] || row['w14'] || 0);
+                        if (name) { pupilsData.push({ name, grade: String(grade), w4, w8, w14 });
+                            added++; }
+                    });
+                    renderTable(pupilsData);
+                    showToast('✅ ' + added + ' pupils imported!');
+                    closeImportModal();
+                } catch (err) { showToast('❌ Error: ' + err.message); }
+            };
+            reader.readAsArrayBuffer(file);
+            event.target.value = '';
+        }
+
+        function handleImageImport(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            showToast('🔍 Reading image with OCR...');
+            const preview = document.getElementById('importPreview');
+            preview.style.display = 'block';
+            preview.innerHTML = '<div style="text-align:center; padding:1rem; color:#B6BDF0;">📸 Processing...</div>';
+
+            Tesseract.recognize(file, 'eng', { logger: m => console.log(m) })
+                .then(result => {
+                    const text = result.data.text;
+                    preview.innerHTML = '<div style="color:#B6BDF0; font-size:13px;">📋 Extracted:</div>' +
+                        '<div class="ocr-preview">' + text + '</div>' +
+                        `<button class="btn-small btn-purple" onclick="parseOCRText(\`${text.replace(/`/g, '\\`')}\`)" style="margin-top:8px; width:100%; justify-content:center;"><i class="fas fa-check"></i> Parse & Add</button>`;
+                    showToast('✅ OCR complete!');
+                })
+                .catch(err => { showToast('❌ OCR failed: ' + err.message);
+                    preview.style.display = 'none'; });
+            event.target.value = '';
+        }
+
+        function parseOCRText(text) {
+            const lines = text.split('\n').filter(line => line.trim());
+            let added = 0;
+            lines.forEach(line => {
+                const parts = line.trim().split(/\s+/);
+                let nameParts = [],
+                    scores = [];
+                for (let i = parts.length - 1; i >= 0; i--) {
+                    if (!isNaN(parts[i]) && parts[i].trim() !== '') { scores.unshift(parseInt(parts[i])); } else { nameParts
+                            .unshift(parts[i]); }
+                }
+                if (scores.length >= 3 && nameParts.length > 0) {
+                    const name = nameParts.join(' ');
+                    if (name && scores[0] > 0 && scores[1] > 0 && scores[2] > 0) {
+                        pupilsData.push({ name, grade: '12', w4: scores[0], w8: scores[1], w14: scores[2] });
+                        added++;
+                    }
+                }
+            });
+            if (added > 0) { renderTable(pupilsData);
+                showToast('✅ ' + added + ' pupils added!');
+                closeImportModal(); } else { showToast('❌ Could not parse. Try Copy & Paste.'); }
+        }
+
+        function parsePasteData() {
+            const text = document.getElementById('pasteArea').value;
+            if (!text.trim()) { showToast('❌ Please paste data'); return; }
+            const lines = text.split('\n').filter(line => line.trim());
+            let added = 0;
+            lines.forEach(line => {
+                const parts = line.trim().split(/\s+/);
+                let nameParts = [],
+                    scores = [];
+                for (let i = parts.length - 1; i >= 0; i--) {
+                    if (!isNaN(parts[i]) && parts[i].trim() !== '') { scores.unshift(parseInt(parts[i])); } else { nameParts
+                            .unshift(parts[i]); }
+                }
+                if (scores.length >= 3 && nameParts.length > 0) {
+                    const name = nameParts.join(' ');
+                    if (name && scores[0] > 0 && scores[1] > 0 && scores[2] > 0) {
+                        pupilsData.push({ name, grade: '12', w4: scores[0], w8: scores[1], w14: scores[2] });
+                        added++;
+                    }
+                }
+            });
+            if (added > 0) { renderTable(pupilsData);
+                showToast('✅ ' + added + ' pupils added!');
+                document.getElementById('pasteArea').value = '';
+                closeImportModal(); } else { showToast('❌ Could not parse. Format: Name W4 W8 W14'); }
+        }
+
+        // ============================================================
+        // EXPORT
+        // ============================================================
+        function exportToExcel() {
+            if (pupilsData.length === 0) { showToast('❌ No data to export'); return; }
+            const data = pupilsData.map(p => ({
+                'Pupil Name': p.name,
+                'Grade': p.grade,
+                'Week 4': p.w4,
+                'Week 8': p.w8,
+                'Week 14': p.w14,
+                'Average': Math.round((p.w4 + p.w8 + p.w14) / 3)
+            }));
+            const ws = XLSX.utils.json_to_sheet(data);
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, 'Results');
+            XLSX.writeFile(wb, 'Class_Results.xlsx');
+            showToast('📥 Exported ' + data.length + ' pupils!');
+        }
+
+        // ============================================================
+        // REPORT CARDS
+        // ============================================================
+        function viewReportCard(index) {
+            const p = pupilsData[index];
+            const avg = Math.round((p.w4 + p.w8 + p.w14) / 3);
+            const status = getStatus(avg);
+            document.getElementById('reportStudentName').textContent = '👤 ' + p.name + ' (Grade ' + p.grade + ')';
+            document.getElementById('reportSubject').textContent = 'All Subjects';
+            document.getElementById('reportW4').textContent = p.w4 + '% (' + getGradeLetter(p.w4) + ')';
+            document.getElementById('reportW8').textContent = p.w8 + '% (' + getGradeLetter(p.w8) + ')';
+            document.getElementById('reportW14').textContent = p.w14 + '% (' + getGradeLetter(p.w14) + ')';
+            document.getElementById('reportAvg').textContent = avg + '%';
+            document.getElementById('reportStatus').textContent = status.text;
+            document.getElementById('reportStatus').style.color = status.class === 'pass' ? '#8B7CF7' : '#9CA3E0';
+            document.getElementById('reportModal').classList.add('active');
+        }
+
+        function closeReport() {
+            document.getElementById('reportModal').classList.remove('active');
+        }
+
+        function printReport() {
+            window.print();
+        }
+
+        function generateAllReportCards() {
+            if (pupilsData.length === 0) { showToast('❌ No pupils'); return; }
+            let report = '📄 SCHOOLHUB - REPORT CARDS\n' + '='.repeat(50) + '\n\n';
+            pupilsData.forEach((p, i) => {
+                const avg = Math.round((p.w4 + p.w8 + p.w14) / 3);
+                const status = getStatus(avg);
+                report += `📚 ${p.name} (Grade ${p.grade})\n`;
+                report += `   Week 4:  ${p.w4}% (${getGradeLetter(p.w4)})\n`;
+                report += `   Week 8:  ${p.w8}% (${getGradeLetter(p.w8)})\n`;
+                report += `   Week 14: ${p.w14}% (${getGradeLetter(p.w14)})\n`;
+                report += `   Average: ${avg}% - ${status.text}\n`;
+                report += '-'.repeat(30) + '\n\n';
+            });
+            const blob = new Blob([report], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Report_Cards.txt';
+            a.click();
+            URL.revokeObjectURL(url);
+            showToast('📄 ' + pupilsData.length + ' report cards generated!');
+        }
+
+        // ============================================================
+        // GO LIVE (Teacher)
+        // ============================================================
+        function startLive() {
+            if (!isTeacherLoggedIn) { showToast('🔒 Teacher login required!'); return; }
+            const title = document.getElementById('liveTitleInput').value.trim();
+            const desc = document.getElementById('liveDescInput').value.trim();
+            const audience = document.querySelector('input[name="liveAudience"]:checked');
+            const isGlobal = audience && audience.value === 'global';
+
+            if (!title) { showToast('❌ Please enter a title'); return; }
+
+            showToast('🔴 LIVE STARTED!\n\n📝 ' + title + '\n' +
+                (isGlobal ? '🌍 Global (Public) - Everyone can watch' : '👥 Class Only') +
+                '\n\n🎥 Streaming...');
+        }
+
+        // ============================================================
+        // ADMIN FUNCTIONS
+        // ============================================================
+        function showPostAnnouncement() {
+            document.getElementById('announcementModal').classList.add('active');
+        }
+
+        function closeAnnouncementModal() {
+            document.getElementById('announcementModal').classList.remove('active');
+            document.getElementById('announcementTitle').value = '';
+            document.getElementById('announcementDetails').value = '';
+        }
+
+        function postAnnouncement() {
+            const title = document.getElementById('announcementTitle').value.trim();
+            const details = document.getElementById('announcementDetails').value.trim();
+            if (!title) { showToast('❌ Please enter a title'); return; }
+
+            const list = document.getElementById('announcementList');
+            const item = document.createElement('div');
+            item.className = 'announcement-item';
+            item.innerHTML = `
+                        <div class="title">📢 ${title}</div>
+                        <div class="meta">📅 Posted: Just now · By: Admin</div>
+                        ${details ? `<div style="color:#B6BDF0; font-size:13px; margin-top:6px;">${details}</div>` : ''}
+                    `;
+            list.prepend(item);
+            closeAnnouncementModal();
+            showToast('✅ Announcement posted!');
+        }
+
+        function updateSchoolName() {
+            const name = document.getElementById('adminSchoolName').value.trim();
+            if (!name) { showToast('❌ Please enter a school name'); return; }
+            document.getElementById('adminSchoolNameDisplay').textContent = name;
+            showToast('✅ School name updated to: ' + name);
+        }
+
+        function updateSchoolCode() {
+            const code = document.getElementById('adminSchoolCode').value.trim();
+            if (!code) { showToast('❌ Please enter a school code'); return; }
+            showToast('✅ School code updated to: ' + code);
+        }
+
+        function updateAdminPassword() {
+            const pass = document.getElementById('adminPassword').value.trim();
+            if (!pass || pass.length < 6) { showToast('❌ Password must be at least 6 characters'); return; }
+            document.getElementById('adminPassword').value = '';
+            showToast('✅ Admin password updated!');
+        }
+
+        function updateTeacherPassword() {
+            const pass = document.getElementById('teacherNewPassword').value.trim();
+            if (!pass || pass.length < 6) { showToast('❌ Password must be at least 6 characters'); return; }
+            document.getElementById('teacherNewPassword').value = '';
+            showToast('✅ Teacher password updated!');
+        }
+
+        // ============================================================
+        // PARENT PORTAL
+        // ============================================================
+        function findChild() {
+            const school = document.getElementById('parentSchoolSelect').value;
+            const grade = document.getElementById('parentGradeSelect').value;
+            const name = document.getElementById('parentChildName').value.trim();
+
+            if (!school) { showToast('❌ Please select a school'); return; }
+            if (!grade) { showToast('❌ Please select a grade'); return; }
+            if (!name) { showToast('❌ Please enter your child\'s name'); return; }
+
+            const child = pupilsData.find(p =>
+                p.name.toLowerCase().includes(name.toLowerCase()) &&
+                p.grade === grade
+            );
+
+            const container = document.getElementById('parentResults');
+            if (child) {
+                const avg = Math.round((child.w4 + child.w8 + child.w14) / 3);
+                const status = getStatus(avg);
+                container.style.display = 'block';
+                container.innerHTML = `
+                            <div class="child-result-card">
+                                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+                                    <div>
+                                        <div class="child-name">👤 ${child.name}</div>
+                                        <div class="child-school">🏫 ${school} · 📚 Grade ${child.grade}</div>
+                                    </div>
+                                    <span style="background:${status.class === 'pass' ? '#6C5CE7' : 'rgba(255,255,255,0.1)'}; color:#FFFFFF; padding:4px 16px; border-radius:30px; font-weight:700; font-size:14px;">${status.text}</span>
+                                </div>
+                                <div class="result-grid">
+                                    <div class="result-item"><div class="week">📊 Week 4</div><div class="score ${child.w4 >= 60 ? 'pass' : 'fail'}">${child.w4}%</div></div>
+                                    <div class="result-item"><div class="week">📊 Week 8</div><div class="score ${child.w8 >= 60 ? 'pass' : 'fail'}">${child.w8}%</div></div>
+                                    <div class="result-item"><div class="week">📊 Week 14</div><div class="score ${child.w14 >= 60 ? 'pass' : 'fail'}">${child.w14}%</div></div>
+                                </div>
+                                <div class="overall">
+                                    <span>📈 Average: <span style="font-size:1.3rem; color:${avg >= 60 ? '#8B7CF7' : '#9CA3E0'};">${avg}%</span></span>
+                                    <span>🏆 ${status.text}</span>
+                                </div>
+                                <div class="parent-actions">
+                                    <button class="btn-small btn-purple" onclick="viewParentReportCard('${child.name}')"><i class="fas fa-file-pdf"></i> Report Card</button>
+                                    <button class="btn-small btn-outline" onclick="showToast('💬 Message sent to teacher!')"><i class="fas fa-envelope"></i> Message Teacher</button>
+                                    <button class="btn-small btn-outline" onclick="showToast('🔔 Notifications enabled')"><i class="fas fa-bell"></i> Notify</button>
+                                </div>
+                            </div>
+                        `;
+                showToast('✅ Found ' + child.name + '!');
+            } else {
+                container.style.display = 'block';
+                container.innerHTML = `
+                            <div style="background:rgba(20,23,43,0.8); border-radius:1rem; padding:2rem; text-align:center; border:1px solid rgba(255,255,255,0.06);">
+                                <div style="font-size:3rem; margin-bottom:12px;">😕</div>
+                                <h3 style="color:#FFFFFF;">No results found</h3>
+                                <p style="color:#B6BDF0; margin-top:8px;">Couldn't find "${name}" in Grade ${grade} at ${school}.</p>
+                                <p style="color:#9CA3E0; font-size:13px; margin-top:8px;">💡 Check spelling or contact the teacher.</p>
+                            </div>
+                        `;
+                showToast('❌ No results found');
+            }
+        }
+
+        function viewParentReportCard(name) {
+            const child = pupilsData.find(p => p.name === name);
+            if (!child) { showToast('❌ Child not found'); return; }
+            const avg = Math.round((child.w4 + child.w8 + child.w14) / 3);
+            const status = getStatus(avg);
+            document.getElementById('reportStudentName').textContent = '👤 ' + child.name + ' (Grade ' + child.grade + ')';
+            document.getElementById('reportSubject').textContent = 'All Subjects';
+            document.getElementById('reportW4').textContent = child.w4 + '% (' + getGradeLetter(child.w4) + ')';
+            document.getElementById('reportW8').textContent = child.w8 + '% (' + getGradeLetter(child.w8) + ')';
+            document.getElementById('reportW14').textContent = child.w14 + '% (' + getGradeLetter(child.w14) + ')';
+            document.getElementById('reportAvg').textContent = avg + '%';
+            document.getElementById('reportStatus').textContent = status.text;
+            document.getElementById('reportStatus').style.color = status.class === 'pass' ? '#8B7CF7' : '#9CA3E0';
+            document.getElementById('reportModal').classList.add('active');
+            document.getElementById('parentResults').style.display = 'none';
+        }
+
+        // ============================================================
+        // FILE UPLOAD
+        // ============================================================
+        function showFileUpload() {
+            if (!isTeacherLoggedIn) { showToast('🔒 Teacher login required!'); return; }
+            document.getElementById('fileUploadModal').classList.add('active');
+        }
+
+        function closeFileUpload() {
+            document.getElementById('fileUploadModal').classList.remove('active');
+            selectedFiles = [];
+            document.getElementById('selectedFilesInfo2').textContent = '';
+        }
+
+        function handleFileSelect(event) {
+            const files = event.target.files;
+            selectedFiles = [];
+            let fileNames = [];
+            for (let f of files) {
+                selectedFiles.push(f);
+                fileNames.push(f.name + ' (' + (f.size / 1024).toFixed(1) + ' KB)');
+            }
+            document.getElementById('selectedFilesInfo').textContent = '📎 Selected: ' + fileNames.join(', ');
+            showToast('📎 ' + files.length + ' file(s) selected');
+        }
+
+        function handleFileSelect2(event) {
+            const files = event.target.files;
+            selectedFiles = [];
+            let fileNames = [];
+            for (let f of files) {
+                selectedFiles.push(f);
+                fileNames.push(f.name + ' (' + (f.size / 1024).toFixed(1) + ' KB)');
+            }
+            document.getElementById('selectedFilesInfo2').textContent = '📎 Selected: ' + fileNames.join(', ');
+            showToast('📎 ' + files.length + ' file(s) selected');
+        }
+
+        function uploadFiles() {
+            if (!isTeacherLoggedIn) { showToast('🔒 Teacher login required!'); return; }
+            if (selectedFiles.length === 0) { showToast('❌ Please select files first'); return; }
+            const visibility = document.querySelector('input[name="visibility2"]:checked');
+            const isPublic = visibility && visibility.value === 'public';
+            showToast('📤 Uploading ' + selectedFiles.length + ' file(s)...\n' +
+                (isPublic ? '🌍 Public' : '👥 Group Only'));
+            setTimeout(() => {
+                showToast('✅ Uploaded successfully!\n' + (isPublic ? '🌍 Public' : '👥 Group Only'));
+                closeFileUpload();
+                selectedFiles = [];
+                document.getElementById('selectedFilesInfo2').textContent = '';
+            }, 1500);
+        }
+
+        // ============================================================
+        // CHAT
+        // ============================================================
+        function openChat(groupName, icon) {
+            currentChatGroup = groupName;
+            document.getElementById('chatGroupTitle').innerHTML = icon + ' ' + groupName + ' <span class="status">● 5 online</span>';
+            document.getElementById('chatModal').classList.add('active');
+            document.getElementById('chatInput').focus();
+        }
+
+        function closeChat() {
+            document.getElementById('chatModal').classList.remove('active');
+            if (mediaRecorder && isRecording) {
+                mediaRecorder.stop();
+                isRecording = false;
+                document.getElementById('voiceBtn').classList.remove('recording');
+            }
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const msg = input.value.trim();
+            if (!msg) return;
+            const container = document.getElementById('chatMessages');
+            const div = document.createElement('div');
+            div.className = 'chat-msg sent';
+            const time = new Date();
+            const timeStr = time.getHours() + ':' + String(time.getMinutes()).padStart(2, '0');
+            div.innerHTML = msg + '<span class="time">' + timeStr + '</span>';
+            container.appendChild(div);
+            container.scrollTop = container.scrollHeight;
+            input.value = '';
+            setTimeout(() => {
+                const reply = document.createElement('div');
+                reply.className = 'chat-msg received';
+                const replies = ['Good question!', 'I agree! 👍', 'Can you explain more?', 'That\'s helpful!'];
+                const randomReply = replies[Math.floor(Math.random() * replies.length)];
+                const replyTime = new Date();
+                const rTime = replyTime.getHours() + ':' + String(replyTime.getMinutes()).padStart(2, '0');
+                reply.innerHTML = '<div class="sender">Someone</div>' + randomReply + '<span class="time">' + rTime +
+                    '</span>';
+                container.appendChild(reply);
+                container.scrollTop = container.scrollHeight;
+            }, 1000 + Math.random() * 2000);
+        }
+
+        function attachImage() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            input.onchange = function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(ev) {
+                        const container = document.getElementById('chatMessages');
+                        const div = document.createElement('div');
+                        div.className = 'chat-msg sent';
+                        const time = new Date();
+                        const timeStr = time.getHours() + ':' + String(time.getMinutes()).padStart(2, '0');
+                        div.innerHTML = '<img src="' + ev.target.result + '" alt="Shared image" />' +
+                            '<span class="time">' + timeStr + '</span>';
+                        container.appendChild(div);
+                        container.scrollTop = container.scrollHeight;
+                        showToast('📷 Image shared!');
+                    };
+                    reader.readAsDataURL(file);
+                }
+            };
+            input.click();
+        }
+
+        function startVoiceRecording() {
+            if (isRecording) {
+                if (mediaRecorder) mediaRecorder.stop();
+                isRecording = false;
+                document.getElementById('voiceBtn').classList.remove('recording');
+                document.getElementById('voiceBtn').innerHTML = '<i class="fas fa-microphone"></i>';
+                showToast('⏹️ Stopped');
+                return;
+            }
+            navigator.mediaDevices.getUserMedia({ audio: true })
+                .then(function(stream) {
+                    mediaRecorder = new MediaRecorder(stream);
+                    audioChunks = [];
+                    mediaRecorder.ondataavailable = function(event) { audioChunks.push(event.data); };
+                    mediaRecorder.onstop = function() {
+                        const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+                        const audioUrl = URL.createObjectURL(audioBlob);
+                        const container = document.getElementById('chatMessages');
+                        const div = document.createElement('div');
+                        div.className = 'chat-msg sent';
+                        const time = new Date();
+                        const timeStr = time.getHours() + ':' + String(time.getMinutes()).padStart(2, '0');
+                        div.innerHTML = '<audio controls src="' + audioUrl + '"></audio>' +
+                            '<span class="time">' + timeStr + '</span>';
+                        container.appendChild(div);
+                        container.scrollTop = container.scrollHeight;
+                        showToast('🎤 Voice note sent!');
+                        stream.getTracks().forEach(track => track.stop());
+                    };
+                    mediaRecorder.start();
+                    isRecording = true;
+                    document.getElementById('voiceBtn').classList.add('recording');
+                    document.getElementById('voiceBtn').innerHTML = '<i class="fas fa-stop"></i>';
+                    showToast('🎤 Recording... tap again to stop');
+                })
+                .catch(function(err) { showToast('❌ Microphone access denied'); });
+        }
+
+        function attachVideo() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'video/*';
+            input.onchange = function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(ev) {
+                        const container = document.getElementById('chatMessages');
+                        const div = document.createElement('div');
+                        div.className = 'chat-msg sent';
+                        const time = new Date();
+                        const timeStr = time.getHours() + ':' + String(time.getMinutes()).padStart(2, '0');
+                        div.innerHTML = '<video controls src="' + ev.target.result +
+                            '" style="max-width:200px;border-radius:10px;"></video>' +
+                            '<span class="time">' + timeStr + '</span>';
+                        container.appendChild(div);
+                        container.scrollTop = container.scrollHeight;
+                        showToast('🎥 Video shared!');
+                    };
+                    reader.readAsDataURL(file);
+                }
+            };
+            input.click();
+        }
+
+        function attachFile() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.onchange = function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    showToast('📎 File: ' + file.name);
+                    const container = document.getElementById('chatMessages');
+                    const div = document.createElement('div');
+                    div.className = 'chat-msg sent';
+                    const time = new Date();
+                    const timeStr = time.getHours() + ':' + String(time.getMinutes()).padStart(2, '0');
+                    div.innerHTML = '📎 <strong>' + file.name + '</strong> (' + (file.size / 1024).toFixed(1) +
+                        ' KB)<br><span style="font-size:12px;color:#B6BDF0;">File shared</span>' +
+                        '<span class="time">' + timeStr + '</span>';
+                    container.appendChild(div);
+                    container.scrollTop = container.scrollHeight;
+                }
+            };
+            input.click();
+        }
+
+        function leaveGroup() {
+            if (confirm('Leave this group?')) {
+                showToast('👋 Left ' + currentChatGroup);
+                closeChat();
+            }
+        }
+
+        // ============================================================
+        // KEYBOARD SHORTCUTS
+        // ============================================================
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeGradeModal();
+                closeChat();
+                closeReport();
+                closeImportModal();
+                closeFileUpload();
+                closeLiveList();
+                closeAnnouncementModal();
+            }
+            if (e.key === 'Enter' && document.activeElement?.id === 'chatInput') {
+                sendMessage();
+            }
+        });
+
+        // ============================================================
+        // INIT
+        // ============================================================
+        renderTable(pupilsData);
+
+        console.log('✅ SchoolHub loaded successfully!');
+        console.log('📱 Features: Student | AI | Groups | Alerts');
+        console.log('👨‍🏫 Teacher Portal: School Code → Role → Login');
+        console.log('👑 Admin: Announcements, Timetables, Teacher Management, Settings');
+        console.log('🎨 Purple, Black, White theme');
+    </script>
+
+</body>
+</html>
